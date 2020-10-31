@@ -1,0 +1,213 @@
+Install Required Software:
+
+Postman
+Git
+.Net SDK (v3.1.101 was used for the demos)
+
+Commands to create the projects:
+================================
+
+mkdir skinet
+cd skinet
+dotnet new sln
+dotnet new webapi -o API
+dotnet sln add API
+dotnet new classlib -o Core
+dotnet new classlib -o Infrastructure
+dotnet sln add Core
+dotnet sln add Infrastructure
+cd API
+dotnet add reference ../Infrastructure
+cd ..
+cd Infrastructure
+dotnet add reference ../Core
+
+Open the solution in your IDE of choice
+
+Creating the required classes
+=============================
+
+Create a new folder in the Core project called Entities
+
+Create new class called Product.cs with the following code:
+
+namespace Core.Entitites
+{
+    public class Product
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
+}
+
+Install Entity Framework Packages:
+
+In the API project add a nuget package for:
+
+Microsoft.EntityFrameworkCore.Design Version="3.1.1"
+
+In the Infrastructure project add nuget packages for:
+
+Microsoft.EntityFrameworkCore Version="3.1.1"
+Microsoft.EntityFrameworkCore.Sqlite Version="3.1.1"
+
+run the following command:
+
+dotnet restore
+
+Create a new Folder in the Infrastructure project called Data
+
+Create a new Class in the Infrastructure project called StoreContext with the following code:
+
+using Core.Entitites;
+using Microsoft.EntityFrameworkCore;
+
+namespace Infrastructure.Data
+{
+    public class StoreContext : DbContext
+    {
+        public StoreContext(DbContextOptions<StoreContext> options) : base(options)
+        {
+        }
+
+        public DbSet<Product> Products { get; set; }
+    }
+}
+
+Add a connection string in appsettings.development.json:
+
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "ConnectionStrings": {
+    "DefaultConnection": "Data source=skinet.db"
+  }
+}
+
+Add the DbContext to the Startup class (startup class should look as follows):
+
+using Infrastructure.Data;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
+namespace API
+{
+    public class Startup
+    {
+        private readonly IConfiguration _config;
+        public Startup(IConfiguration config)
+        {
+            _config = config;
+        }
+
+        // This method gets called by the runtime. Use this method to add services to the container.
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddControllers();
+            services.AddDbContext<StoreContext>(x =>
+            {
+                x.UseSqlite(_config.GetConnectionString("DefaultConnection"));
+            });
+        }
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
+            app.UseHttpsRedirection();
+
+            app.UseRouting();
+
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+        }
+    }
+}
+
+
+Adding migration and updating database:
+======================================
+
+Make sure you have the dotnet ef tools installed with the version of the sdk you are using:
+
+dotnet tool install --global dotnet-ef --version 3.1.101
+
+Run the following commmand:
+
+dotnet ef migrations add InitialCreate -p Infrastructure -s API -o Data/Migrations
+
+dotnet ef database update -p Infrastructure -s API
+
+You should now have a skinet.db file.
+
+Open the database and run the following query to add 3 entries into the DB:
+
+-- SQLite
+INSERT INTO `Products` (Id, Name)
+VALUES (1, 'Product One'), (2, 'Product Two'), (3, 'Product Three')
+
+Check the DB to make sure you can see 3 entries in there.
+
+Adding the controller
+=====================
+
+
+Add a controller with the following code:
+
+
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Core.Entities;
+using Infrastructure.Data;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+
+namespace API.Controllers
+{
+    [ApiController]
+    [Route("api/[controller]")]
+    public class ProductsController : ControllerBase
+    {
+        private readonly StoreContext _context;
+        public ProductsController(StoreContext context)
+        {
+            _context = context;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<Product>>> GetProducts()
+        {
+            var products = await _context.Products.ToListAsync();
+
+            return Ok(products);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Product>> GetProduct(int id)
+        {
+            return Ok(await _context.Products.FindAsync(id));
+        }
+    }
+}
+
+
+Add postman collection to postman.   Import skinet_postmancollection.json into your Postman and test the methods in Section 2 to make sure your controller can be reached. 
+

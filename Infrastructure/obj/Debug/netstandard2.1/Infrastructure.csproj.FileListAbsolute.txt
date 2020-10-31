@@ -1,0 +1,12 @@
+D:\MitkoSoft\Ademy\skinet\Infrastructure\bin\Debug\netstandard2.1\Infrastructure.deps.json
+D:\MitkoSoft\Ademy\skinet\Infrastructure\bin\Debug\netstandard2.1\Infrastructure.dll
+D:\MitkoSoft\Ademy\skinet\Infrastructure\bin\Debug\netstandard2.1\Infrastructure.pdb
+D:\MitkoSoft\Ademy\skinet\Infrastructure\bin\Debug\netstandard2.1\Core.dll
+D:\MitkoSoft\Ademy\skinet\Infrastructure\bin\Debug\netstandard2.1\Core.pdb
+D:\MitkoSoft\Ademy\skinet\Infrastructure\obj\Debug\netstandard2.1\Infrastructure.csprojAssemblyReference.cache
+D:\MitkoSoft\Ademy\skinet\Infrastructure\obj\Debug\netstandard2.1\Infrastructure.AssemblyInfoInputs.cache
+D:\MitkoSoft\Ademy\skinet\Infrastructure\obj\Debug\netstandard2.1\Infrastructure.AssemblyInfo.cs
+D:\MitkoSoft\Ademy\skinet\Infrastructure\obj\Debug\netstandard2.1\Infrastructure.csproj.CoreCompileInputs.cache
+D:\MitkoSoft\Ademy\skinet\Infrastructure\obj\Debug\netstandard2.1\Infrastructure.csproj.CopyComplete
+D:\MitkoSoft\Ademy\skinet\Infrastructure\obj\Debug\netstandard2.1\Infrastructure.dll
+D:\MitkoSoft\Ademy\skinet\Infrastructure\obj\Debug\netstandard2.1\Infrastructure.pdb

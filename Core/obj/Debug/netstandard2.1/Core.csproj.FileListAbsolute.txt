@@ -1,0 +1,9 @@
+D:\MitkoSoft\Ademy\skinet\Core\bin\Debug\netstandard2.1\Core.deps.json
+D:\MitkoSoft\Ademy\skinet\Core\bin\Debug\netstandard2.1\Core.dll
+D:\MitkoSoft\Ademy\skinet\Core\bin\Debug\netstandard2.1\Core.pdb
+D:\MitkoSoft\Ademy\skinet\Core\obj\Debug\netstandard2.1\Core.csprojAssemblyReference.cache
+D:\MitkoSoft\Ademy\skinet\Core\obj\Debug\netstandard2.1\Core.AssemblyInfoInputs.cache
+D:\MitkoSoft\Ademy\skinet\Core\obj\Debug\netstandard2.1\Core.AssemblyInfo.cs
+D:\MitkoSoft\Ademy\skinet\Core\obj\Debug\netstandard2.1\Core.csproj.CoreCompileInputs.cache
+D:\MitkoSoft\Ademy\skinet\Core\obj\Debug\netstandard2.1\Core.dll
+D:\MitkoSoft\Ademy\skinet\Core\obj\Debug\netstandard2.1\Core.pdb

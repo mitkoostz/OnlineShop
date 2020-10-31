@@ -1,0 +1,174 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Core.Entities;
+using Core.Entities.OrderAggregate;
+using Microsoft.Extensions.Logging;
+
+namespace Infrastructure.Data
+{
+    public class StoreContextSeed
+    {
+        public static async Task SeedAsync(StoreContext context, ILoggerFactory loggerFactory)
+        {
+            try
+            {
+                if (!context.ProductBrands.Any())
+                {
+                    context.ProductBrands.AddRange(GetPreconfiguredProductBrands());
+
+                    await context.SaveChangesAsync();
+                }
+
+                if (!context.ProductTypes.Any())
+                {
+                    context.ProductTypes.AddRange(GetPreconfiguredProductTypes());
+                    
+                    await context.SaveChangesAsync();
+                }
+
+                if (!context.Products.Any())
+                {
+                    context.Products.AddRange(GetPreconfiguredProducts());
+                    
+                    await context.SaveChangesAsync();
+                }
+
+                if (!context.DeliveryMethods.Any())
+                {
+                    context.DeliveryMethods.AddRange(GetDeliveryMethods());
+
+                    await context.SaveChangesAsync();
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                var logger = loggerFactory.CreateLogger<StoreContextSeed>();
+                logger.LogError(ex.Message);
+            }
+        }
+        
+        private static IEnumerable<DeliveryMethod> GetDeliveryMethods()
+        {
+            return new List<DeliveryMethod>
+            {
+                new DeliveryMethod()
+                {
+                    ShortName = "UPS1", Description = "Fastest delivery time", DeliveryTime = "1-2 Days", Price = 10.00m
+                },
+                new DeliveryMethod()
+                {
+                    ShortName = "UPS2", Description = "Get it within 5 days", DeliveryTime = "2-5 Days", Price = 5.00m
+                },
+                new DeliveryMethod()
+                    {ShortName = "UPS3", Description = "Slower but cheap", DeliveryTime = "5-10 Days", Price = 2.00m},
+                new DeliveryMethod()
+                {
+                    ShortName = "Free", Description = "Free! You get what you pay for", DeliveryTime = "1-2 Weeks",
+                    Price = 0
+                },
+            };
+        }
+        
+        private static IEnumerable<ProductBrand> GetPreconfiguredProductBrands()
+        {
+            return new List<ProductBrand>()
+            {
+                new ProductBrand() {Name = "Azure"},
+                new ProductBrand() {Name = ".NET"},
+                new ProductBrand() {Name = "Visual Studio"},
+                new ProductBrand() {Name = "SQL Server"},
+                new ProductBrand() {Name = "Other"}
+            };
+        }
+
+        private static IEnumerable<ProductType> GetPreconfiguredProductTypes()
+        {
+            return new List<ProductType>()
+            {
+                new ProductType() {Name = "Mug"},
+                new ProductType() {Name = "T-Shirt"},
+                new ProductType() {Name = "Sheet"},
+                new ProductType() {Name = "USB Memory Stick"}
+            };
+        }
+
+        static IEnumerable<Product> GetPreconfiguredProducts()
+        {
+            return new List<Product>()
+            {
+                new Product()
+                {
+                    ProductTypeId = 2, ProductBrandId = 2, Description = ".NET Bot Black Sweatshirt",
+                    Name = ".NET Bot Black Sweatshirt", Price = 19.5M,
+                    PictureUrl = "images/products/1.png"
+                },
+                new Product()
+                {
+                    ProductTypeId = 1, ProductBrandId = 2, Description = ".NET Black & White Mug",
+                    Name = ".NET Black & White Mug", Price = 8.50M,
+                    PictureUrl = "images/products/2.png"
+                },
+                new Product()
+                {
+                    ProductTypeId = 2, ProductBrandId = 5, Description = "Prism White T-Shirt",
+                    Name = "Prism White T-Shirt", Price = 12,
+                    PictureUrl = "images/products/3.png"
+                },
+                new Product()
+                {
+                    ProductTypeId = 2, ProductBrandId = 2, Description = ".NET Foundation Sweatshirt",
+                    Name = ".NET Foundation Sweatshirt", Price = 12,
+                    PictureUrl = "images/products/4.png"
+                },
+                new Product()
+                {
+                    ProductTypeId = 3, ProductBrandId = 5, Description = "Roslyn Red Sheet", Name = "Roslyn Red Sheet",
+                    Price = 8.5M, PictureUrl = "images/products/5.png"
+                },
+                new Product()
+                {
+                    ProductTypeId = 2, ProductBrandId = 2, Description = ".NET Blue Sweatshirt",
+                    Name = ".NET Blue Sweatshirt", Price = 12,
+                    PictureUrl = "images/products/6.png"
+                },
+                new Product()
+                {
+                    ProductTypeId = 2, ProductBrandId = 5, Description = "Roslyn Red T-Shirt",
+                    Name = "Roslyn Red T-Shirt", Price = 12,
+                    PictureUrl = "images/products/7.png"
+                },
+                new Product()
+                {
+                    ProductTypeId = 2, ProductBrandId = 5, Description = "Kudu Purple Sweatshirt",
+                    Name = "Kudu Purple Sweatshirt", Price = 8.5M,
+                    PictureUrl = "images/products/8.png"
+                },
+                new Product()
+                {
+                    ProductTypeId = 1, ProductBrandId = 5, Description = "Cup<T> White Mug", Name = "Cup<T> White Mug",
+                    Price = 12, PictureUrl = "images/products/9.png"
+                },
+                new Product()
+                {
+                    ProductTypeId = 3, ProductBrandId = 2, Description = ".NET Foundation Sheet",
+                    Name = ".NET Foundation Sheet", Price = 12,
+                    PictureUrl = "images/products/10.png"
+                },
+                new Product()
+                {
+                    ProductTypeId = 3, ProductBrandId = 2, Description = "Cup<T> Sheet", Name = "Cup<T> Sheet",
+                    Price = 8.5M, PictureUrl = "images/products/11.png"
+                },
+                new Product()
+                {
+                    ProductTypeId = 2, ProductBrandId = 5, Description = "Prism White TShirt",
+                    Name = "Prism White TShirt", Price = 12,
+                    PictureUrl = "images/products/12.png"
+                }
+            };
+        }
+    }
+}
