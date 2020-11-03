@@ -676,11 +676,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\MitkoSoft\\Ademy\\Skinet\\Core\\Core.csproj",
+      "projectUniqueName": "D:\\MitkoSoft\\.NET CORE WEB API\\Core\\Core.csproj",
       "projectName": "Core",
-      "projectPath": "D:\\MitkoSoft\\Ademy\\Skinet\\Core\\Core.csproj",
+      "projectPath": "D:\\MitkoSoft\\.NET CORE WEB API\\Core\\Core.csproj",
       "packagesPath": "C:\\Users\\todor\\.nuget\\packages\\",
-      "outputPath": "D:\\MitkoSoft\\Ademy\\Skinet\\Core\\obj\\",
+      "outputPath": "D:\\MitkoSoft\\.NET CORE WEB API\\Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",

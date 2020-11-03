@@ -7,3 +7,12 @@ D:\MitkoSoft\Ademy\skinet\Core\obj\Debug\netstandard2.1\Core.AssemblyInfo.cs
 D:\MitkoSoft\Ademy\skinet\Core\obj\Debug\netstandard2.1\Core.csproj.CoreCompileInputs.cache
 D:\MitkoSoft\Ademy\skinet\Core\obj\Debug\netstandard2.1\Core.dll
 D:\MitkoSoft\Ademy\skinet\Core\obj\Debug\netstandard2.1\Core.pdb
+D:\MitkoSoft\.NET CORE WEB API\Core\bin\Debug\netstandard2.1\Core.deps.json
+D:\MitkoSoft\.NET CORE WEB API\Core\bin\Debug\netstandard2.1\Core.dll
+D:\MitkoSoft\.NET CORE WEB API\Core\bin\Debug\netstandard2.1\Core.pdb
+D:\MitkoSoft\.NET CORE WEB API\Core\obj\Debug\netstandard2.1\Core.csprojAssemblyReference.cache
+D:\MitkoSoft\.NET CORE WEB API\Core\obj\Debug\netstandard2.1\Core.AssemblyInfoInputs.cache
+D:\MitkoSoft\.NET CORE WEB API\Core\obj\Debug\netstandard2.1\Core.AssemblyInfo.cs
+D:\MitkoSoft\.NET CORE WEB API\Core\obj\Debug\netstandard2.1\Core.csproj.CoreCompileInputs.cache
+D:\MitkoSoft\.NET CORE WEB API\Core\obj\Debug\netstandard2.1\Core.dll
+D:\MitkoSoft\.NET CORE WEB API\Core\obj\Debug\netstandard2.1\Core.pdb

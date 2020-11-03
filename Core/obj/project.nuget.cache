@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "eA+Up/C99d9REYSBm4rVSR2VTVw3gMroFeurtedji/0BGQ0Er/go8SDtYa38h7LOUp3l67lZpu5bpXx1owZzKg==",
+  "dgSpecHash": "GBGR2pCgmlBYJRuFu5A6VfXhpMWBEug5UBDx0vfiZTNvLz/Uua6qdRD4d3wIL7CQJUsIqqRFb69fxdIZE6PwWw==",
   "success": true,
-  "projectFilePath": "D:\\MitkoSoft\\Ademy\\Skinet\\Core\\Core.csproj",
+  "projectFilePath": "D:\\MitkoSoft\\.NET CORE WEB API\\Core\\Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\todor\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.8\\microsoft.aspnetcore.cryptography.internal.3.1.8.nupkg.sha512",
     "C:\\Users\\todor\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.8\\microsoft.aspnetcore.cryptography.keyderivation.3.1.8.nupkg.sha512",

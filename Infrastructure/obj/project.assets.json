@@ -2895,11 +2895,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\MitkoSoft\\Ademy\\Skinet\\Infrastructure\\Infrastructure.csproj",
+      "projectUniqueName": "D:\\MitkoSoft\\.NET CORE WEB API\\Infrastructure\\Infrastructure.csproj",
       "projectName": "Infrastructure",
-      "projectPath": "D:\\MitkoSoft\\Ademy\\Skinet\\Infrastructure\\Infrastructure.csproj",
+      "projectPath": "D:\\MitkoSoft\\.NET CORE WEB API\\Infrastructure\\Infrastructure.csproj",
       "packagesPath": "C:\\Users\\todor\\.nuget\\packages\\",
-      "outputPath": "D:\\MitkoSoft\\Ademy\\Skinet\\Infrastructure\\obj\\",
+      "outputPath": "D:\\MitkoSoft\\.NET CORE WEB API\\Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -2920,8 +2920,8 @@
       "frameworks": {
         "netstandard2.1": {
           "projectReferences": {
-            "D:\\MitkoSoft\\Ademy\\Skinet\\Core\\Core.csproj": {
-              "projectPath": "D:\\MitkoSoft\\Ademy\\Skinet\\Core\\Core.csproj"
+            "D:\\MitkoSoft\\.NET CORE WEB API\\Core\\Core.csproj": {
+              "projectPath": "D:\\MitkoSoft\\.NET CORE WEB API\\Core\\Core.csproj"
             }
           }
         }

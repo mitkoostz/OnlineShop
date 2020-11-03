@@ -34,7 +34,7 @@ namespace Ifrastructure.Data
                 .GetExecutingAssembly());
 
             if(Database.ProviderName == "Microsoft.EntityFrameworkCore.Sqlite")
-            {
+            { 
                 foreach (var entitytype in modelBuilder.Model.GetEntityTypes())
                 {
                     var properties = entitytype.ClrType.GetProperties()
