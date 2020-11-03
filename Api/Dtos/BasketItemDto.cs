@@ -17,7 +17,7 @@ namespace Api.Dtos
         [Required]
         public string PictureUrl {get;set;}
         [Required]
-        public string Brand { get; set; }
+        public string ProductGenderBase { get; set; }
         [Required]
         public string Type { get; set; }
     }

@@ -21,7 +21,8 @@ namespace Api.Controllers
         private readonly IMapper _mapper;
 
         public AccountController(UserManager<AppUser> userManager,
-        SignInManager<AppUser> signInManager, ITokenService tokenService,
+        SignInManager<AppUser> signInManager,
+         ITokenService tokenService,
         IMapper mapper)
         {
             this._mapper = mapper;

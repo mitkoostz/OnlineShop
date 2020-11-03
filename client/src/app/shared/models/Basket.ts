@@ -16,7 +16,7 @@ export interface IBasket {
     price: number;
     quantity: number;
     pictureUrl: string;
-    brand: string;
+    productGenderBase: string;
     type: string;
   }
 

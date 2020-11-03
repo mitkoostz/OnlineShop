@@ -70,7 +70,7 @@ shipping = 0;
             if (basket === null) {
               basket = this.createBasket();
             }
-            basket.items = this.AddOrUpdateBasket(basket.items, itemtoAdd ,quantity );
+            basket.items = this.AddOrUpdateBasket(basket.items, itemtoAdd ,quantity ); 
             this.setBasket(basket);
   }
 
@@ -143,14 +143,14 @@ shipping = 0;
     this.basketTotalSource.next({shipping, total, subtotal});
   }
    private mapProductItemToBasketItem(item: IProduct, quantity: number): IBasketItem {
-    
+    console.log(item);
     return {  
       id: item.id,
       productName: item.name,
       price: item.price,
       pictureUrl: item.pictureUrl,
       quantity,
-      brand: item.ProductGenderBase,
+      productGenderBase: item.productGenderBase,
       type: item.productType
     };
    
