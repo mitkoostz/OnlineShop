@@ -1,0 +1,29 @@
+
+<div class="container mt-3">
+    <div *ngIf="((basket$ | async ) === null)">
+        {{EmptyBasketRedirectToShop()}}
+    </div>
+
+    <div *ngIf="(basket$ | async)">
+         <h3>
+            <i class="fa fa-shopping-cart fa-1x mr-2 pb-3 text-success"></i>Shopping Cart
+            <!-- <input class="mr-3" type="text" style="width: 150px; border-radius: 12px;">
+            <button class="btn btn-success" style="border-radius: 12px;">Apply Promo Code</button> -->
+         </h3>
+         
+        <div class="row">
+            <div class="col-8">
+                <app-basket-summary
+                (decrement)="decrementItemQuanity($event)"
+                (increment)="incrementItemQuantity($event)"
+                (remove)="removeBasketItem($event)"               
+             ></app-basket-summary>
+            </div>
+            <div class="col-4">
+                <app-order-totals></app-order-totals>
+                <a routerLink="/checkout" href="" class="btn btn-outline-primary py-2 btn-block">
+                Proceed to checkout <i class="fa fa-credit-card" aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -19,14 +19,14 @@ namespace Infrastructure.Data
         {
             try
             {
-                if (!context.ProductBrands.Any())
+                if (!context.ProductGenderBase.Any())
                 {
                     var brandsData = 
-                        File.ReadAllText("../Infrastructure/Data/SeedData/brands.json");
-                    var brands = JsonSerializer.Deserialize<List<ProductBrand>>(brandsData);
+                        File.ReadAllText("../Infrastructure/Data/SeedData/GenderBase.json");
+                    var brands = JsonSerializer.Deserialize<List<ProductGenderBase>>(brandsData);
                     foreach (var item in brands)
                     {
-                        context.ProductBrands.Add(item);
+                        context.ProductGenderBase.Add(item);
                     }
                     await context.SaveChangesAsync();
 

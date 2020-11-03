@@ -1,0 +1,89 @@
+<ng-container *ngIf="order">
+    <div class="container">
+        <h4 class="pt-4"><i class="fa fa-calendar" aria-hidden="true"></i> {{order.orderDate | date:'mediumDate'}}<br>
+        <i class="fa fa-road" aria-hidden="true"></i> Status : {{order.status}}
+
+        </h4>
+        <div class="row">
+        <div class="col-8">
+                <div class="table-responsive pt-3">
+                    <table class="table table-sm table-bordered  ">
+                         <thead class="thead thead-light">
+                          <tr class="">
+                              <th class="border-0 " scope="col" >
+                                  <div class="p-2 px-2 text-uppercase text-center">Product</div>
+                              </th>
+                              <th scope="col" class="border-0" >
+                                  <div class="py-2 text-uppercase text-center">Price</div>
+                              </th>
+                              <th scope="col" class="border-0 text-center " >
+                                  <div class="py-2 text-uppercase">Quantity</div>
+                              </th>
+                              <th scope="col" class="border-0 text-center" >
+                                  <div class="py-2 text-uppercase">Total</div>
+                              </th>
+                     
+                          </tr>
+                         </thead>
+                         <tbody>
+                             <tr *ngFor="let item of order.orderItems">
+                                   <th scope="row">
+                                       <div class="p-2">
+                                         <img src="{{item.pictureUrl}}" alt="{{item.productName}}" 
+                                         class="img-fluid" style="max-width: 50px;">
+                                            <div class="ml-3 d-inline-block align-middle">
+                                                <h5 class="mb-0"> 
+                                                    <a routerLink="/shop/{{item.productId}}" class="text-dark">
+                                                    {{item.productName}}
+                                                  </a>
+                                                </h5>
+                                            </div>
+                                       </div>
+                                   </th>
+                                   <td class="align-middle"><strong>{{item.price | currency}}</strong></td>
+                                   <td class="align-middle text-center"><strong>{{item.quantity}}</strong></td>
+                                   <td class="align-middle"> <strong>{{(item.price * item.quantity) | currency}}           
+                                   </strong></td>
+               
+                             </tr>
+                         </tbody>
+                    </table>
+                </div>
+            
+          
+            
+         </div>
+
+         <div class="col-4 pt-3">
+            <div class="bg-light px-4 py-3 text-uppercase font-weight-bold">
+                Order Summary
+           </div>
+           <div class="p-4">
+
+                  <ul class="list-unstyled mb-4" *ngIf="(order)">
+           
+                   <li class="d-flex justify-content-between py-3 border-bottom">
+                       <strong class="text-muted">Order  subtotal</strong>
+                       <strong >{{(order.subTotal | currency)}}</strong>
+                   </li>
+                      <li class="d-flex justify-content-between py-3 border-bottom">
+                          <strong class="text-muted">Shipping and handling </strong>
+                          <strong >{{order.shippingPrice | currency}}</strong>
+                      </li>
+                   <li class="d-flex justify-content-between py-3 border-bottom">
+                       <strong class="text-muted">Total</strong>
+                       <strong >{{order.total | currency}}</strong>
+                   </li>
+           
+           
+                  </ul>
+           
+           </div>
+
+         </div>
+        </div>
+
+        <button  routerLink='/order' class="btn btn-today-wrapper"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to orders</button>
+    </div>
+
+</ng-container>

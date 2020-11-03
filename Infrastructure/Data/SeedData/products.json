@@ -1,146 +1,283 @@
 [
   {
-    "Name": "Angular Speedster Board 2000",
-    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-    "Price": 200,
-    "PictureUrl": "images/products/sb-ang1.png",
-    "ProductTypeId": 1,
-    "ProductBrandId": 1
-  },
-  {
-    "Name": "Green Angular Board 3000",
-    "Description": "Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.",
-    "Price": 150,
-    "PictureUrl": "images/products/sb-ang2.png",
-    "ProductTypeId": 1,
-    "ProductBrandId": 1
-  },
-  {
-    "Name": "Core Board Speed Rush 3",
-    "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
-    "Price": 180,
-    "PictureUrl": "images/products/sb-core1.png",
-    "ProductTypeId": 1,
-    "ProductBrandId": 2
-  },
-  {
-    "Name": "Net Core Super Board",
-    "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
-    "Price": 300,
-    "PictureUrl": "images/products/sb-core2.png",
-    "ProductTypeId": 1,
-    "ProductBrandId": 2
-  },
-  {
-    "Name": "React Board Super Whizzy Fast",
-    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-    "Price": 250,
-    "PictureUrl": "images/products/sb-react1.png",
-    "ProductTypeId": 1,
-    "ProductBrandId": 4
-  },
-  {
-    "Name": "Typescript Entry Board",
-    "Description": "Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.",
-    "Price": 120,
-    "PictureUrl": "images/products/sb-ts1.png",
-    "ProductTypeId": 1,
-    "ProductBrandId": 5
-  },
-  {
-    "Name": "Core Blue Hat",
-    "Description": "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-    "Price": 10,
-    "PictureUrl": "images/products/hat-core1.png",
+    "Name": "Alien bucket",
+    "Description": "Bucket fashion hat with alien logo. Both for men and women. ",
+    "Price": 16.99,
+    "PictureUrl": "images/ProductImages/Hats/bucket.jpg",
     "ProductTypeId": 2,
-    "ProductBrandId": 2
+    "ProductGenderBaseId": 3
   },
   {
-    "Name": "Green React Woolen Hat",
-    "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
-    "Price": 2,
-    "PictureUrl": "images/products/hat-react1.png",
-    "ProductTypeId": 2,
-    "ProductBrandId": 4
-  },
-  {
-    "Name": "Purple React Woolen Hat",
-    "Description": "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
+    "Name": "Weed bucket BLACK",
+    "Description": "Bucket fashion hat with weed logo. Both for men and women. ",
     "Price": 15,
-    "PictureUrl": "images/products/hat-react2.png",
+    "PictureUrl": "images/ProductImages/Hats/bucket2.jpg",
     "ProductTypeId": 2,
-    "ProductBrandId": 4
+    "ProductGenderBaseId": 3
   },
   {
-    "Name": "Blue Code Gloves",
-    "Description": "Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.",
-    "Price": 18,
-    "PictureUrl": "images/products/glove-code1.png",
-    "ProductTypeId": 4,
-    "ProductBrandId": 3
+    "Name": "Smile emoticon bucket",
+    "Description": "Bucket fashion hat with emoticon smile logo. Both for men and women. ",
+    "Price": 12,
+    "PictureUrl": "images/ProductImages/Hats/bucket3.jpg",
+    "ProductTypeId": 2,
+    "ProductGenderBaseId": 3
   },
   {
-    "Name": "Green Code Gloves",
-    "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
-    "Price": 15,
-    "PictureUrl": "images/products/glove-code2.png",
-    "ProductTypeId": 4,
-    "ProductBrandId": 3
-  },
-  {
-    "Name": "Purple React Gloves",
-    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa.",
-    "Price": 16,
-    "PictureUrl": "images/products/glove-react1.png",
-    "ProductTypeId": 4,
-    "ProductBrandId": 4
-  },
-  {
-    "Name": "Green React Gloves",
-    "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
+    "Name": "Dog bucket",
+    "Description": "Bucket fashion hat with cute dog logo. Both for men and women. ",
     "Price": 14,
-    "PictureUrl": "images/products/glove-react2.png",
+    "PictureUrl": "images/ProductImages/Hats/bucket4.jpg",
+    "ProductTypeId": 2,
+    "ProductGenderBaseId": 3
+  },
+  {
+    "Name": "Weed bucket WHITE",
+    "Description": "Bucket fashion hat with weed logo. Both for men and women. ",
+    "Price": 15,
+    "PictureUrl": "images/ProductImages/Hats/bucket5.jpg",
+    "ProductTypeId": 2,
+    "ProductGenderBaseId": 3
+  },
+  {
+    "Name": "Colorfull bucket",
+    "Description": "Bucket fashion hat with Colorfull design. Both for men and women. ",
+    "Price": 25,
+    "PictureUrl": "images/ProductImages/Hats/bucket6.jpg",
+    "ProductTypeId": 2,
+    "ProductGenderBaseId": 3
+  },
+  {
+    "Name": "Bard Simpson Hat",
+    "Description": "Fashion hat with Bard Simspon skateboarding. Both for men and women.",
+    "Price": 30,
+    "PictureUrl": "images/ProductImages/Hats/hat.jpg",
+    "ProductTypeId": 2,
+    "ProductGenderBaseId": 3
+  },
+  {
+    "Name": "Horror logo Hat",
+    "Description": "Fashion hat with horror logo. Both for men and women.",
+    "Price": 25,
+    "PictureUrl": "images/ProductImages/Hats/hat2.jpg",
+    "ProductTypeId": 2,
+    "ProductGenderBaseId": 3
+  },
+  {
+    "Name": "Baseball Fan Hat",
+    "Description": "Fashion hat Baseball type. Both for men and women.",
+    "Price": 28,
+    "PictureUrl": "images/ProductImages/Hats/hat3.jpg",
+    "ProductTypeId": 2,
+    "ProductGenderBaseId": 3
+  },
+  {
+    "Name": "Women formal wear jeans",
+    "Description": "Fashion women's formal wear jeans. Good for every event.",
+    "Price": 40,
+    "PictureUrl": "images/ProductImages/Jeans/Jeans1.jpg",
     "ProductTypeId": 4,
-    "ProductBrandId": 4
+    "ProductGenderBaseId": 2
   },
   {
-    "Name": "Redis Red Boots",
-    "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
-    "Price": 250,
-    "PictureUrl": "images/products/boot-redis1.png",
-    "ProductTypeId": 3,
-    "ProductBrandId": 6
+    "Name": "Men light jeans",
+    "Description": "Fashion men's jeans. Good light  color.",
+    "Price": 35,
+    "PictureUrl": "images/ProductImages/Jeans/Jeans2.jpg",
+    "ProductTypeId": 4,
+    "ProductGenderBaseId": 2
   },
   {
-    "Name": "Core Red Boots",
-    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-    "Price": 189.99,
-    "PictureUrl": "images/products/boot-core2.png",
-    "ProductTypeId": 3,
-    "ProductBrandId": 2
+    "Name": "Women grey jeans",
+    "Description": "Fashion women's jeans. Good grey color.",
+    "Price": 35,
+    "PictureUrl": "images/ProductImages/Jeans/Jeans3.jpg",
+    "ProductTypeId": 4,
+    "ProductGenderBaseId": 2
   },
   {
-    "Name": "Core Purple Boots",
-    "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
-    "Price": 199.99,
-    "PictureUrl": "images/products/boot-core1.png",
-    "ProductTypeId": 3,
-    "ProductBrandId": 2
+    "Name": "Men jeans RC light",
+    "Description": "Fashion men's jeans. Good light color and new design.",
+    "Price": 50,
+    "PictureUrl": "images/ProductImages/Jeans/Jeans4.jpg",
+    "ProductTypeId": 4,
+    "ProductGenderBaseId": 1
   },
   {
-    "Name": "Angular Purple Boots",
-    "Description": "Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.",
-    "Price": 150,
-    "PictureUrl": "images/products/boot-ang2.png",
-    "ProductTypeId": 3,
-    "ProductBrandId": 1
+    "Name": "Sport shoes White + Black + Orange for Both Men & Women",
+    "Description": "Fashion sport shoes , good for training or just walking.",
+    "Price": 65,
+    "PictureUrl": "images/ProductImages/Shoes/Shoe1.jpg",
+    "ProductTypeId": 1,
+    "ProductGenderBaseId": 3
   },
   {
-    "Name": "Angular Blue Boots",
-    "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
-    "Price": 180,
-    "PictureUrl": "images/products/boot-ang1.png",
+    "Name": "Sport lightweight shoes for Men BLACK",
+    "Description": "Fashion sport shoes , very lightweight ,good for running or walking.",
+    "Price": 55,
+    "PictureUrl": "images/ProductImages/Shoes/Shoe2.jpg",
+    "ProductTypeId": 1,
+    "ProductGenderBaseId": 1
+  },
+  {
+    "Name": "Sport lightweight shoes for Men WHITE",
+    "Description": "Fashion sport shoes , very lightweight ,good for running or walking.",
+    "Price": 55,
+    "PictureUrl": "images/ProductImages/Shoes/Shoe3.jpg",
+    "ProductTypeId": 1,
+    "ProductGenderBaseId": 1
+  },
+  {
+    "Name": "Women's golden fashion shoes",
+    "Description": "Fashion golden shoes for women .",
+    "Price": 100,
+    "PictureUrl": "images/ProductImages/Shoes/Shoe4.jpg",
+    "ProductTypeId": 1,
+    "ProductGenderBaseId": 2
+  },
+  {
+    "Name": "Gray shoes for Both Men & Women",
+    "Description": "Fashion  shoes ",
+    "Price": 35,
+    "PictureUrl": "images/ProductImages/Shoes/Shoe5.jpg",
+    "ProductTypeId": 1,
+    "ProductGenderBaseId": 3
+  },
+  {
+    "Name": "Skull Fashion T-Shirt for Women T1",
+    "Description": "Skull fashion T-shirt for women type 1 .",
+    "Price": 20,
+    "PictureUrl": "images/ProductImages/T-Shirts/T-shirt1.jpg",
     "ProductTypeId": 3,
-    "ProductBrandId": 1
+    "ProductGenderBaseId": 2
+  },
+  {
+    "Name": "Skull Fashion T-Shirt for Women T2",
+    "Description": "Skull fashion T-shirt for women type 2 .",
+    "Price": 20,
+    "PictureUrl": "images/ProductImages/T-Shirts/T-shirt2.jpg",
+    "ProductTypeId": 3,
+    "ProductGenderBaseId": 2
+  },
+  {
+    "Name": "Card Fashion T-Shirt for Men T1",
+    "Description": "Card fashion t-Shirt for Men type 1 .",
+    "Price": 15,
+    "PictureUrl": "images/ProductImages/T-Shirts/T-shirt3.jpg",
+    "ProductTypeId": 3,
+    "ProductGenderBaseId": 1
+  },
+  {
+    "Name": "Card Fashion T-Shirt for Men T2",
+    "Description": "Card fashion t-Shirt for Men type 2 .",
+    "Price": 15,
+    "PictureUrl": "images/ProductImages/T-Shirts/T-shirt4.jpg",
+    "ProductTypeId": 3,
+    "ProductGenderBaseId": 1
+  },
+  {
+    "Name": "Pirate skull Fashion T-Shirt for Men",
+    "Description": "Pirate skull Fashion T-Shirt for Men",
+    "Price": 25,
+    "PictureUrl": "images/ProductImages/T-Shirts/T-shirt5.jpg",
+    "ProductTypeId": 3,
+    "ProductGenderBaseId": 1
+  },
+  {
+    "Name": "Skull horror Fashion T-Shirt for Men",
+    "Description": "Skull horror Fashion T-Shirt for Men",
+    "Price": 35,
+    "PictureUrl": "images/ProductImages/T-Shirts/T-shirt6.jpg",
+    "ProductTypeId": 3,
+    "ProductGenderBaseId": 1
+  },
+  {
+    "Name": "YES,I'M FINE Fashion T-Shirt for Women ",
+    "Description": "YES,I'M FINE Fashion T-Shirt for Women ",
+    "Price": 30,
+    "PictureUrl": "images/ProductImages/T-Shirts/T-shirt7.jpg",
+    "ProductTypeId": 3,
+    "ProductGenderBaseId": 2
+  },
+  {
+    "Name": "Tom & Jerry Fashion T-Shirt for Women ",
+    "Description": "Tom & Jerry Fashion T-Shirt for Women ",
+    "Price": 24,
+    "PictureUrl": "images/ProductImages/T-Shirts/T-shirt8.jpg",
+    "ProductTypeId": 3,
+    "ProductGenderBaseId": 2
+  },
+  {
+    "Name": "The Simpsons Fashion T-Shirt for Men T1",
+    "Description": "The Simpsons Fashion T-Shirt for Men T1",
+    "Price": 29.99,
+    "PictureUrl": "images/ProductImages/T-Shirts/T-shirt9.jpg",
+    "ProductTypeId": 3,
+    "ProductGenderBaseId": 1
+  },
+  {
+    "Name": "The Simpsons Fashion T-Shirt for Men T2",
+    "Description": "The Simpsons Fashion T-Shirt for Men T2",
+    "Price": 29.99,
+    "PictureUrl": "images/ProductImages/T-Shirts/T-shirt10.jpg",
+    "ProductTypeId": 3,
+    "ProductGenderBaseId": 1
+  },
+  {
+    "Name": "The Simpsons Fashion T-Shirt for Men T3",
+    "Description": "The Simpsons Fashion T-Shirt for Men T3",
+    "Price": 29.99,
+    "PictureUrl": "images/ProductImages/T-Shirts/T-shirt11.jpg",
+    "ProductTypeId": 3,
+    "ProductGenderBaseId": 1
+  },
+  {
+    "Name": "Wine Fashion T-Shirt for Women",
+    "Description": "Wine Fashion T-Shirt for Women ",
+    "Price": 24.99,
+    "PictureUrl": "images/ProductImages/T-Shirts/T-shirt12.jpg",
+    "ProductTypeId": 3,
+    "ProductGenderBaseId": 2
+  },
+  {
+    "Name": "Wine o'clock Fashion T-Shirt for Women",
+    "Description": "Wine Fashion T-Shirt for Women ",
+    "Price": 24.99,
+    "PictureUrl": "images/ProductImages/T-Shirts/T-shirt13.jpg",
+    "ProductTypeId": 3,
+    "ProductGenderBaseId": 2
+  },
+  {
+    "Name": "Muscle slim Fashion T-Shirt for Men DARK BLUE",
+    "Description": "Muscle slim Fashion T-Shirt for Men DARK BLUE",
+    "Price": 34.99,
+    "PictureUrl": "images/ProductImages/T-Shirts/T-shirt14.jpg",
+    "ProductTypeId": 3,
+    "ProductGenderBaseId": 1
+  },
+  {
+    "Name": "Ew,People Fashion T-Shirt for Women ",
+    "Description": "Wine Fashion T-Shirt for Women ",
+    "Price": 29.99,
+    "PictureUrl": "images/ProductImages/T-Shirts/T-shirt15.jpg",
+    "ProductTypeId": 3,
+    "ProductGenderBaseId": 2
+  },
+  {
+    "Name": "Cute Dog Fashion T-Shirt for Women T1 ",
+    "Description": "Cute Dog Fashion T-Shirt for Women T1 ",
+    "Price": 29.99,
+    "PictureUrl": "images/ProductImages/T-Shirts/T-shirt16.jpg",
+    "ProductTypeId": 3,
+    "ProductGenderBaseId": 2
+  },
+  {
+    "Name": "Cute Dog Fashion T-Shirt for Women T2 ",
+    "Description": "Cute Dog Fashion T-Shirt for Women T2 ",
+    "Price": 29.99,
+    "PictureUrl": "images/ProductImages/T-Shirts/T-shirt17.jpg",
+    "ProductTypeId": 3,
+    "ProductGenderBaseId": 2
   }
+  
 ]

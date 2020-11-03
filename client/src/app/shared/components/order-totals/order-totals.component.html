@@ -1,0 +1,31 @@
+
+<div class="bg-light px-4 py-3 text-uppercase font-weight-bold">
+     Order Summary <i class="fa fa-sticky-note" aria-hidden="true"></i>
+</div>
+<div class="p-2">
+       <p class="font-italic  text-danger" style="font-size: 15px;">*Shipping cost will be added depending on choices made
+            during checkout      
+       </p>
+       <ul class="list-unstyled mb-1" *ngIf="(basketTotal$ | async)">
+
+        <li class="d-flex justify-content-between py-3 border-bottom">
+            <strong class="text-muted">Order  subtotal <i class="fa fa-money" aria-hidden="true"></i></strong>
+            <strong >{{(basketTotal$ | async).subtotal | currency}}</strong>
+        </li>
+        <li class="d-flex justify-content-between py-3 border-bottom">
+            <strong class="text-muted">Saving <i class="fa fa-level-up" aria-hidden="true"></i></strong>
+            <strong >$0.00</strong>
+        </li>
+           <li class="d-flex justify-content-between py-3 border-bottom">
+               <strong class="text-muted">Shipping and handling <i class="fa fa-road" aria-hidden="true"></i> </strong>
+               <strong >{{(basketTotal$ | async).shipping | currency}}</strong>
+           </li>
+        <li class="d-flex justify-content-between py-3 border-bottom">
+            <strong class="text-muted">Total</strong>
+            <strong >{{(basketTotal$ | async).total | currency}}</strong>
+        </li>
+
+
+       </ul>
+
+</div>
