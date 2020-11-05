@@ -11,6 +11,8 @@ import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
+import { AddProductComponent } from './admin/add-product/add-product.component';
+import { AdminPanelComponent } from './admin/admin-panel.component';
 
 @NgModule({
   declarations: [

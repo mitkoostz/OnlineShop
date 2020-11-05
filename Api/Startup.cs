@@ -23,6 +23,7 @@ namespace Api
         {
 
                _config = configuration;
+               
         }
 
        // public IConfiguration Configuration { get; }

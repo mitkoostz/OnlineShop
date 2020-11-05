@@ -17,7 +17,17 @@
 
       </select>
 
-      <h5 class="text-warning ml-3">Brands</h5>
+      <h5 class="text-warning ml-3"></h5>
+      <ul class="list-group my-3">
+        <li class="list-group-item" *ngFor="let type of types"
+            [class.active]="type.id === this.shopParams.typeId"
+            [value] ="type.id"
+            (click)="onTypeSelected(type.id)"
+            >
+        {{type.name}}
+        </li>
+      </ul>
+      <h5 class="text-warning ml-3"></h5>
       <ul class="list-group my-3">
 
         <li class="list-group-item" *ngFor="let brand of brands"
@@ -27,17 +37,6 @@
             >
            {{brand.name}}
         </li>
-      </ul>
-      <h5 class="text-warning ml-3">Types</h5>
-      <ul class="list-group my-3">
-        <li class="list-group-item" *ngFor="let type of types"
-            [class.active]="type.id === this.shopParams.typeId"
-            [value] ="type.id"
-            (click)="onTypeSelected(type.id)"
-            >
-        {{type.name}}
-        </li>
-     
       </ul>
     </ng-container>
     </section>

@@ -152,6 +152,7 @@ shipping = 0;
       quantity,
       productGenderBase: item.productGenderBase,
       type: item.productType
+      
     };
    
   }

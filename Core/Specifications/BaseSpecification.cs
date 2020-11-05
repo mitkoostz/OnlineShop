@@ -9,11 +9,12 @@ namespace Core.Specifications
     {
         public BaseSpecification()
         {
-
+          
         }
         public BaseSpecification(Expression<Func<T, bool>> criteria)
         {
             Criteria = criteria;
+            
 
         }
 

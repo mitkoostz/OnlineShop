@@ -12,6 +12,7 @@ import { CdkStepperModule} from '@angular/cdk/stepper';
 import { StepperComponent } from './components/stepper/stepper.component';
 import { BasketSummaryComponent } from './components/basket-summary/basket-summary.component';
 import { RouterModule } from '@angular/router';
+import { AddProductComponent } from '../admin/add-product/add-product.component';
 
 
 
@@ -43,7 +44,6 @@ import { RouterModule } from '@angular/router';
     CdkStepperModule,
     StepperComponent,
     BasketSummaryComponent
-
   ]
 })
 export class SharedModule { }

@@ -44,7 +44,7 @@ export class AccountService {
              }
         })
       );
-    }
+  }
 
     register(values: any){
 

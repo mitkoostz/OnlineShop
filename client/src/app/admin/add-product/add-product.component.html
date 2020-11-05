@@ -1,0 +1,69 @@
+
+
+    <div class="container" >
+        <h2>Admin add new Product</h2>
+
+        <div class="row">
+            <div class="col-md-6">
+                <form  [formGroup]="productForm" (ngSubmit)="onSubmit()">
+              
+                <label>Product Name :
+                <input type="text"(ngModelChange)="nameChanged($event)" formControlName="name">
+                </label><br>
+                <label>Product Price :
+                    <input (ngModelChange)="priceChanged($event)" type="number" formControlName="price">
+                    </label>
+                <br>
+                <Label>Product Image</Label>
+                <label class="image-upload-container btn btn-bwm">    
+                    <input (change)="onFileChange($event)"
+                           type="file"
+                           accept="image/*">
+                  </label>
+                  <br>
+                  <label>Description: </label><br>
+                  <textarea type="text" (ngModelChange)="descriptionChanged($event)" formControlName="description"  ></textarea>
+                  <br>
+                                      
+                  <p>Select product gender:</p>
+                  <input type="radio" formControlName="productGenderBase" id="Men"  value="Men">
+                  <label for="Men">Men</label><br>
+                  <input type="radio" formControlName="productGenderBase" id="Women"  value="Women">
+                  <label for="Women">Women</label><br>
+                  <input type="radio" formControlName="productGenderBase" id="Unisex" value="Unisex">
+                  <label for="Unisex">Unisex</label>
+                  <br>
+                  <label>Select product Type:</label><br>
+                  <select formControlName="productType" name="type" id="type">
+                    <option value="T-Shirt">T-Shirt</option>
+                    <option value="Shoes">Shoes</option>
+                    <option value="Jeans">Jeans</option>
+                    <option value="Hats">Hats</option>
+                  </select>
+                  <br><br>
+                  <button type="submit" class="btn btn-primary"  [disabled]="!productForm.valid">Add Product</button>
+
+                </form>
+            </div>
+            <div class="col-md-6 align-items-center">
+                <h3>Preview</h3>
+                <div  id="previewProduct">
+               
+                <div class="card h-100 shadow-sm">
+                    <div class="image position-relative" style="cursor:pointer;" >
+                        <img src="{{imgUrl}}" alt="..." class="mx-auto d-block">    
+                    </div>
+                    <div class="card-body d-flex flex-column">                   
+                        <h6 class="text-uppercase">{{previewName}}</h6>
+                      <span class="mb-2">{{previewPrice | currency}}</span>
+                      <p>{{previewDesc}}</p>
+                      </div>          
+                  </div>
+                </div>
+
+            </div>
+        </div>
+     
+    </div>
+
+

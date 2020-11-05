@@ -1,0 +1,21 @@
+textarea{
+    width: 50%;
+    height: 150px;
+    &:focus{
+        outline: none;
+    }
+}
+img{
+    max-width: 250px;
+    max-height: 250px;
+    width: 250px;
+    height: 250px;
+}
+#previewProduct{
+    max-width: 250px;
+    max-height: 250px;
+    width: 250px;
+    height: 250px;
+}
+
+
