@@ -8,7 +8,12 @@
     <a class="p-2"  routerLinkActive="active"
          [routerLinkActiveOptions]="{ exact: true }" routerLink="/">Home</a>
     <a class="p-2" routerLink="/shop"routerLinkActive="active" >Shop</a>
-    <a class="p-2" routerLink="/test-error" routerLinkActive ="Active">Errors</a>
+    <ng-container *ngIf="(currentUser$ | async) != null && (currentUser$ | async).role === 'Admin'">
+      
+      <a class="p-2" routerLink="/admin" routerLinkActive ="active">Admin Panel</a>
+    <a class="p-2" routerLink="/test-error" routerLinkActive ="active">Errors</a>
+
+    </ng-container>
   </nav>
   <div class="d-flex align-items-center">
     <a routerLink="/basket" class="position-relative" >

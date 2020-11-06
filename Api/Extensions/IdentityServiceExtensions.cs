@@ -16,10 +16,10 @@ namespace Api.Extensions
             
            var builder = services.AddIdentityCore<AppUser>();
            builder = new IdentityBuilder(builder.UserType, builder.Services);
-           builder.AddEntityFrameworkStores<AppIdentityDbContext>();
+           builder.AddRoles<IdentityRole>().AddEntityFrameworkStores<AppIdentityDbContext>();
            builder.AddSignInManager<SignInManager<AppUser>>();
 
-           services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                    .AddJwtBearer(options => 
                    {
                         options.TokenValidationParameters = new TokenValidationParameters

@@ -74,5 +74,15 @@ export class AccountService {
     updateUserAddress(address: IAddress){
        return this.http.put<IAddress>(this.baseUrl + 'account/address', address);
     }
+
+
+      checkIfUserIsAdmin(){
+      return  this.http.get<boolean>(this.baseUrl + "account/checkforadminrole");
+      }
+
+    
+      async isAdmin(){
+        return await this.http.get(this.baseUrl + "account/checkforadminrole").toPromise();
+      }
     
 }

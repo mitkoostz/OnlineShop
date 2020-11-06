@@ -19,10 +19,7 @@ basket$: Observable<IBasket>;
     this.basket$ = this.basketService.basket$;
   }
 
-  EmptyBasketRedirectToShop(){
-      this.router.navigateByUrl('/shop');
-      //this.toastr.info("Your cart is empty ")
-  }
+
 
   removeBasketItem(item: IBasketItem){
     this.basketService.removeItemFromBasket(item);

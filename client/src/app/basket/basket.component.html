@@ -1,7 +1,8 @@
 
 <div class="container mt-3">
     <div *ngIf="((basket$ | async ) === null)">
-        {{EmptyBasketRedirectToShop()}}
+           <h2>Your basket is empty :(</h2>
+           <a href="shop">GO SHOPPING</a>
     </div>
 
     <div *ngIf="(basket$ | async)">

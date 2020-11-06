@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ using Core.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Api.Controllers
 {
@@ -19,13 +21,16 @@ namespace Api.Controllers
         private readonly SignInManager<AppUser> _signInManager;
         private readonly ITokenService _tokenService;
         private readonly IMapper _mapper;
+        private readonly RoleManager<IdentityRole> roleManager;
 
         public AccountController(UserManager<AppUser> userManager,
         SignInManager<AppUser> signInManager,
          ITokenService tokenService,
-        IMapper mapper)
+        IMapper mapper,
+        RoleManager<IdentityRole> roleManager)
         {
             this._mapper = mapper;
+            this.roleManager = roleManager;
             this._tokenService = tokenService;
             this._signInManager = signInManager;
             this._userManager = userManager;
@@ -36,12 +41,16 @@ namespace Api.Controllers
         public async Task<ActionResult<UserDto>> GetCurrentUser()
         {
             var user = await _userManager.FindByEmailFromClaimsPrinciple(HttpContext.User);
+            var roles = await _userManager.GetRolesAsync(user);
+            var userRole = roles.FirstOrDefault() ?? "Default";
 
             return new UserDto
             {
                 Email = user.Email,
                 Token = _tokenService.CreateToken(user),
-                DisplayName = user.UserName
+                DisplayName = user.UserName,
+                Role = userRole
+                
             };
         }
         [HttpGet("emailexists")]
@@ -72,9 +81,15 @@ namespace Api.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
+          
             var user = await _userManager.FindByEmailAsync(loginDto.Email);
-            
             if (user == null) return Unauthorized(new ApiResponse(401));
+            var roles = await _userManager.GetRolesAsync(user);
+            var userRole = roles.FirstOrDefault() ?? "Default";
+            
+            //
+            // await _userManager.AddToRoleAsync(user, "Admin");
+
             var result = await _signInManager
             .CheckPasswordSignInAsync(user, loginDto.Password, false);
             if (!result.Succeeded) return Unauthorized(new ApiResponse(401));
@@ -83,7 +98,8 @@ namespace Api.Controllers
             {
                 Email = user.Email,
                 Token = _tokenService.CreateToken(user),
-                DisplayName = user.UserName
+                DisplayName = user.UserName,
+                Role = userRole
             };
         }
         [HttpPost("register")]
@@ -102,13 +118,25 @@ namespace Api.Controllers
             };
             var result = await _userManager.CreateAsync(user, regiserDto.Password);
             if (!result.Succeeded) return BadRequest(new ApiResponse(400));
+            var roles = await _userManager.GetRolesAsync(user);
+            var userRole = roles.FirstOrDefault() ?? "Default";
 
             return new UserDto
             {
                 DisplayName = user.DisplayName,
                 Token = _tokenService.CreateToken(user),
-                Email = user.Email
+                Email = user.Email,
+                Role = userRole
             };
+        }
+
+        [Authorize]
+        [HttpGet("checkforadminrole")]
+        public async Task<bool> CheckUserForAdminRole()
+        {
+            var user = await _userManager.FindByEmailFromClaimsPrinciple(HttpContext.User);
+            
+           return  await _userManager.IsInRoleAsync(user,"Admin");
         }
 
 

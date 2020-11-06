@@ -5,13 +5,16 @@ using System.Linq;
 using System.Security.Policy;
 using System.Threading.Tasks;
 using Api.Dtos;
+using Api.Extensions;
 using Core.Entities;
+using Core.Entities.Identity;
 using Core.Interfaces;
 using Core.Specifications;
 using Ifrastructure.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting.Internal;
@@ -20,25 +23,27 @@ namespace Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize(Roles="Admin")]
     public class AdminController : ControllerBase
     {
         private readonly IWebHostEnvironment env;
         private readonly IUnitOfWork unitOfWork;
         private readonly IGenericRepository<ProductType> productTypesRepo;
         private readonly IGenericRepository<ProductGenderBase> productGenderRepo;
-
+        private readonly UserManager<AppUser> userManager;
 
         public AdminController(
             IWebHostEnvironment env,
             IUnitOfWork unitOfWork,
             IGenericRepository<ProductType> productTypesRepo,
-            IGenericRepository<ProductGenderBase> productGenderRepo)
+            IGenericRepository<ProductGenderBase> productGenderRepo,
+            UserManager<AppUser> userManager)
         {
             this.env = env;
             this.unitOfWork = unitOfWork;
             this.productTypesRepo = productTypesRepo;
             this.productGenderRepo = productGenderRepo;
+            this.userManager = userManager;
         }
 
         [HttpPut("addnewproduct")]
@@ -132,5 +137,6 @@ namespace Api.Controllers
         }
 
 
+      
     }
 }

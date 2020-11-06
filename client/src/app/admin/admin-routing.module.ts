@@ -7,7 +7,7 @@ import { AddProductComponent } from './add-product/add-product.component';
 
 const routes: Routes = [
   { path: '', component: AdminPanelComponent },
-  { path: 'AddProduct', component: AddProductComponent }
+  { path: 'addnewproduct', component: AddProductComponent }
 ];
 
 @NgModule({

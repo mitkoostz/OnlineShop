@@ -11,7 +11,7 @@
                 <input type="text"(ngModelChange)="nameChanged($event)" formControlName="name">
                 </label><br>
                 <label>Product Price :
-                    <input (ngModelChange)="priceChanged($event)" type="number" formControlName="price">
+                    <input (ngModelChange)="priceChanged($event)" step=".01" type="number" formControlName="price">
                     </label>
                 <br>
                 <Label>Product Image</Label>

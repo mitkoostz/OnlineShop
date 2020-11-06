@@ -42,7 +42,7 @@ const routes: Routes = [
     path: 'admin',
     canActivate: [AuthGuard],
     loadChildren: () => import('./admin/admin-panel.module').then(mod => mod.AdminPanelModule),
-    data: { breadcrumb: 'Admin' }
+    data: { breadcrumb: 'Admin' , role:"Admin" }
   },
   { path: '**', redirectTo: 'not-found', pathMatch: 'full' }
 
