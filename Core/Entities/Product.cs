@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Entities.Admin;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Cache;
@@ -17,5 +18,7 @@ namespace Core.Entities
         public int ProductTypeId { get; set; }
         public ProductGenderBase ProductGenderBase { get; set; }
         public int ProductGenderBaseId { get; set; }
+
+        public List<AdminActionHistory> ProductAdminHistory { get; set; }
     }
 }

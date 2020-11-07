@@ -36,7 +36,7 @@ cardCvcValid = false;
     private toastr: ToastrService, private router: Router) { }
 
   ngAfterViewInit(): void {
-    this.stripe = Stripe('pk_live_51HblC0FUcQA4Qn1XFslFo1FfUGjOznrVq19AT0Yh0Ewbh7vfL6T4x12jsIoDCH5Z13GDan5EVUgs0BFSlQkBCepA00044UR0qP');
+    this.stripe = Stripe('pk_test_51HblC0FUcQA4Qn1XTNA37hJNfaRynsM4YbHxqFrx52jk15HB3TjpkyntbluJAFICjrKGjMsPESuFbjnHluHS2IUh00GFgjxwEo');
     const elements = this.stripe.elements();
 
     this.cardNumber = elements.create('cardNumber');

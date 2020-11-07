@@ -1,0 +1,2 @@
+﻿dotnet ef migrations add InitialCreate --startup-project Api --context StoreContext --project Infrastructure
+dotnet ef database update --context StoreContext --project Api

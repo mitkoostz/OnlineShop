@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Security.Policy;
 using System.Threading.Tasks;
 using Api.Dtos;
+using Api.Dtos.AdminPanel;
 using Api.Extensions;
 using Core.Entities;
+using Core.Entities.Admin;
 using Core.Entities.Identity;
+using Core.Entities.OrderAggregate;
 using Core.Interfaces;
 using Core.Specifications;
-using Ifrastructure.Data;
+using Core.Specifications.Admin;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting.Internal;
+
 
 namespace Api.Controllers
 {
@@ -30,6 +30,7 @@ namespace Api.Controllers
         private readonly IUnitOfWork unitOfWork;
         private readonly IGenericRepository<ProductType> productTypesRepo;
         private readonly IGenericRepository<ProductGenderBase> productGenderRepo;
+        private readonly IGenericRepository<AdminActionHistory> adminActionHistoryRepo;
         private readonly UserManager<AppUser> userManager;
 
         public AdminController(
@@ -37,12 +38,14 @@ namespace Api.Controllers
             IUnitOfWork unitOfWork,
             IGenericRepository<ProductType> productTypesRepo,
             IGenericRepository<ProductGenderBase> productGenderRepo,
+            IGenericRepository<AdminActionHistory> adminActionHistoryRepo,
             UserManager<AppUser> userManager)
         {
             this.env = env;
             this.unitOfWork = unitOfWork;
             this.productTypesRepo = productTypesRepo;
             this.productGenderRepo = productGenderRepo;
+            this.adminActionHistoryRepo = adminActionHistoryRepo;
             this.userManager = userManager;
         }
 
@@ -94,17 +97,40 @@ namespace Api.Controllers
             };
             
               unitOfWork.Repository<Product>().Add(productToBeAdded);
-              await unitOfWork.Complete();
 
+            var user = await userManager.FindByEmailFromClaimsPrinciple(HttpContext.User);
+
+            AdminActionHistory reg = new AdminActionHistory();
+            reg.AdminEmail = user.Email;
+            reg.Date = DateTime.Now;
+            reg.Operation = AdminActionOperations.Create;
+            reg.AdminAction = "Added product: " + product.Name;
+            reg.UserId = user.Id;
+            adminActionHistoryRepo.Add(reg);
+
+
+            await unitOfWork.Complete();
             return Ok();
         }
 
         [HttpDelete("deleteproduct")]
         public async Task<ActionResult> DeleteProduct(int id)
         {
-           var product = await unitOfWork.Repository<Product>().GetByIdAsync(id);
+           var product = await unitOfWork.Repository<Product>().GetEntityWithSpec(new GetAllAdminActionForProduct(id));
+
            unitOfWork.Repository<Product>().Delete(product);
-           await unitOfWork.Complete();
+
+            var user = await userManager.FindByEmailFromClaimsPrinciple(HttpContext.User);
+
+            AdminActionHistory reg = new AdminActionHistory();
+            reg.AdminEmail = user.Email;
+            reg.Date = DateTime.Now;
+            reg.Operation = AdminActionOperations.Delete;
+            reg.AdminAction = "Deleted product: " + product.Name;
+            reg.UserId = user.Id;
+             adminActionHistoryRepo.Add(reg);
+
+            await unitOfWork.Complete();
 
             return Ok();
         }
@@ -131,12 +157,50 @@ namespace Api.Controllers
                 await productUpdateData.ProductImage.CopyToAsync(stream);
                }
             }
+            var user = await userManager.FindByEmailFromClaimsPrinciple(HttpContext.User);
+
+            AdminActionHistory reg = new AdminActionHistory();
+            reg.AdminEmail = user.Email;
+            reg.Date = DateTime.Now;
+            reg.Operation = AdminActionOperations.Update;
+            reg.AdminAction = "Updated product: " + product.Name;
+            reg.UserId = user.Id;
+            reg.Product = product;
+            adminActionHistoryRepo.Add(reg);
+
             unitOfWork.Repository<Product>().Update(product);
             await unitOfWork.Complete();
             return Ok();
         }
 
 
-      
+        [HttpGet("adminhistory")]
+        public async Task<ActionResult<IReadOnlyList<AdminActionHistory>>> GetAdminActionHistory()
+        {
+            var user = await userManager.FindByEmailFromClaimsPrinciple(HttpContext.User);
+
+            return Ok(await unitOfWork.Repository<AdminActionHistory>()
+                .ListAsync(new GetAdminActionForCurrentAdmin(user.Email)));
+        }
+
+        [HttpGet("getallorders")]
+        public async Task<ActionResult<IReadOnlyList<Order>>> GetAllOrders()
+        {      
+            return Ok(await unitOfWork.Repository<Order>().ListAsync(new GetAllOrdersWthDeliveryMethod()));
+        }
+
+        [HttpGet("getordersfordayweekmounth")]
+        public async Task<ActionResult<OrdersForDayWeekMounth>> GetOrdersForDayWeekMounth()
+        {
+            var orders = await unitOfWork.Repository<Order>().ListAsync(new GetLast30DayOrders());
+
+            OrdersForDayWeekMounth result = new OrdersForDayWeekMounth();
+            result.OrdersMounth = orders.Count;
+            result.OrdersWeek = orders.Where(o => o.OrderDate >= DateTime.Now.AddDays(-7)).Count();
+            result.OrdersToday = orders.Where(o => o.OrderDate.DayOfYear >= DateTime.Now.DayOfYear).Count();
+
+            return Ok(result);
+        }
+
     }
 }

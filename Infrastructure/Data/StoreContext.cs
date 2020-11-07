@@ -1,5 +1,6 @@
 ﻿
 using Core.Entities;
+using Core.Entities.Admin;
 using Core.Entities.OrderAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
@@ -19,10 +20,10 @@ namespace Ifrastructure.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductGenderBase> ProductGenderBase { get; set; }
         public DbSet<ProductType> ProductTypes { get; set; }
-
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<DeliveryMethod> DeliveryMethods { get; set; }
+        public DbSet<AdminActionHistory> AdminActionHistory { get; set; }
 
 
 

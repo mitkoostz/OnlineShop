@@ -1,0 +1,12 @@
+button{
+    margin-top: 20px;
+}
+.table-fix{
+    overflow-y: auto;
+    height: 350px;
+    border-radius: 5px;
+}
+.table-fix thead th {
+    position: sticky; 
+    top: 0;
+}

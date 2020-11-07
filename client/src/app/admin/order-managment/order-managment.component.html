@@ -1,0 +1,102 @@
+<div class="container">
+    <h2>Order Manager</h2>
+    <div class="row">
+        <table class="table  table-sm">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>State/City</th>
+                <th>User Email</th>
+                <th>Name</th>
+                <th>Total</th>
+                <th>Delivery Method</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let order of orders">
+              <tr class="allorders" (click)="loadOrCloseClickedOrder(order.id)">
+                <td>{{order.orderDate | date:'medium'}}</td>
+                <td>{{order.shipToAddress.state + " , " + order.shipToAddress.city}}</td>
+                <td>{{order.buyerEmail}}</td>
+                <td>{{order.shipToAddress.firstName + " " + order.shipToAddress.lastName}}</td>
+                <td>{{order.subTotal | currency}}</td>
+                <td>{{order.deliveryMethod.shortName}}</td>
+                <td>{{statusParse[(order.status)]}}</td>
+
+              </tr>
+   
+            </tbody>
+          </table>
+    </div>
+   <ng-container *ngIf="!isEmptyObject(loadedOrder)">
+     <h2>Order#{{loadedOrder.id}}</h2>
+     <label>{{loadedOrder.orderDate | date:'medium'}}</label>
+     <div class="row">
+         <div class="col-md-6">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th scope="row">Email</th>
+                        <td>{{loadedOrder.buyerEmail}}</td>
+                      </tr>
+                  <tr>
+                    <th scope="row">First Name</th>
+                    <td>{{loadedOrder.shipToAddress.firstName}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Last Name</th>
+                    <td>{{loadedOrder.shipToAddress.lastName}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">State</th>
+                    <td>{{loadedOrder.shipToAddress.state}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">City</th>
+                    <td>{{loadedOrder.shipToAddress.city}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Street</th>
+                    <td>{{loadedOrder.shipToAddress.street}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Zipcode</th>
+                    <td>{{loadedOrder.shipToAddress.zipcode}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Status</th>
+                    <td>{{statusParse[(loadedOrder.status)]}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Payment Intent Id</th>
+                    <td>{{loadedOrder.paymentIntentId}}</td>
+                  </tr>
+      
+                </tbody>
+              </table>
+         </div>
+         <div class="col-md-6">
+             Order details:
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Product Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">ProductId</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let product of loadedOrder.orderItems">
+                  <tr>
+                    <td>{{product.itemOrdered.productName}}</td>
+                    <td>{{product.price | currency}}</td>
+                    <td>{{product.quantity}}</td>
+                    <td>{{product.itemOrdered.productItemId}}</td>
+                  </tr>
+          
+                </tbody>
+              </table>
+         </div>
+     </div>
+   </ng-container>
+</div>
