@@ -2,3 +2,12 @@ tr.allorders:hover td {
     cursor: pointer;
     background-color: rgba(140, 143, 141, 0.3);
 }
+i.closeLoaded:hover{
+    cursor: pointer;
+
+}
+.ordersTable{
+    overflow-y: auto;
+     height: 250px;
+}
+//.ordersTable thead th { position: sticky; top: 0; }

@@ -23,7 +23,7 @@ namespace Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles="Admin")]
+    //[Authorize(Roles ="Admin")]
     public class AdminController : ControllerBase
     {
         private readonly IWebHostEnvironment env;
@@ -52,7 +52,7 @@ namespace Api.Controllers
         [HttpPut("addnewproduct")]
         public async Task<ActionResult> AddNewProduct([FromForm] AddNewProductDto product)
         {
-
+            
             string fName = product.productImage.FileName;
             //TODO  if type sent by admin is not in table , create new Type of Cloth
             var type = await productTypesRepo.GetEntityWithSpec(new ProductTypeByProductTypeName(product.ProductType));
@@ -138,13 +138,13 @@ namespace Api.Controllers
         [HttpPut("updateproduct")]
         public async Task<ActionResult> UpdateProduct([FromForm]ProductToUpdateDto productUpdateData)
         {
-            var product = await unitOfWork.Repository<Product>().GetByIdAsync(productUpdateData.Id);
+            var product = await unitOfWork.Repository<Product>().GetByIdAsync(productUpdateData.productId);
             if (product == null) { return Ok(); }
 
             product.Name = productUpdateData.Name ?? product.Name;
             product.Description = productUpdateData.Description ?? product.Description;
             product.Price = productUpdateData.Price ?? product.Price;
-            product.ProductGenderBaseId = productUpdateData.GenderBaseId ?? product.ProductGenderBaseId;
+            product.ProductGenderBase = await productGenderRepo.GetEntityWithSpec(new GetGenderByName(productUpdateData.ProductGenderBase));
             ProductType type = await productTypesRepo.GetEntityWithSpec(new ProductTypeByProductTypeName(productUpdateData.ProductType));
             if(type == null) { } else { product.ProductTypeId = type.Id;  }
 
@@ -183,10 +183,20 @@ namespace Api.Controllers
                 .ListAsync(new GetAdminActionForCurrentAdmin(user.Email)));
         }
 
-        [HttpGet("getallorders")]
-        public async Task<ActionResult<IReadOnlyList<Order>>> GetAllOrders()
-        {      
-            return Ok(await unitOfWork.Repository<Order>().ListAsync(new GetAllOrdersWthDeliveryMethod()));
+        [HttpGet("getorders")]
+        public async Task<ActionResult<IReadOnlyList<Order>>> GetOrders([FromQuery] AdminOrdersManagerParams ordersParams)
+        {
+            var orders = await unitOfWork.Repository<Order>().ListAsync(new GetOrdersWithSearchAndIncludes(ordersParams));
+            if (ordersParams.DateSearch.HasValue)
+            {
+                orders = orders.Where(o => 
+                 o.OrderDate.Year == ordersParams.DateSearch.Value.Year &&
+                 o.OrderDate.Month == ordersParams.DateSearch.Value.Month &&
+                 o.OrderDate.Day == ordersParams.DateSearch.Value.Day).ToList();
+            }
+    
+
+            return Ok(orders);
         }
 
         [HttpGet("getordersfordayweekmounth")]

@@ -22,15 +22,20 @@
       </div>
     </div><br>
     <div class="row">
-        <div class="col-md-3">
-            <button routerLink="addnewproduct" class="btn btn-success">Statistics </button><br>
-            <button routerLink="ordersmanager" class="btn btn-primary">View orders</button><br>
-            <button routerLink="addnewproduct" class="btn btn-primary">Users managment</button><br>
-            <button routerLink="addnewproduct" class="btn btn-success">Add new product</button><br>
-            <button routerLink="addnewproduct" class="btn btn-danger">Products managment </button><br>
+     
+        <div class="col-3">
+          <div class="list-group" id="list-tab" role="tablist">
+            <a class="list-group-item list-group-item-action"  data-toggle="list" routerLink="ordersmanager" role="tab" aria-controls="home">Order Manager</a>
+            <a class="list-group-item list-group-item-action"  data-toggle="list" routerLink="addnewproduct" role="tab" aria-controls="messages">Product Manager</a>
+            <a class="list-group-item list-group-item-action"  data-toggle="list" routerLink="" role="tab" aria-controls="messages">Account Manager</a>
+            <a class="list-group-item list-group-item-action"  data-toggle="list" routerLink="" role="tab" aria-controls="profile">Statistics</a>
+
+            <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Settings</a>
+          </div>
         </div>
+
         <div class="col-md-9">
-            <label>Recent admin activity</label>
+          <label>Your recent activity</label>
             <div class="table-fix">
               <table class="table table-hover">
                 <thead class="thead-dark">

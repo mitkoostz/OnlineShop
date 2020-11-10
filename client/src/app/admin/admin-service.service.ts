@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -33,8 +33,8 @@ export class AdminServiceService {
         return response;
       }));
   }
-  loadAllOrders(){
-    return this.http.get<IOrder[]>(this.baseUrl + "admin/getallorders").pipe(
+    loadOrders(params: HttpParams){
+    return  this.http.get<IOrder[]>(this.baseUrl + "admin/getorders", {params}).pipe(
       map(response => {        
         return response;
       }));

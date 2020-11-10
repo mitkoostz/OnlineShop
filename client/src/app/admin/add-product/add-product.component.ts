@@ -5,6 +5,7 @@ import { isEmpty } from 'rxjs/operators';
 import { IProductToAdd } from 'src/app/shared/models/productToAdd';
 import { environment } from 'src/environments/environment';
 import { AdminServiceService } from '../admin-service.service';
+import { ReactiveFormsModule } from '@angular/forms'
 
 @Component({
   selector: 'app-add-product',

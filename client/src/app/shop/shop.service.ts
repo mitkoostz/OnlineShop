@@ -58,7 +58,6 @@ export class ShopService {
 
     return this.http.get<IPagination>(this.baseUrl + 'products', { observe: 'response', params })
       .pipe(
-
         map(response => {
           this.products  = [...this.products, ...response.body.data];
           this.pagination = response.body;

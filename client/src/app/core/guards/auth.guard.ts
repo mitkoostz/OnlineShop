@@ -13,7 +13,7 @@ export class AuthGuard implements CanActivate {
    isAdmin(){
     
   }
-  canActivate(
+    canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> {
     return this.accountService.currentUser$.pipe(
@@ -21,7 +21,7 @@ export class AuthGuard implements CanActivate {
         if(auth){
           if(route.data.role === "Admin"){
              console.log("ONLY ADMIN CAN ACCESS THAT!");       
-              this.accountService.isAdmin().then( res =>{
+                this.accountService.isAdmin().then( res =>{
                 if(res)
                 {
                   return true;

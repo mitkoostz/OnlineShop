@@ -1,7 +1,9 @@
 using System.Text;
 using Core.Entities.Identity;
 using Infrastructure.Identity;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +21,7 @@ namespace Api.Extensions
            builder.AddRoles<IdentityRole>().AddEntityFrameworkStores<AppIdentityDbContext>();
            builder.AddSignInManager<SignInManager<AppUser>>();
 
+           
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                    .AddJwtBearer(options => 
                    {
@@ -32,6 +35,12 @@ namespace Api.Extensions
                           ValidateAudience = false
                         };
                    });
+                  services.AddAuthorization(options =>
+                                {
+                                   options.AddPolicy("Admin",
+                                  policy => policy.RequireRole("Admin"));
+                                 });
+            
 
            return services;
         }

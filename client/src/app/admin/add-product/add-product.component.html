@@ -1,69 +1,82 @@
 
 
     <div class="container" >
-        <h2>Admin add new Product</h2>
+        <a routerLink="/admin" class="btn btn-sm btn-info mb-3">Back to Admin Panel</a><br>
+        <label class="text-info">*Creates product that is saved to the database and goes live on the shop. All fields are required. Best image resolution square 250:250 , 600:600*</label>
+        <h2 class="text-success text-md-center">Add New Product</h2>
 
-        <div class="row">
-            <div class="col-md-6">
-                <form  [formGroup]="productForm" (ngSubmit)="onSubmit()">
-              
-                <label>Product Name :
-                <input type="text"(ngModelChange)="nameChanged($event)" formControlName="name">
-                </label><br>
-                <label>Product Price :
-                    <input (ngModelChange)="priceChanged($event)" step=".01" type="number" formControlName="price">
-                    </label>
-                <br>
+            <form  [formGroup]="productForm" (ngSubmit)="onSubmit()" class="">
+        <div class="form-row d-flex justify-content-center  mt-3">
+            <div class="form-group col-md-3 ">          
+                <label for="name" >Product Name</label>
+                <input type="text"(ngModelChange)="nameChanged($event)" placeholder="Product Name" class="form-control" formControlName="name">    
+            </div>
+
+            <label class="sr-only">Product Price</label>
+            <div class="form-group col-md-3 ">  
+                <label>Price</label>
+                    <input (ngModelChange)="priceChanged($event)" step=".01" class="form-control" placeholder="Price $" type="number" formControlName="price">
+            </div>
+                 
+        </div>
+            <div class="form-row d-flex justify-content-center ">
+            <div class="form-group col-md-2">  
+                <p>Product Gender:</p>
+                <input type="radio"  formControlName="productGenderBase" id="Men"  value="Men">
+                <label for="Men">Men</label><br>
+                <input type="radio" formControlName="productGenderBase" id="Women"  value="Women">
+                <label for="Women">Women</label><br>
+                <input type="radio" formControlName="productGenderBase" id="Unisex" value="Unisex">
+                <label for="Unisex">Unisex</label>
+            </div>
+            <div class="form-group col-md-2 ">  
+                <label>Product Type:</label><br>
+                <select formControlName="productType" name="type" id="type">
+                  <option value="T-Shirt">T-Shirt</option>
+                  <option value="Shoes">Shoes</option>
+                  <option value="Jeans">Jeans</option>
+                  <option value="Hats">Hats</option>
+                </select>
+            </div>
+                                                 
+            <div class="form-group col-md-2 ">  
                 <Label>Product Image</Label>
-                <label class="image-upload-container btn btn-bwm">    
-                    <input (change)="onFileChange($event)"
+                <label class="image-upload-container btn btn-bwm"> 
+                   <input class="form-control-file" (change)="onFileChange($event)"
                            type="file"
                            accept="image/*">
                   </label>
-                  <br>
-                  <label>Description: </label><br>
-                  <textarea type="text" (ngModelChange)="descriptionChanged($event)" formControlName="description"  ></textarea>
-                  <br>
-                                      
-                  <p>Select product gender:</p>
-                  <input type="radio" formControlName="productGenderBase" id="Men"  value="Men">
-                  <label for="Men">Men</label><br>
-                  <input type="radio" formControlName="productGenderBase" id="Women"  value="Women">
-                  <label for="Women">Women</label><br>
-                  <input type="radio" formControlName="productGenderBase" id="Unisex" value="Unisex">
-                  <label for="Unisex">Unisex</label>
-                  <br>
-                  <label>Select product Type:</label><br>
-                  <select formControlName="productType" name="type" id="type">
-                    <option value="T-Shirt">T-Shirt</option>
-                    <option value="Shoes">Shoes</option>
-                    <option value="Jeans">Jeans</option>
-                    <option value="Hats">Hats</option>
-                  </select>
-                  <br><br>
-                  <button type="submit" class="btn btn-primary"  [disabled]="!productForm.valid">Add Product</button>
-
-                </form>
             </div>
-            <div class="col-md-6 align-items-center">
-                <h3>Preview</h3>
-                <div  id="previewProduct">
-               
+       
+            <div class="form-group col-md-8 ">  
+                <label>Description: </label><br>
+                <textarea type="text" class="form-control" (ngModelChange)="descriptionChanged($event)" formControlName="description"  ></textarea>
+            </div>
+    
+            <div class="form-group col-md-10 d-flex justify-content-center">  
+                  <button type="submit" class="btn btn-success fa-2x btn-block"  [disabled]="!productForm.valid"><b>Create product</b></button>
+            </div>
+        </div>
+        </form>
+        <div class="row d-flex justify-content-center ">
+                        
+            <div class="d-flex justify-content-center col-md-6">
+                <div class="justify-content-center"  id="previewProduct">  
+                    <h3 class="text-center">Preview</h3>
                 <div class="card h-100 shadow-sm">
                     <div class="image position-relative" style="cursor:pointer;" >
-                        <img src="{{imgUrl}}" alt="..." class="mx-auto d-block">    
-                    </div>
-                    <div class="card-body d-flex flex-column">                   
-                        <h6 class="text-uppercase">{{previewName}}</h6>
-                      <span class="mb-2">{{previewPrice | currency}}</span>
-                      <p>{{previewDesc}}</p>
-                      </div>          
+                        <img src="{{imgUrl}}" alt="..." class="mx-auto d-block preview">    
+                    </div>       
                   </div>
                 </div>
+                <div class="card-body d-flex flex-column">                   
+                    <h6 class="text-uppercase">{{previewName}}</h6>
+                  <span class="mb-2">{{previewPrice | currency}}</span>
+                  <p>{{previewDesc}}</p>
+                  </div>   
 
             </div>
         </div>
-     
     </div>
 
 

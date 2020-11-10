@@ -1,9 +1,38 @@
 <div class="container">
-    <h2>Order Manager</h2>
+    <h2>Order Manager   
+      <button routerLink="/admin" class="btn btn-info btn-sm">Back to Admin Panel</button>
+    </h2><br>
     <div class="row">
+        <form [formGroup]="ordersSearchForm" (ngSubmit)="onSubmit()">
+          <div class="col-md-3 d-inline">
+          <label>Date:&nbsp;</label>
+          <input formControlName="dateSearch"  type="date">
+          </div>
+          <div class="col-md-3 d-inline">
+          <label>Email:&nbsp;</label>
+          <input formControlName="emailSearch" type="text">
+          </div>
+          <div class="col-md-3 d-inline">
+          <label>Name:&nbsp;</label>
+          <input formControlName="nameSearch" type="text">
+          </div>
+          <div class="col-md-3 d-inline">
+          <label>Payment Intent:&nbsp;</label>
+          <input formControlName="paymentIntentSearch" type="text">
+          </div>
+          <div class="col-md-3 d-inline">
+          <button class="btn btn-dark btn-sm" type="submit">Search <i class="fa fa-search" aria-hidden="true"></i>
+          </button>
+          </div>
+        </form>
+    
+    </div>
+    <div class="row">
+      <div class="ordersTable col-md-12">
         <table class="table  table-sm">
             <thead>
               <tr>
+                <th></th>
                 <th>Date</th>
                 <th>State/City</th>
                 <th>User Email</th>
@@ -15,6 +44,7 @@
             </thead>
             <tbody *ngFor="let order of orders">
               <tr class="allorders" (click)="loadOrCloseClickedOrder(order.id)">
+                <td><i class="fa fa-plus" aria-hidden="true"></i></td>
                 <td>{{order.orderDate | date:'medium'}}</td>
                 <td>{{order.shipToAddress.state + " , " + order.shipToAddress.city}}</td>
                 <td>{{order.buyerEmail}}</td>
@@ -27,9 +57,13 @@
    
             </tbody>
           </table>
+          
+      </div>
     </div>
+    <label>*click order for details</label>
    <ng-container *ngIf="!isEmptyObject(loadedOrder)">
-     <h2>Order#{{loadedOrder.id}}</h2>
+     <h2>Order#{{loadedOrder.id}} <i (click)="closeLoadedOreder();" class="fa fa-minus-square closeLoaded" aria-hidden="true"></i>
+     </h2>
      <label>{{loadedOrder.orderDate | date:'medium'}}</label>
      <div class="row">
          <div class="col-md-6">
@@ -80,22 +114,30 @@
             <table class="table">
                 <thead>
                   <tr>
+                    <th>Image</th>
                     <th scope="col">Product Name</th>
-                    <th scope="col">Product Price</th>
+                    <th scope="col">Price</th>
                     <th scope="col">Quantity</th>
-                    <th scope="col">ProductId</th>
+                    <th scope="col">Id</th>
                   </tr>
                 </thead>
                 <tbody *ngFor="let product of loadedOrder.orderItems">
                   <tr>
-                    <td>{{product.itemOrdered.productName}}</td>
+                    <td><img class="" src="{{baseUrl + product.itemOrdered.pictureUrl}}" style="width:50px; height:auto; display: block; " /></td>
+                    <td> 
+                      <a href="/shop/{{product.itemOrdered.productItemId}}">{{(product.itemOrdered.productName).substring(0,25)+"..."}}</a>
+                    </td>
                     <td>{{product.price | currency}}</td>
                     <td>{{product.quantity}}</td>
                     <td>{{product.itemOrdered.productItemId}}</td>
                   </tr>
-          
                 </tbody>
               </table>
+              Delivery:
+              <label>{{loadedOrder.deliveryMethod.shortName + " , " + loadedOrder.deliveryMethod.deliveryTime + "  / Delivery cost: " + (loadedOrder.deliveryMethod.price | currency)}}</label>       
+              <div class="alert alert-success text-md-center font-weight-bold h3" role="alert">
+                Total: {{(loadedOrder.subTotal + loadedOrder.deliveryMethod.price) | currency }}
+              </div>
          </div>
      </div>
    </ng-container>

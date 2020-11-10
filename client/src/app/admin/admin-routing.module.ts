@@ -8,6 +8,7 @@ import { OrderManagmentComponent } from './order-managment/order-managment.compo
 
 const routes: Routes = [
   { path: '', component: AdminPanelComponent },
+  { path: 'productmanager', component: AddProductComponent },
   { path: 'addnewproduct', component: AddProductComponent },
   { path: 'ordersmanager', component: OrderManagmentComponent }
 ];

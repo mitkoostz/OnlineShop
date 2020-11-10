@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Core.Entities;
@@ -9,7 +10,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace Api.Dtos
 {
     public class AddNewProductDto
-    {   
+    {
+        public int productId { get; set; }
+        [Required]
         [FromForm]
         public string Name { get; set; }
         [FromForm]
