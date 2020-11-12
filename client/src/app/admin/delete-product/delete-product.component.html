@@ -1,0 +1,16 @@
+<div class="container d-flex justify-content-center">
+    <div class="row">
+        <h2 class="text-danger"> Are you sure you want to <br><b>DELETE </b> <b class="text-info">{{name}}</b>?</h2><br>
+    </div>
+</div>
+<div class="container d-flex justify-content-center">
+      <img src="{{pictureUrl}}" class="img img-thumbnail" style="width: 200px; height: 200px;">
+</div>
+<div  class="container d-flex justify-content-center mt-4">
+    <button aria-label="Close" (click)="bsModalRef.hide(); deleteProduct(id);" class="btn btn-danger mr-3 btn-lg  d-inline-block mb-4" style="width: 150px;">YES</button> 
+    <button aria-label="Close" (click)="bsModalRef.hide()" class="btn btn-info ml-3 btn-lg  d-inline-block mb-4"    style="width: 150px;">NO</button>
+
+
+</div>
+
+

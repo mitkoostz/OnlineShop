@@ -11,6 +11,11 @@ img.smallpreview{
     max-height: 120px;
 
 }
+.list-group{
+    &:hover{
+        cursor: pointer;
+    }
+}
 img.preview{
     max-width: 100%;
     max-height:  100%;

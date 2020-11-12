@@ -17,8 +17,7 @@ namespace Infrastructure.Data
     {
         public static async Task SeedAsync(StoreContext context, ILoggerFactory loggerFactory)
         {
-            context.AdminActionHistory.Find(2);
-            context.SaveChanges();
+            
             try
             {
              

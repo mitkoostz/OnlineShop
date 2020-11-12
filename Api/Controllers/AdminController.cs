@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Api.Dtos;
 using Api.Dtos.AdminPanel;
 using Api.Extensions;
+using AutoMapper;
 using Core.Entities;
 using Core.Entities.Admin;
 using Core.Entities.Identity;
@@ -23,7 +24,7 @@ namespace Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize(Roles ="Admin")]
+    [Authorize(Roles ="Admin")]
     public class AdminController : ControllerBase
     {
         private readonly IWebHostEnvironment env;
@@ -32,6 +33,7 @@ namespace Api.Controllers
         private readonly IGenericRepository<ProductGenderBase> productGenderRepo;
         private readonly IGenericRepository<AdminActionHistory> adminActionHistoryRepo;
         private readonly UserManager<AppUser> userManager;
+        private readonly IMapper mapper;
 
         public AdminController(
             IWebHostEnvironment env,
@@ -39,7 +41,9 @@ namespace Api.Controllers
             IGenericRepository<ProductType> productTypesRepo,
             IGenericRepository<ProductGenderBase> productGenderRepo,
             IGenericRepository<AdminActionHistory> adminActionHistoryRepo,
-            UserManager<AppUser> userManager)
+            UserManager<AppUser> userManager,
+            IMapper mapper
+            )
         {
             this.env = env;
             this.unitOfWork = unitOfWork;
@@ -47,6 +51,7 @@ namespace Api.Controllers
             this.productGenderRepo = productGenderRepo;
             this.adminActionHistoryRepo = adminActionHistoryRepo;
             this.userManager = userManager;
+            this.mapper = mapper;
         }
 
         [HttpPut("addnewproduct")]
@@ -138,7 +143,7 @@ namespace Api.Controllers
         [HttpPut("updateproduct")]
         public async Task<ActionResult> UpdateProduct([FromForm]ProductToUpdateDto productUpdateData)
         {
-            var product = await unitOfWork.Repository<Product>().GetByIdAsync(productUpdateData.productId);
+            var product = await unitOfWork.Repository<Product>().GetByIdAsync(productUpdateData.Id);
             if (product == null) { return Ok(); }
 
             product.Name = productUpdateData.Name ?? product.Name;
@@ -210,6 +215,15 @@ namespace Api.Controllers
             result.OrdersToday = orders.Where(o => o.OrderDate.DayOfYear >= DateTime.Now.DayOfYear).Count();
 
             return Ok(result);
+        }
+
+        [HttpGet("getproducts")]
+        public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts([FromQuery]ProductSpecParams par)
+        {
+            var products = await unitOfWork.Repository<Product>().ListAsync(new GetProductsSpecification(par));
+            var data = mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDto>>(products);
+
+            return Ok(data);
         }
 
     }

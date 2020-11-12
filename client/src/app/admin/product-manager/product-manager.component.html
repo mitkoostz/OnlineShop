@@ -1,0 +1,63 @@
+<div class="container">
+    <h2>Product Manger</h2>
+    <div class="row">
+        <div class="col-md-12">
+          <form [formGroup]="productFilterForm" (ngSubmit)="onSubmit()">
+            <div class="col-md-3 d-inline">
+              <label>Name:&nbsp;</label>
+              <input formControlName="nameSearch" type="text">
+              <label> &nbsp;Type:&nbsp;</label>
+              <select formControlName="typeFilter">
+                <option value="" selected>All</option>
+                <option *ngFor="let type of types" value="{{type.id}}">{{type.name}}</option>
+              </select>
+              <label> &nbsp;Gender:&nbsp;</label>
+              <select formControlName="genderFilter">
+                <option value=""selected>All</option>
+                <option value="1">Men</option>
+                <option value="2">Women</option>
+                <option value="3">Unisex</option>
+              </select>
+              <label> &nbsp;Sort by:&nbsp;</label>
+              <select formControlName="filterSearch">
+                <option value=""selected>Name</option>
+                <option value="priceAsc">Price Low To High</option>
+                <option value="priceDesc">Price High to Low</option>
+              </select>
+              </div>
+
+              <button type="submit" class="btn btn-info btn-sm">Search</button>
+              <i (click)="refresh();" class="fa fa-refresh ml-3 fa-1x" aria-hidden="true"></i>
+
+          </form> 
+          <div class="table-fix">
+            <table class="table table-dark">
+                <thead>
+                  <tr>
+                    <th scope="col">Image</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">ProductId</th>
+                    <th scope="col">Operations</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let product of products">
+                  <tr>
+                    <th><img src="{{product.pictureUrl}}" style="height: 30px; width: 30px;" /></th>
+                    <th><a class="text-info" href="/shop/{{product.id}}">{{(product.name) | slice:0:25}}...</a></th>
+                    <td>{{product.price | currency}}</td>
+                    <td>{{product.productType}}</td>
+                    <td>{{product.productGenderBase}}</td>
+                    <td>{{product.id}}</td>
+                    <td><i (click)="openProductEdit(product.id);" class="fa fa-pencil fa-2x text-info" aria-hidden="true"></i>
+                        <i (click)="openProductDelete(product.id);" class="fa fa-trash fa-2x text-danger pl-3" aria-hidden="true"></i>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
+    </div>
+</div>

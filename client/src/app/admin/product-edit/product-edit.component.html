@@ -1,0 +1,61 @@
+<div class="container" id="collapseBasic" >
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+   <h2 class="text-info text-md-center">Edit Product</h2>
+  <label class="text-info">*if you dont choose image it will be the same as before*</label><br>
+     <div class="d-flex justify-content-center"> <img src="{{pictureUrl}}" class="img img-thumbnail"/></div>
+    <form  [formGroup]="productForm" (ngSubmit)="onSubmit()" class="">
+   <div class="form-row d-flex justify-content-center  mt-3">
+       <div class="form-group col-md-3 ">          
+           <label for="name" >Product Name</label>
+           <input type="text" placeholder="Product Name" class="form-control" formControlName="name">    
+       </div>
+
+       <label class="sr-only">Product Price</label>
+       <div class="form-group col-md-3 ">  
+           <label>Price</label>
+               <input step=".01" class="form-control" placeholder="Price $" type="number" formControlName="price">
+       </div>
+            
+   </div>
+       <div class="form-row d-flex justify-content-center ">
+       <div class="form-group col-md-2">  
+           <p>Product Gender:</p>
+           <input type="radio"  formControlName="productGenderBase" id="Men"  value="Men">
+           <label for="Men">Men</label><br>
+           <input type="radio" formControlName="productGenderBase" id="Women"  value="Women">
+           <label for="Women">Women</label><br>
+           <input type="radio" formControlName="productGenderBase" id="Unisex" value="Unisex">
+           <label for="Unisex">Unisex</label>
+       </div>
+       <div class="form-group col-md-2 ">  
+           <label>Product Type:</label><br>
+           <select formControlName="productType" name="type" id="type">
+             <option value="T-Shirts">T-Shirts</option>
+             <option value="Shoes">Shoes</option>
+             <option value="Jeans">Jeans</option>
+             <option value="Hats">Hats</option>
+           </select>
+       </div>
+                                            
+       <div class="form-group col-md-2 ">  
+           <Label>Product Image</Label>
+           <label class="image-upload-container btn btn-bwm"> 
+              <input class="form-control-file" (change)="onFileChange($event)"
+                      type="file"
+                      accept="image/*">
+             </label>
+       </div>
+  
+       <div class="form-group col-md-8 ">  
+           <label>Description: </label><br>
+           <textarea type="text" class="form-control" formControlName="description"  ></textarea>
+       </div>
+
+       <div class="form-group col-md-10 d-flex justify-content-center">  
+             <button type="submit" class="btn btn-success fa-2x btn-block" aria-label="Close" (click)="bsModalRef.hide()" [disabled]="!productForm.valid"><b>Update product</b></button>
+       </div>
+   </div>
+   </form>
+</div>

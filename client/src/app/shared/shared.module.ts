@@ -12,7 +12,9 @@ import { CdkStepperModule} from '@angular/cdk/stepper';
 import { StepperComponent } from './components/stepper/stepper.component';
 import { BasketSummaryComponent } from './components/basket-summary/basket-summary.component';
 import { RouterModule } from '@angular/router';
-import { AddProductComponent } from '../admin/add-product/add-product.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AdminPanelModule } from '../admin/admin-panel.module';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 
 
@@ -29,8 +31,7 @@ import { AddProductComponent } from '../admin/add-product/add-product.component'
     FormsModule,
     CdkStepperModule,
     RouterModule
-
-  ],
+    ],
   exports: [
     PaginationModule,
     PagingHeaderComponent,
@@ -43,7 +44,7 @@ import { AddProductComponent } from '../admin/add-product/add-product.component'
     TextInputComponent,
     CdkStepperModule,
     StepperComponent,
-    BasketSummaryComponent
+    BasketSummaryComponent    
   ]
 })
 export class SharedModule { }

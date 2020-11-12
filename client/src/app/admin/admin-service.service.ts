@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { IAdminActionHistory, IOrdersForDayWeekMounth } from '../shared/models/admin';
 import { IOrder } from '../shared/models/Order';
+import { IProduct } from '../shared/models/product';
 import { IProductToAdd } from '../shared/models/productToAdd';
 
 @Injectable({
@@ -35,6 +36,12 @@ export class AdminServiceService {
   }
     loadOrders(params: HttpParams){
     return  this.http.get<IOrder[]>(this.baseUrl + "admin/getorders", {params}).pipe(
+      map(response => {        
+        return response;
+      }));
+  }
+  loadProducts(params: HttpParams){
+    return  this.http.get<IProduct[]>(this.baseUrl + "admin/getproducts", {params}).pipe(
       map(response => {        
         return response;
       }));

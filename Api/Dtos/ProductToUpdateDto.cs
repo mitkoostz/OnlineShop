@@ -11,8 +11,9 @@ namespace Api.Dtos
 {
     public class ProductToUpdateDto
     {
-        public int productId { get; set; }
-        [Required]
+        [FromForm]
+        public int Id { get; set; }
+        
         [FromForm]
         public string Name { get; set; }
         [FromForm]

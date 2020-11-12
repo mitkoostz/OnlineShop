@@ -1,11 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { isEmpty } from 'rxjs/operators';
-import { IProductToAdd } from 'src/app/shared/models/productToAdd';
 import { environment } from 'src/environments/environment';
 import { AdminServiceService } from '../admin-service.service';
-import { ReactiveFormsModule } from '@angular/forms'
+
+
 
 @Component({
   selector: 'app-add-product',
@@ -19,6 +18,9 @@ previewName = "Hat";
 previewPrice =  19.99;
 previewDesc = "Product description.";
 baseUrl = environment.apiUrl;
+firstCollapsed = false;
+secondCollapsed = true;
+activeButton = 1;
 
   constructor( private fb: FormBuilder,  private cd: ChangeDetectorRef, private adminService: AdminServiceService,private http: HttpClient) { }
 
@@ -66,6 +68,9 @@ baseUrl = environment.apiUrl;
   descriptionChanged(value: string){
     this.previewDesc = value;
   }
+  changeActive(activeId: number){
+    this.activeButton = activeId;
+  }
   
  
   onSubmit(){
@@ -82,8 +87,7 @@ baseUrl = environment.apiUrl;
     headers.append('Content-Type', 'multipart/form-data');
     headers.append('Accept', 'application/json');
     
-    console.log(this.productForm.value);
-    console.log(this.productForm.get('productImage').value);
+ 
     this.http.put(this.baseUrl + "admin/addnewproduct", formData , {headers: headers}).subscribe(
       (response) => console.log(response),
       (error) => console.log(error)
