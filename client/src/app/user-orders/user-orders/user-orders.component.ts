@@ -12,7 +12,7 @@ export class UserOrdersComponent implements OnInit {
 
 
   constructor(private userOrderService: UserOrdersService, private router: Router) { }
- orders: IOrder[];
+ orders: IOrder[] = [];
 
   ngOnInit(): void {
       this.userOrderService.getUserOrders().subscribe(order =>{

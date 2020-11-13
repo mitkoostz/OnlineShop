@@ -1,8 +1,14 @@
 
-<div class="container mt-3">
-    <div *ngIf="((basket$ | async ) === null)">
-           <h2>Your basket is empty :(</h2>
-           <a href="shop">GO SHOPPING</a>
+<div class="container mt-3 ">
+    <div class="row" *ngIf="((basket$ | async ) === null)">
+              
+           <div class="offset-4"></div>
+           <div class="col-md-4" >
+            <img src="/assets/images/cart-empty.jpg" class="img img-fluid " />
+            <a class="btn btn-info btn-lg btn-block" style="width: 100%;" href="shop">Back to shop</a>
+           </div>
+           <div class="offset-4"></div>
+           
     </div>
 
     <div *ngIf="(basket$ | async)">

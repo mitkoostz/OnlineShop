@@ -18,10 +18,10 @@ export class AdminPanelComponent implements OnInit {
   adminHistory: IAdminActionHistory[] = [];
   ordersForDayWeekMounth = {} as IOrdersForDayWeekMounth;
   activityParse = ["Add", "Delete", "Update" ]
-  constructor(private accountSerivce: AccountService, private adminService: AdminServiceService) { }
+  constructor(private accountService: AccountService, private adminService: AdminServiceService) { }
 
   ngOnInit(): void {
-    this.currentUser$ = this.accountSerivce.currentUser$;
+    this.currentUser$ = this.accountService.currentUser$;
     this.loadAdminHistory();
     this.loadOrdersForDayWeekMounth();    
   }

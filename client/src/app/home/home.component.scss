@@ -7,5 +7,19 @@ img {
     height: 350px;
     width: 100%;
     border-radius: 10px;
+    box-shadow: 3px 6px rgba(105, 105, 105, 0.336); border: 3px solid; border-color: rgba(105, 105, 105, 0.342);
     
 }
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+  }
+  .img-fluid-simpson {
+    max-width:220px;
+    height: 220px;
+  }
+  .backg{
+    background-image: url('/assets/images/backgroundHome.jpg'); 
+    opacity: 1;
+
+  }

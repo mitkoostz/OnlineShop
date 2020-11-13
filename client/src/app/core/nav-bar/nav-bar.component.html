@@ -1,19 +1,23 @@
 
 
 
-<div class="d-flex flex-column flex-md-row align-items-center justify-content-between p-2 px-md-4 mb-3
+<div class="d-flex flex-column flex-md-row align-items-center justify-content-between p-2 px-md-4
      border-bottom shadow-sm fixed-top" style="background-color: white;">
-  <img src="/assets/images/logo.png" style="max-height:55px;" class="logo" alt="logo" routerLink="/" />
+  <img src="/assets/images/logoOf.png" style="max-height:55px;" class="logo img-fluid" alt="logo" routerLink="/" />
   <nav class="my-2 my-md-0 mr-md-3 text-uppercase" style="font-size:larger;">
     <a class="p-2"  routerLinkActive="active"
          [routerLinkActiveOptions]="{ exact: true }" routerLink="/">Home</a>
-    <a class="p-2" routerLink="/shop"routerLinkActive="active" >Shop</a>
+         <a class="p-2" routerLink="/shop"routerLinkActive="active" >Shop</a>
+    <a class="p-2"  routerLinkActive="active"
+         [routerLinkActiveOptions]="{ exact: true }" routerLink="/myaccount">My Account</a>
+   
     <ng-container *ngIf="(currentUser$ | async) != null && (currentUser$ | async).role === 'Admin'">
       
       <a class="p-2" routerLink="/admin" routerLinkActive ="active">Admin Panel</a>
     <a class="p-2" routerLink="/test-error" routerLinkActive ="active">Errors</a>
 
     </ng-container>
+    
   </nav>
   <div class="d-flex align-items-center">
     <a routerLink="/basket" class="position-relative" >
@@ -47,5 +51,7 @@
         </div>
       </div>
     </ng-container>
+    <a class="p-2"  routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }" routerLink="/Contact">Contact Us</a>
   </div>
 </div>

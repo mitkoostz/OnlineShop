@@ -5,10 +5,15 @@ import { TestErrorComponent } from './core/test-error/test-error.component';
 import { ServerErrorComponent } from './core/server-error/server-error.component';
 import { NotFoundComponent } from './core/not-found/not-found.component';
 import { AuthGuard } from './core/guards/auth.guard';
+import { CantactUsComponent } from './home/cantact-us/cantact-us.component';
 
 const routes: Routes = [
 
-  { path: '', component: HomeComponent, data: { breadcrumb: 'Home' } },
+  {
+    path: '', loadChildren: () => import('./home/home.module').then(mod => mod.HomeModule),
+    data: { breadcrumb: {skip: true} }
+  },
+  { path: 'Contact', component: CantactUsComponent, data: {  } },
   { path: 'test-error', component: TestErrorComponent, data: { breadcrumb: 'Test Errors' } },
   { path: 'server-error', component: ServerErrorComponent, data: { breadcrumb: 'ServerError' } },
   { path: 'not-found', component: NotFoundComponent, data: { breadcrumb: 'Not Found' } },
@@ -43,6 +48,12 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: () => import('./admin/admin-panel.module').then(mod => mod.AdminPanelModule),
     data: { breadcrumb: 'Admin' , role:"Admin" }
+  },
+  {
+    path: 'myaccount',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./account-overview/account-overview.module').then(mod => mod.AccountOverviewModule),
+    data: { breadcrumb: '' }
   },
   { path: '**', redirectTo: 'not-found', pathMatch: 'full' }
 
