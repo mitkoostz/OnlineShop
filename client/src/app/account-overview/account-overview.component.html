@@ -8,7 +8,7 @@
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="Admin" class="rounded-circle" width="150">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Admin" class="rounded-circle" width="150">
                     <div class="mt-3">
                       <h4>{{(currentUser$ | async).displayName}}</h4>
                       <p class="text-secondary mb-1">{{(currentUser$ | async).email}}</p>
@@ -41,11 +41,61 @@
                 </ul>
               </div>
             </div>
+             <!-- Whole RIGHT section 4:8 -->
             <div class="col-md-8">
-              <div class="mb-3 address"id="overviewCollapse" [collapse]="overviewCollapsed" >
-                    Account Overview
+              <!-- DEFAULT Overview section that shows on the RIGHT -->
+              <div class="mb-3 overview"id="overviewCollapse" [collapse]="overviewCollapsed" >
+                    <label class="text-success fa-2x">Account Overview</label>
+                    <div class="row">
+                    <div class="col-md-4 shadow-lg ">
+                      <div class="circle-tile ">
+                        <a href="#"><div class="circle-tile-heading red"><i class="fa fa-user fa-3x" aria-hidden="true"></i></div></a>
+                        <div class="circle-tile-content green">
+                          <div class="circle-tile-description text-black-50 fa-2x">Our User For</div>
+                          <div class="circle-tile-number text-faded ">1 year</div>
+                        </div>
+                      </div>
+                    </div>
+                     
+                    <div class="col-md-4 shadow-lg ">
+                      <div class="circle-tile ">
+                        <a href="#"><div class="circle-tile-heading purple"><i class="fa fa-truck fa-3x" aria-hidden="true"></i></div></a>
+                        <div class="circle-tile-content green">
+                          <div class="circle-tile-description text-black-50 fa-2x">Orders</div>
+                          <div class="circle-tile-number text-faded ">{{orders.length}}</div>
+                        </div>
+                      </div>
+                    </div> 
+                    <div class="col-md-4 shadow-lg ">
+                      <div class="circle-tile ">
+                        <a href="#"><div class="circle-tile-heading dark-blue"><i class="fa fa-pencil fa-3x" aria-hidden="true"></i></div></a>
+                        <div class="circle-tile-content green">
+                          <div class="circle-tile-description text-black-50 fa-2x">Reviews</div>
+                          <div class="circle-tile-number text-faded">5</div>
+                        </div>
+                      </div>
+                    </div> 
+                    </div>
+                     <ng-container *ngIf="orders.length > 0">  
+                      <label class="text-info fa-2x mt-3">Last Order:</label><br>
+                      <label class="">{{lastOrder.orderDate | date:'medium'}}</label>      
+                    <div class="row">               
+                      <div class="col-md-4 card shadow-lg" *ngFor="let item of lastOrder.orderItems">
+                        <label style="top:0px; left:0px;">{{item.price | currency}} x {{item.quantity}}</label>
+                        <img style="max-width: 100%;max-height: 100%;" src="{{item.pictureUrl}}" />
+                              <label class="text-success fa-1x">{{item.productName}}</label>
+                      </div>
+                    </div>
+                    <hr>
+                    <label class="text-info fa-2x">Total: {{lastOrder.total | currency}}</label>
+                  </ng-container>    
+                    <div class="row" *ngIf="orders.length === 0" >
+                      <label class="text-info fa-2x mt-3 ml-3">You don't have any orders.</label>
+                    </div>
+                
               </div>
-              <div class="card mb-3 overview" id="addressCollapse" [collapse]="addressCollapsed" >
+              <!-- Address edit section that shows on the RIGHT -->
+              <div class="card mb-3 address" id="addressCollapse" [collapse]="addressCollapsed" >
                 <h2 class="text-success">Default Address <button (click)="editAddress()" class="btn btn-info btn-sm">Edit
                   <i class="fa fa-pencil pl-1" aria-hidden="true"></i>
                 </button> </h2>
@@ -85,30 +135,52 @@
                   
                     </div>
                   </div>
-                  <button class="btn btn-success  mr-3" type="submit" [disabled]="!editStart" [hidden]="!editStart" >
+                  <div *ngIf="!hasDefaultAddress">
+                    <label class="text-danger">You don't have default address.&nbsp;</label>
+                    <label class="text-info"> Set your default address for your convenience</label>
+                  </div>
+                  <button class="btn btn-success  mr-3" type="submit" [disabled]="!editStart && !addressForm.valid" [hidden]="!editStart" >
                     Save as default address
                   </button>
                   <button (click)="editStart = false; addressForm.disable();" class="btn btn-info btn-sm mr-3" type="submit" [disabled]="!editStart" [hidden]="!editStart" >
                     Cancel
                   </button>
+
                 </form>
               </div>
-              <div class="mb-3 address"id="ordersCollapse" [collapse]="ordersCollapsed" >
-                My Orders
+              <!-- Orders section that shows on the RIGHT -->
+              <div class="mb-3 orders"id="ordersCollapse" [collapse]="ordersCollapsed" >
+                <label class="text-info fa-2x mb-2">My Orders</label> 
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Order Total</th>
+                      <th>Payment Status</th>
+                      <th>Shipping Cost</th>
+                      <th>Total</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let order of orders">
+                    <tr (click)="RedirectToOrderInfo(order.id)">
+                      <td>{{order.orderDate | date:'medium'}}</td>
+                      <td>{{order.subTotal | currency}}</td>
+                      <td>{{order.status}}</td>
+                      <td>{{order.shippingPrice | currency}}</td>
+                      <td>{{order.total | currency}}</td>
+                    </tr>            
+                  </tbody>
+                </table>
+                 <label class="text-info">*Click to View Order Details*</label>
+                 <ng-container *ngIf="orders.length === 0">
+                  <br><label class="text-info fa-2x">You don't have any orders :(</label>
+                 </ng-container>
               </div>
-              <div class="mb-3 address"id="settingsCollapse" [collapse]="settingsCollapsed" >
+              <!-- Account Settings section that shows on the RIGHT -->
+              <div class="mb-3 settings"id="settingsCollapse" [collapse]="settingsCollapsed" >
                 Account Settings
               </div>
 
-              <div class="row">
-                
-                <div class="col-md-6 mb-3">
-                
-                </div>
-                <div class="col-md-6 mb-3">
-             
-                </div>
-              </div>
             </div>
           </div>
         </div>

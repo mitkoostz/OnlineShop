@@ -4,7 +4,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { AccountOverviewComponent } from './account-overview.component';
 
 const routes:Routes = [
-  {path: '', component: AccountOverviewComponent}
+  {path: '', component: AccountOverviewComponent},
+  {path: ':selected', component: AccountOverviewComponent}
+
 ]
 
 @NgModule({

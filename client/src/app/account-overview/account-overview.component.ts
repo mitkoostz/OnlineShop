@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, RequiredValidator, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS } from 'constants';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { AccountService } from '../account/account.service';
@@ -21,11 +23,19 @@ export class AccountOverviewComponent implements OnInit {
   activeButton = 1;
   currentUser$: Observable<IUser>;
   orders: IOrder[] = [];
+  lastOrder = {} as IOrder;
   address = {} as IAddress;
+  hasDefaultAddress = false;
   addressForm: FormGroup;
   editStart = false;
+  
 
-  constructor(private userOrderService: UserOrdersService, private accountService: AccountService,private fb: FormBuilder,private toast: ToastrService) { }
+  constructor(private userOrderService: UserOrdersService,
+     private accountService: AccountService,
+     private fb: FormBuilder,
+     private toast: ToastrService,
+     private router: Router,
+     private activateRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.createAddressForm();
@@ -33,20 +43,41 @@ export class AccountOverviewComponent implements OnInit {
     this.currentUser$ = this.accountService.currentUser$;
     this.loadUserOrders();
     this.loadUserAddress();
+    this.checkIfSelected();    
+  }
+  checkIfSelected(){
+     let selected = this.activateRoute.snapshot.paramMap.get('selected');
+    if( selected !== null &&  !isNaN(Number(selected)))
+    {
+          this.changeActive(parseInt(selected));
+    }else if(selected !== null && isNaN(Number(selected)))
+    {
+      this.router.navigateByUrl('/not-found');
+    }
   }
 
   loadUserOrders(){
-    this.userOrderService.getUserOrders().subscribe(order =>{
-    this.orders = order;
+    this.userOrderService.getUserOrders().subscribe(response =>{
+    this.orders = response;
+    this.loadLastOrder();
     }, error => {
       console.log(error);
     });
   }
+  loadLastOrder(){
+    if(this.orders.length > 0){
+      this.lastOrder = this.orders[0];
+    }
+  }
   loadUserAddress(){
     this.accountService.getUserAddress().subscribe(address => {
+      
       if(address){
         this.addressForm.patchValue(address);
         this.address = address;
+        this.hasDefaultAddress = true;
+      }else{
+        this.editAddress();
       }
     }, error => {
       console.log(error);
@@ -66,18 +97,22 @@ export class AccountOverviewComponent implements OnInit {
    });
   }
 
+  RedirectToOrderInfo(id:number){
+      this.router.navigateByUrl("/order/"+id.toString());
+  }
+
   editAddress(){
     this.editStart = true;
     this.addressForm.enable();
   }
   createAddressForm(){
     this.addressForm = this.fb.group({
-      firstName: [null],
-      lastName: [null],
-      street: [null],
-      city: [null],
-      state: [null],
-      zipcode: [null]
+      firstName: [null,Validators.required],
+      lastName: [null,Validators.required],
+      street: [null,Validators.required],
+      city: [null,Validators.required],
+      state: [null,Validators.required],
+      zipcode: [null,Validators.required]
     });
   }
     
@@ -113,6 +148,7 @@ export class AccountOverviewComponent implements OnInit {
         break;
     
       default:
+        this.router.navigateByUrl('/not-found');
         break;
     }
   }

@@ -34,5 +34,8 @@ export interface IOrderToCreate {
     itemOrdered: IItemOrdered;
     price: number;
     quantity: number;
+    productItemId: number;
+    productName: string;
+    pictureUrl: string;
   }
   

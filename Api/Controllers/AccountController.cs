@@ -139,7 +139,7 @@ namespace Api.Controllers
            return  await _userManager.IsInRoleAsync(user,"Admin");
         }
 
-
+        
 
     }
 }

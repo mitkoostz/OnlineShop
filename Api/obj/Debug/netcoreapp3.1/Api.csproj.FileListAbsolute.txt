@@ -96,7 +96,6 @@ D:\MitkoSoft\Ademy\skinet\Api\bin\Debug\netcoreapp3.1\System.IdentityModel.Token
 D:\MitkoSoft\Ademy\Skinet\api\bin\Debug\netcoreapp3.1\Stripe.net.dll
 D:\MitkoSoft\.NET CORE WEB API\api\bin\Debug\netcoreapp3.1\appsettings.Development.json
 D:\MitkoSoft\.NET CORE WEB API\api\bin\Debug\netcoreapp3.1\appsettings.json
-D:\MitkoSoft\.NET CORE WEB API\api\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 D:\MitkoSoft\.NET CORE WEB API\api\bin\Debug\netcoreapp3.1\Api.exe
 D:\MitkoSoft\.NET CORE WEB API\api\bin\Debug\netcoreapp3.1\Api.deps.json
 D:\MitkoSoft\.NET CORE WEB API\api\bin\Debug\netcoreapp3.1\Api.runtimeconfig.json
@@ -190,3 +189,4 @@ D:\MitkoSoft\.NET CORE WEB API\api\obj\Debug\netcoreapp3.1\staticwebassets\Api.S
 D:\MitkoSoft\.NET CORE WEB API\api\obj\Debug\netcoreapp3.1\Api.dll
 D:\MitkoSoft\.NET CORE WEB API\api\obj\Debug\netcoreapp3.1\Api.pdb
 D:\MitkoSoft\.NET CORE WEB API\api\obj\Debug\netcoreapp3.1\Api.genruntimeconfig.cache
+D:\MitkoSoft\.NET CORE WEB API\api\obj\Debug\netcoreapp3.1\scopedcss\bundle\Api.styles.css
