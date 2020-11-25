@@ -145,7 +145,8 @@ namespace Infrastructure.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<double>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,2)")
+                        .HasMaxLength(5000);
 
                     b.Property<int>("ProductGenderBaseId")
                         .HasColumnType("INTEGER");
@@ -193,7 +194,7 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Core.Entities.Admin.AdminActionHistory", b =>
                 {
                     b.HasOne("Core.Entities.Product", "Product")
-                        .WithMany()
+                        .WithMany("ProductAdminHistory")
                         .HasForeignKey("ProductId");
                 });
 

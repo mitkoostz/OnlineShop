@@ -34,9 +34,10 @@ namespace Infrastructure.Services
 
         var basket = await _basketRepository.GetBasketAsync(basketId);
 
-        if(basket == null) return null;
+            if (basket == null) return null;
+            if (basket.Items.Count == 0 || basket.Items == null) return null;
 
-        var shippingPrice = 0m;
+            var shippingPrice = 0m;
 
         if(basket.DeliveryMethodId.HasValue){
 
@@ -46,14 +47,24 @@ namespace Infrastructure.Services
             basket.ShippingPrice = shippingPrice;
         }
 
-        foreach (var item in basket.Items)
+        foreach (var item in basket.Items.ToList())
         {
             var productItem = await _unitOfWork.Repository<Product>().GetByIdAsync(item.Id);
+            if(productItem == null)
+            {
+              //remove the unvalid item
+              basket.Items.Remove(item);        
+              continue;
+            }
             if(item.Price != productItem.Price)
             {
                 item.Price = productItem.Price;
             }      
         }
+            if (basket.Items.Count == 0)
+            {
+                return null;
+            }
 
         var service = new PaymentIntentService();
 
