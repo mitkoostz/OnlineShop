@@ -43,6 +43,7 @@ namespace Infrastructure.Services
             var DeliveryMethod = await _unitOfWork.Repository<DeliveryMethod>()
                  .GetByIdAsync((int)basket.DeliveryMethodId);
             shippingPrice = DeliveryMethod.Price;
+            basket.ShippingPrice = shippingPrice;
         }
 
         foreach (var item in basket.Items)
@@ -85,8 +86,6 @@ namespace Infrastructure.Services
         await _basketRepository.UpdateBasketAsync(basket);
 
         return basket;
-
-
     }
 
         public async Task<Core.Entities.OrderAggregate.Order> UpdateOrderPaymentFailed(string paymentIntentId)
