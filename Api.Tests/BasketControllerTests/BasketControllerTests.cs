@@ -116,12 +116,12 @@ namespace Api.Tests.BasketControllerTests
             decimal priceOfEveryItem,
             string basketId)
         {
-            CustomerBasket basket = new CustomerBasket(){Id = "basketTest"};
+            CustomerBasket basket = new CustomerBasket(){Id = basketId };
 
             for (int i = 0; i < numberItemsInBasket; i++)
             {
                 basket.Items.Add(new BasketItem(){
-                    ProductName = basketId,
+                    ProductName = "Test",
                     Price = priceOfEveryItem,
                     Id = idOfEveryItem,
                     ProductGenderBase = "Men",
