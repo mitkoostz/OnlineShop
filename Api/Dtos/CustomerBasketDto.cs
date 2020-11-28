@@ -8,6 +8,8 @@ namespace Api.Dtos
         [Required]
         public string Id { get; set; }     
        
+        [Required]
+        [MaxLength(15 ,ErrorMessage = "You can add up to 15 items maximum.")]
         public List<BasketItemDto> Items {get;set;} = new List<BasketItemDto>();
 
         public int? DeliveryMethodId { get; set; }

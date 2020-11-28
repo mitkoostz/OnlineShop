@@ -36,7 +36,7 @@ namespace Infrastructure.Data
            if(!_repositories.ContainsKey(type)){
                var repositoryType = typeof(GenericRepository<>);
                var repositoryInstance = Activator.CreateInstance(repositoryType.MakeGenericType
-               (typeof(TEntity)), _context);
+            (typeof(TEntity)), _context);
 
                _repositories.Add(type, repositoryInstance);
                

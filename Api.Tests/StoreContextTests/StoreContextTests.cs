@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 
-namespace Api.Tests
+namespace Api.Tests.StoreContextTests
 {
     public class StoreContextTests
     {

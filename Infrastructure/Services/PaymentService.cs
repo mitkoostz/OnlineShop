@@ -42,7 +42,7 @@ namespace Infrastructure.Services
         if(basket.DeliveryMethodId.HasValue){
 
             var DeliveryMethod = await _unitOfWork.Repository<DeliveryMethod>()
-                 .GetByIdAsync((int)basket.DeliveryMethodId);
+                                                  .GetByIdAsync((int)basket.DeliveryMethodId);
             shippingPrice = DeliveryMethod.Price;
             basket.ShippingPrice = shippingPrice;
         }

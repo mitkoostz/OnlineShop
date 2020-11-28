@@ -12,7 +12,7 @@ namespace Api.Dtos
         [Range(0.10,double.MaxValue, ErrorMessage="Price must be greater than 0")]
         public decimal Price { get; set; }
         [Required]
-        [Range(1, double.MaxValue , ErrorMessage="Quantity must be greater than 0")]
+        [Range(1, 20, ErrorMessage="Item quantity must be greater than 0 and maximum 20")]
         public int Quantity { get; set; }
         [Required]
         public string PictureUrl {get;set;}

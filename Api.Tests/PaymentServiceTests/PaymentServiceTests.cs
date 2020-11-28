@@ -14,7 +14,7 @@ using Xunit;
 using Product = Core.Entities.Product;
 
 
-namespace Api.Tests
+namespace Api.Tests.PaymentServiceTests
 {
     public class PaymentServiceTests
     {
