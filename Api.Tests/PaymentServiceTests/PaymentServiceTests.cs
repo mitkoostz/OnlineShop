@@ -18,7 +18,13 @@ namespace Api.Tests.PaymentServiceTests
 {
     public class PaymentServiceTests
     {
-        const string ApiSecretKey = "sk_test_51HblC0FUcQA4Qn1XN2XkdOLNjt67jqvLhvOXekNVPlwtFyvS1QbscAAhwYx5O2DjqipDVIetjoQdq7ydP3Ke3Ydw006awifri3";
+        public PaymentServiceTests()
+        {
+            this.config = Config.InitConfiguration();
+            this.ApiSecretKey = config["ApiSecretKey"];
+        }
+        private readonly IConfiguration config;
+        private readonly string ApiSecretKey;
 
         [Fact]
         public async void TestPaymentWithEmptyBasket()
