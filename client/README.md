@@ -7,4 +7,3 @@
   - Caching data with Redis too..
   - Integrated Stripe card payments
   - Admin panel for account management => products,orders, accounts etc...
-  - Server Side: .NET CORE Web Api & EF + Redis

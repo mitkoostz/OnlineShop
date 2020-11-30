@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\MitkoSoft\\.NET CORE WEB API\\Api\\Api.csproj": {}
+    "D:\\MitkoSoft\\.NET CORE WEB API\\api\\Api.csproj": {}
   },
   "projects": {
-    "D:\\MitkoSoft\\.NET CORE WEB API\\Api\\Api.csproj": {
+    "D:\\MitkoSoft\\.NET CORE WEB API\\api\\Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\MitkoSoft\\.NET CORE WEB API\\Api\\Api.csproj",
+        "projectUniqueName": "D:\\MitkoSoft\\.NET CORE WEB API\\api\\Api.csproj",
         "projectName": "Api",
-        "projectPath": "D:\\MitkoSoft\\.NET CORE WEB API\\Api\\Api.csproj",
+        "projectPath": "D:\\MitkoSoft\\.NET CORE WEB API\\api\\Api.csproj",
         "packagesPath": "C:\\Users\\todor\\.nuget\\packages\\",
-        "outputPath": "D:\\MitkoSoft\\.NET CORE WEB API\\Api\\obj\\",
+        "outputPath": "D:\\MitkoSoft\\.NET CORE WEB API\\api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
