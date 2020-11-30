@@ -48,7 +48,7 @@ namespace Api.Controllers
             {
                 Email = user.Email,
                 Token = _tokenService.CreateToken(user),
-                DisplayName = user.UserName,
+                DisplayName = user.DisplayName,
                 Role = userRole
                 
             };
@@ -86,19 +86,17 @@ namespace Api.Controllers
             if (user == null) return Unauthorized(new ApiResponse(401));
             var roles = await _userManager.GetRolesAsync(user);
             var userRole = roles.FirstOrDefault() ?? "Default";
-            
-            //
-            // await _userManager.AddToRoleAsync(user, "Admin");
+     
 
             var result = await _signInManager
             .CheckPasswordSignInAsync(user, loginDto.Password, false);
-            if (!result.Succeeded) return Unauthorized(new ApiResponse(401));
+            if (!result.Succeeded) return Unauthorized(new ApiResponse(401,"Wrong email or password."));
             
             return new UserDto
             {
                 Email = user.Email,
                 Token = _tokenService.CreateToken(user),
-                DisplayName = user.UserName,
+                DisplayName = user.DisplayName,
                 Role = userRole
             };
         }
@@ -113,8 +111,8 @@ namespace Api.Controllers
             var user = new AppUser
             {
                 DisplayName = regiserDto.DisplayName,
-                Email = regiserDto.Email,
-                UserName = regiserDto.DisplayName
+                UserName = regiserDto.Email,
+                Email = regiserDto.Email
             };
             var result = await _userManager.CreateAsync(user, regiserDto.Password);
             if (!result.Succeeded) return BadRequest(new ApiResponse(400));

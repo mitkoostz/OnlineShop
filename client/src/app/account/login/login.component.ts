@@ -12,6 +12,7 @@ import { AccountService } from '../account.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   returnUrl: string;
+  invalidLogin = '';
 
   constructor(private accountService:AccountService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
@@ -31,7 +32,7 @@ export class LoginComponent implements OnInit {
     this.accountService.login(this.loginForm.value).subscribe(() =>{
       this.router.navigateByUrl(this.returnUrl);
     }, error => {
-      console.log(error);
+      this.invalidLogin = error.error.massage;
     });
   }
 

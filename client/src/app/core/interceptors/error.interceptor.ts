@@ -23,7 +23,10 @@ export class ErrorInterceptor implements HttpInterceptor {
 
             }
           }
-          if (error.status === 401) {
+          if(req.url.includes('login')){
+            return throwError(error);
+          }
+          if (error.status === 401){
             this.toastr.error(error.error.massage, error.error.statusCode)
           }
           if (error.status === 404) {

@@ -1,13 +1,13 @@
 <div class="form-label-group">
     <input
-    [ngClass]="(controlDir && controlDir.control 
+    [ngClass]="(controlDir && controlDir.control
     && controlDir.control.touched) ? !controlDir.control.valid ? 'is-invalid' : 'is-valid' : null"
      [type] = "type"
      (input)="onChange($event.target.value)"
      (blur)="onTouched()"
      id="{{label}}"
      #input
-     class="form-control" 
+     class="form-control"
      placeholder="{{label}}"
      >
      <div *ngIf="controlDir && controlDir.control && controlDir.control.status === 'PENDING'"
@@ -16,7 +16,9 @@
     <div class="invalid-feedback" *ngIf="(controlDir && controlDir.control &&
      !controlDir.control.valid  && controlDir.control.touched)">
             <span *ngIf="controlDir.control.errors?.required">{{label}} is required</span>
-            <span *ngIf="controlDir.control.errors?.pattern">Invalid email address</span>
+            <span *ngIf="controlDir.control.errors?.pattern && label === 'Email Address'">Invalid email address</span>
+            <span *ngIf="controlDir.control.errors?.pattern && label === 'Password'">Password must cointains 6 characters , 1 upper latter and 1 symbol.</span>
+
     </div>
     <div class="invalid-feedback d-block" *ngIf="(controlDir && controlDir.control &&
     !controlDir.control.valid  && controlDir.control.dirty)">

@@ -12,7 +12,7 @@ namespace Infrastructure.Identity
               if(!userManager.Users.Any()){
                   var user = new AppUser{
                       DisplayName = "Bob",
-                      UserName = "Bob",
+                      UserName = "bob@test.com",
                       Email = "bob@test.com",
                       Address = new Address{
                           FirstName = "Bob",

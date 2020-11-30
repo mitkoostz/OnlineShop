@@ -1,6 +1,8 @@
+using System;
 using System.Threading.Tasks;
 using Api.Dtos;
 using Api.Errors;
+using Api.Helpers;
 using AutoMapper;
 using Core.Entities;
 using Core.Interfaces;
@@ -19,6 +21,7 @@ namespace Api.Controllers
         }
 
         [HttpGet]
+        [LimitRequests(20, 60, 180)]
         public async Task<ActionResult<CustomerBasket>> GetBasketId(string id)
         {
             var basket = await _basketRepository.GetBasketAsync(id);
@@ -26,6 +29,7 @@ namespace Api.Controllers
         }
 
         [HttpPost]
+        [LimitRequests(20, 10, 30,useTestMode:true)]
         public async Task<ActionResult<CustomerBasket>> UpdateBasket(CustomerBasketDto basket)
          {
             var customerBasket = _mapper.Map<CustomerBasketDto,CustomerBasket>(basket);

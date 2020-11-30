@@ -1,12 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { ThrowStmt } from '@angular/compiler';
 import { Injectable } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Basket, IBasket, IBasketItem, IBasketTotals } from '../shared/models/Basket';
 import { IDeliveryMethod } from '../shared/models/deliveryMethod';
 import { IProduct } from '../shared/models/product';
+import { SettingsConstants } from '../shared/models/SettingsConstants';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +21,7 @@ private basketTotalSource = new BehaviorSubject<IBasketTotals>(null);
 basketTotal$ = this.basketTotalSource.asObservable();
 shipping = 0;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private toastr: ToastrService) {}
 
   createPaymentIntent(){
     return this.http.post(this.baseUrl + 'payments/' + this.getCurrentBasketValue().id , {} )
@@ -27,7 +29,7 @@ shipping = 0;
         map((basket: IBasket) => {
              this.basketSource.next(basket);
         })
-      );  
+      );
   }
 
   setShippingPrice(deliveryMethod: IDeliveryMethod){
@@ -53,10 +55,10 @@ shipping = 0;
 
   setBasket(basket: IBasket){
     return this.http.post(this.baseUrl + "basket" , basket).subscribe((response: IBasket ) =>{
-        this.basketSource.next(response); 
+        this.basketSource.next(response);
         this.calculateTotals();
      }, error => {
-       console.log(error);
+       this.toastr.error(error.errors)
      });
   }
 
@@ -70,11 +72,24 @@ shipping = 0;
             if (basket === null) {
               basket = this.createBasket();
             }
-            basket.items = this.AddOrUpdateBasket(basket.items, itemtoAdd ,quantity ); 
+            if(basket.items.length >= SettingsConstants.MaxItemsPerBasket && basket.items.filter(i => i.id === itemtoAdd.id).length === 0){
+              var errorMessage = `You can add maximum ${SettingsConstants.MaxItemsPerBasket} items in basket`;
+              this.toastr.error(errorMessage);
+              return;
+            }
+            if(basket.items.filter(i => i.id === itemtoAdd.id).length > 0 && basket.items.find(i => i.id === itemtoAdd.id).quantity >= 20){
+              this.toastr.error(`Max item quantity is ${SettingsConstants.MaxQuantityPerItem}.`);
+              return;
+            }
+            basket.items = this.AddOrUpdateBasket(basket.items, itemtoAdd ,quantity );
             this.setBasket(basket);
   }
 
   incrementItemQuantity(item: IBasketItem) {
+    if(item.quantity >= 20){
+      this.toastr.error(`Max item quantity is ${SettingsConstants.MaxQuantityPerItem}.`);
+      return;
+    }
     const basket = this.getCurrentBasketValue();
     const foundItemIndex = basket.items.findIndex(x => x.id === item.id);
     basket.items[foundItemIndex].quantity++;
@@ -107,7 +122,7 @@ shipping = 0;
        this.basketTotalSource.next(null);
        localStorage.removeItem('basket_id')
   }
-  
+
   deleteBasket(basket: IBasket) {
     return this.http.delete(this.baseUrl + 'basket?id=' + basket.id).subscribe(() => {
       this.basketSource.next(null);
@@ -122,7 +137,7 @@ shipping = 0;
      const index = items.findIndex(i => i.id === itemtoAdd.id);
      if(index === -1){
        itemtoAdd.quantity == quantity;
-       items.push(itemtoAdd);    
+       items.push(itemtoAdd);
      }else{
        items[index].quantity += quantity;
      }
@@ -143,8 +158,7 @@ shipping = 0;
     this.basketTotalSource.next({shipping, total, subtotal});
   }
    private mapProductItemToBasketItem(item: IProduct, quantity: number): IBasketItem {
-    console.log(item);
-    return {  
+    return {
       id: item.id,
       productName: item.name,
       price: item.price,
@@ -152,8 +166,8 @@ shipping = 0;
       quantity,
       productGenderBase: item.productGenderBase,
       type: item.productType
-      
+
     };
-   
+
   }
 }

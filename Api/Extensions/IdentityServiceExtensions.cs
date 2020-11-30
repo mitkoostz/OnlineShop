@@ -14,35 +14,41 @@ namespace Api.Extensions
     public static class IdentityServiceExtensions
     {
         public static IServiceCollection AddIdentityServices(
-            this IServiceCollection services, IConfiguration config){
-            
-           var builder = services.AddIdentityCore<AppUser>();
-           builder = new IdentityBuilder(builder.UserType, builder.Services);
-           builder.AddRoles<IdentityRole>().AddEntityFrameworkStores<AppIdentityDbContext>();
-           builder.AddSignInManager<SignInManager<AppUser>>();
+            this IServiceCollection services, IConfiguration config)
+        {
 
-           
+            var builder = services.AddIdentityCore<AppUser>();
+            builder = new IdentityBuilder(builder.UserType, builder.Services);
+            builder.AddRoles<IdentityRole>().AddEntityFrameworkStores<AppIdentityDbContext>();
+            builder.AddSignInManager<SignInManager<AppUser>>();
+
+            services.Configure<IdentityOptions>(options =>
+                {
+                    options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+/ ";
+
+                });
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                   .AddJwtBearer(options => 
+                   .AddJwtBearer(options =>
                    {
-                        options.TokenValidationParameters = new TokenValidationParameters
-                        {
-                          ValidateIssuerSigningKey = true,
-                          IssuerSigningKey = new SymmetricSecurityKey(
-                              Encoding.UTF8.GetBytes(config["Token:Key"])),
-                          ValidIssuer = config["Token:Issuer"],
-                          ValidateIssuer = true,
-                          ValidateAudience = false
-                        };
+                       options.TokenValidationParameters = new TokenValidationParameters
+                       {
+                           ValidateIssuerSigningKey = true,
+                           IssuerSigningKey = new SymmetricSecurityKey(
+                             Encoding.UTF8.GetBytes(config["Token:Key"])),
+                           ValidIssuer = config["Token:Issuer"],
+                           ValidateIssuer = true,
+                           ValidateAudience = false
+                       };
                    });
-                  services.AddAuthorization(options =>
-                                {
-                                   options.AddPolicy("Admin",
-                                  policy => policy.RequireRole("Admin"));
-                                 });
-            
+            services.AddAuthorization(options =>
+                          {
+                              options.AddPolicy("Admin",
+                                   policy => policy.RequireRole("Admin"));
+                          });
 
-           return services;
+
+            return services;
         }
     }
 }

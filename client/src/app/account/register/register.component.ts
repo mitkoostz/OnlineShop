@@ -24,11 +24,11 @@ export class RegisterComponent implements OnInit {
   createRegisterForm(){
     this.registerForm = this.fb.group({
       displayName: [null, [Validators.required]],
-      email: [null, 
+      email: [null,
         [Validators.required, Validators.pattern('^[\\w-\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')],
         [this.validateEmailNotTake()]
       ],
-      password: [null, [Validators.required]]
+      password: [null, [Validators.required, Validators.pattern("(?=^.{6,10}$)(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;'?/&gt;.&lt;,])(?!.*\\s).*$")]]
     });
   }
 
@@ -38,7 +38,7 @@ export class RegisterComponent implements OnInit {
    }, error => {
     console.log(error);
     this.errors = error.errors;
-       
+
    });
   }
 
