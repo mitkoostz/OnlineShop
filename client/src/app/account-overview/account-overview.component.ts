@@ -25,10 +25,11 @@ export class AccountOverviewComponent implements OnInit {
   orders: IOrder[] = [];
   lastOrder = {} as IOrder;
   address = {} as IAddress;
+  currentUserAddress = {} as IAddress;
   hasDefaultAddress = false;
   addressForm: FormGroup;
   editStart = false;
-  
+
 
   constructor(private userOrderService: UserOrdersService,
      private accountService: AccountService,
@@ -43,7 +44,7 @@ export class AccountOverviewComponent implements OnInit {
     this.currentUser$ = this.accountService.currentUser$;
     this.loadUserOrders();
     this.loadUserAddress();
-    this.checkIfSelected();    
+    this.checkIfSelected();
   }
   checkIfSelected(){
      let selected = this.activateRoute.snapshot.paramMap.get('selected');
@@ -71,7 +72,7 @@ export class AccountOverviewComponent implements OnInit {
   }
   loadUserAddress(){
     this.accountService.getUserAddress().subscribe(address => {
-      
+      this.currentUserAddress = address;
       if(address){
         this.addressForm.patchValue(address);
         this.address = address;
@@ -115,7 +116,14 @@ export class AccountOverviewComponent implements OnInit {
       zipcode: [null,Validators.required]
     });
   }
-    
+  cancelAddressEdit(){
+    if(this.currentUserAddress === null || this.currentUserAddress === undefined){
+      this.addressForm.reset();
+      return;
+    }
+    this.addressForm.patchValue(this.currentUserAddress);
+  }
+
   changeActive(activeId: number){
     this.activeButton = activeId;
     switch (activeId) {
@@ -144,9 +152,9 @@ export class AccountOverviewComponent implements OnInit {
         this.settingsCollapsed = false;
         break;
       case 5:
-        
+
         break;
-    
+
       default:
         this.router.navigateByUrl('/not-found');
         break;

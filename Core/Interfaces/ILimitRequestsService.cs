@@ -11,8 +11,16 @@ namespace Core.Interfaces
         Task SetIpRequestsCountAsync(string ip, TimeSpan time);
         Task BanIpRequestsAsync(string ip,TimeSpan bannedTo);
         Task<bool> IsBannedAsync(string ip);
-        Task  UpdateValidTo(string ip,TimeSpan time);
-        Task<bool> IncreaseRequestCountAndCheckforBan(string ip, int requestsPerTime, TimeSpan time, TimeSpan banTime);
+        Task  UpdateValidToTime(string ip,TimeSpan time);
+        Task<bool> CheckForBanAndIncreaseRequestsCount( string ip,
+                int requestsPerTime,
+                TimeSpan time,
+                TimeSpan banTime,
+                string controllerName,
+                string actionName,
+                string methodType,
+                bool uniqueForEveryActionAndController = true,
+                bool useTestMode = false);
 
     }
 }

@@ -1,8 +1,8 @@
 <div class="container">
     <div class="main-body">
-    
+
          <h2>My Account</h2>
-    
+
           <div class="row ">
             <div class="col-md-4">
               <div class="card">
@@ -12,7 +12,7 @@
                     <div class="mt-3">
                       <h4>{{(currentUser$ | async).displayName}}</h4>
                       <p class="text-secondary mb-1">{{(currentUser$ | async).email}}</p>
-                      <p class="text-muted font-size-sm">{{address.state}}</p>      
+                      <p class="text-muted font-size-sm">{{address.state}}</p>
                     </div>
                   </div>
                 </div>
@@ -20,7 +20,7 @@
               <div class="mt-3">
                 <ul class="list-group">
                   <li class="list-group-item " (click)="changeActive(1)"
-                  [class.active]="activeButton === 1" 
+                  [class.active]="activeButton === 1"
                   [attr.aria-expanded]="!overviewCollapsed" aria-controls="overviewCollapse"
                   >Account Overview</li>
 
@@ -32,12 +32,12 @@
                   <li class="list-group-item " (click)="changeActive(3)"
                   [class.active]="activeButton === 3"
                   [attr.aria-expanded]="!ordersCollapsed" aria-controls="ordersCollapse"
-                  >My Orders</li>        
-                  
+                  >My Orders</li>
+
                   <li class="list-group-item " (click)="changeActive(4)"
                   [class.active]="activeButton === 4"
                   [attr.aria-expanded]="!settingsCollapsed" aria-controls="settingsCollapse"
-                  >Account Settings</li>   
+                  >Account Settings</li>
                 </ul>
               </div>
             </div>
@@ -56,7 +56,7 @@
                         </div>
                       </div>
                     </div>
-                     
+
                     <div class="col-md-4 shadow-lg ">
                       <div class="circle-tile ">
                         <a href="#"><div class="circle-tile-heading purple"><i class="fa fa-truck fa-3x" aria-hidden="true"></i></div></a>
@@ -65,7 +65,7 @@
                           <div class="circle-tile-number text-faded ">{{orders.length}}</div>
                         </div>
                       </div>
-                    </div> 
+                    </div>
                     <div class="col-md-4 shadow-lg ">
                       <div class="circle-tile ">
                         <a href="#"><div class="circle-tile-heading dark-blue"><i class="fa fa-pencil fa-3x" aria-hidden="true"></i></div></a>
@@ -74,12 +74,12 @@
                           <div class="circle-tile-number text-faded">5</div>
                         </div>
                       </div>
-                    </div> 
                     </div>
-                     <ng-container *ngIf="orders.length > 0">  
+                    </div>
+                     <ng-container *ngIf="orders.length > 0">
                       <label class="text-info fa-2x mt-3">Last Order:</label><br>
-                      <label class="">{{lastOrder.orderDate | date:'medium'}}</label>      
-                    <div class="row">               
+                      <label class="">{{lastOrder.orderDate | date:'medium'}}</label>
+                    <div class="row">
                       <div class="col-md-4 card shadow-lg" *ngFor="let item of lastOrder.orderItems">
                         <label style="top:0px; left:0px;">{{item.price | currency}} x {{item.quantity}}</label>
                         <img style="max-width: 100%;max-height: 100%;" src="{{item.pictureUrl}}" />
@@ -88,11 +88,11 @@
                     </div>
                     <hr>
                     <label class="text-info fa-2x">Total: {{lastOrder.total | currency}}</label>
-                  </ng-container>    
+                  </ng-container>
                     <div class="row" *ngIf="orders.length === 0" >
                       <label class="text-info fa-2x mt-3 ml-3">You don't have any orders.</label>
                     </div>
-                
+
               </div>
               <!-- Address edit section that shows on the RIGHT -->
               <div class="card mb-3 address" id="addressCollapse" [collapse]="addressCollapsed" >
@@ -104,35 +104,35 @@
                     <div class="col-md-4 mb-3">
                       <label >First name</label>
                       <input formControlName="firstName" type="text" class="form-control"  placeholder="First name" value="Mark" >
-        
+
                     </div>
                     <div class="col-md-4 mb-3">
                       <label for="validationTooltip02">Last name</label>
                       <input formControlName="lastName" type="text" class="form-control"  placeholder="Last name" value="Otto" >
-                 
+
                     </div>
-          
+
                   </div>
                   <div class="form-row">
                     <div class="col-md-6 mb-3">
                       <label for="validationTooltip03">City</label>
                       <input formControlName="city" type="text" class="form-control"  placeholder="City" >
-                  
+
                     </div>
                     <div class="col-md-3 mb-3">
                       <label for="validationTooltip04">State</label>
                       <input formControlName="state" type="text" class="form-control"  placeholder="State" >
-                 
+
                     </div>
                     <div class="col-md-3 mb-3">
                       <label for="validationTooltip05">Zip</label>
                       <input formControlName="zipcode" type="text" class="form-control" placeholder="Zip" >
-                   
+
                     </div>
                     <div class="col-md-12 mb-3">
                       <label for="validationTooltip03">Street</label>
                       <input formControlName="street" type="text" class="form-control" placeholder="Street" >
-                  
+
                     </div>
                   </div>
                   <div *ngIf="!hasDefaultAddress">
@@ -142,7 +142,7 @@
                   <button class="btn btn-success  mr-3" type="submit" [disabled]="!editStart && !addressForm.valid" [hidden]="!editStart" >
                     Save as default address
                   </button>
-                  <button (click)="editStart = false; addressForm.disable();" class="btn btn-info btn-sm mr-3" type="submit" [disabled]="!editStart" [hidden]="!editStart" >
+                  <button (click)="editStart = false; cancelAddressEdit(); addressForm.disable();" class="btn btn-info btn-sm mr-3" type="submit" [disabled]="!editStart" [hidden]="!editStart" >
                     Cancel
                   </button>
 
@@ -150,7 +150,7 @@
               </div>
               <!-- Orders section that shows on the RIGHT -->
               <div class="mb-3 orders"id="ordersCollapse" [collapse]="ordersCollapsed" >
-                <label class="text-info fa-2x mb-2">My Orders</label> 
+                <label class="text-info fa-2x mb-2">My Orders</label>
                 <table>
                   <thead>
                     <tr>
@@ -168,7 +168,7 @@
                       <td>{{order.status}}</td>
                       <td>{{order.shippingPrice | currency}}</td>
                       <td>{{order.total | currency}}</td>
-                    </tr>            
+                    </tr>
                   </tbody>
                 </table>
                  <label class="text-info">*Click to View Order Details*</label>

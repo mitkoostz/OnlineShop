@@ -1,4 +1,4 @@
-﻿using Api.Errors;
+﻿   using Api.Errors;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -37,31 +37,18 @@ namespace Api.Helpers
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
             var limitRequestsService = context.HttpContext.RequestServices.GetRequiredService<ILimitRequestsService>();
-
             var ip = context.HttpContext.Connection.RemoteIpAddress?.ToString();
-
-            if (useTestMode)
-            {
-                ip = "101.TEST.MODE.101";
-            }
-            if(ip == null)
+            if (ip == null && useTestMode == false)
             {
                 await next();
                 return;
-            }
-            if (uniqueForEveryActionAndController)
-            {
-                string controllerName = context.RouteData.Values["controller"].ToString();
-                string actionName = context.RouteData.Values["action"].ToString();
+            } 
+            string controllerName = context.RouteData.Values["controller"].ToString();
+            string actionName = context.RouteData.Values["action"].ToString();
+            string methodType = context.HttpContext.Request.Method;
 
-                ip = GenerateUniquePathKeyIp(context.HttpContext.Request,ip,controllerName,actionName);
-            }
-            
-            //Check valid to and update it
-            await limitRequestsService.UpdateValidTo(ip.ToString(), time);
-
-            //check if IP is in ban list
-            if (await limitRequestsService.IsBannedAsync(ip.ToString()))
+            //check if banned , increase request count and check max requests per given time
+            if (await limitRequestsService.CheckForBanAndIncreaseRequestsCount(ip,requestsPerTime,time,banTime,controllerName,actionName,methodType,uniqueForEveryActionAndController,useTestMode))
             {
                 var options = new JsonSerializerOptions
                 {
@@ -74,19 +61,14 @@ namespace Api.Helpers
                     ContentType = "application/json",
                     StatusCode = 400
                 };
-
+            
                 context.Result = contentResult;
                 return;
             }
             //move to controller
-            await next();
+            await next();           
+        }
 
-            //Check request count for Time Amount and Ban If Neccessary
-            await limitRequestsService.IncreaseRequestCountAndCheckforBan(ip.ToString(),requestsPerTime,time,banTime);              
-        }
-        private string GenerateUniquePathKeyIp(HttpRequest request, string ip,string controller,string action)
-        {
-            return $"{request.Method}:{controller}:{action}:{request.Path}:{ip}";
-        }
+
     }
 }

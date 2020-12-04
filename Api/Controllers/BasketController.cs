@@ -29,7 +29,7 @@ namespace Api.Controllers
         }
 
         [HttpPost]
-        [LimitRequests(20, 10, 30,useTestMode:true)]
+        [LimitRequests(5, 40, 30,useTestMode:true)]
         public async Task<ActionResult<CustomerBasket>> UpdateBasket(CustomerBasketDto basket)
          {
             var customerBasket = _mapper.Map<CustomerBasketDto,CustomerBasket>(basket);

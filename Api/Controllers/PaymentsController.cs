@@ -31,8 +31,7 @@ namespace Api.Controllers
             var basket = await _paymentService.CreateOrUpdatePaymentIntent(basketId);
 
             if (basket == null) return BadRequest(new ApiResponse(400, "Problem with your basket..."));
-
-
+            
             return basket;
         }
 
