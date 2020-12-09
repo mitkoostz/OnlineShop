@@ -1,14 +1,10 @@
-﻿   using Api.Errors;
+﻿using Api.Errors;
 using Core.Interfaces;
-using Microsoft.AspNetCore.Http;
+using Core.LimitRequestsModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.DependencyInjection;
-using StackExchange.Redis;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -39,7 +35,8 @@ namespace Api.Helpers
             var limitRequestsService = context.HttpContext.RequestServices.GetRequiredService<ILimitRequestsService>();
             var ip = context.HttpContext.Connection.RemoteIpAddress?.ToString();
             if (ip == null && useTestMode == false)
-            {
+            {   
+                //TODO: Think what to do if we don't have the IP in the request.
                 await next();
                 return;
             } 
@@ -47,17 +44,23 @@ namespace Api.Helpers
             string actionName = context.RouteData.Values["action"].ToString();
             string methodType = context.HttpContext.Request.Method;
 
-            //check if banned , increase request count and check max requests per given time
-            if (await limitRequestsService.CheckForBanAndIncreaseRequestsCount(ip,requestsPerTime,time,banTime,controllerName,actionName,methodType,uniqueForEveryActionAndController,useTestMode))
+            LimitRequestBannedData data = await limitRequestsService.CheckForBanAndIncreaseRequestsCount(ip, requestsPerTime, time, banTime, controllerName, actionName, methodType, uniqueForEveryActionAndController, useTestMode);
+            if (data.IsBanned)
             {
                 var options = new JsonSerializerOptions
                 {
                     PropertyNamingPolicy = JsonNamingPolicy.CamelCase
                 };
+                if(data.ExpiryDate?.CompareTo(TimeSpan.FromSeconds(1)) == -1)
+                {
+                    data.ExpiryDate = TimeSpan.FromSeconds(1);
+                }
+                string tryAgainAfter = data.ExpiryDate?.ToString(@"dd\.hh\:mm\:ss");
                 var contentResult = new ContentResult
                 {
+                    
                     Content = JsonSerializer.Serialize(
-                        new ApiResponse(400,$"You have made too many requests!Try again after {banTime.Minutes} minutes"),options),
+                        new ApiResponse(400,$"You have made too many requests!Try again after {tryAgainAfter}"),options),
                     ContentType = "application/json",
                     StatusCode = 400
                 };

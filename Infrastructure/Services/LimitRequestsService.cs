@@ -1,16 +1,13 @@
 ﻿using Core.Interfaces;
-using Microsoft.AspNetCore.Http;
+using Core.LimitRequestsModels;
 using StackExchange.Redis;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Infrastructure.Services
 {
     public class LimitRequestsService : ILimitRequestsService
     {
-        private static int rquestTestMethodId = 1;
         private readonly IDatabase database;
 
         public LimitRequestsService(IConnectionMultiplexer redis)
@@ -30,9 +27,22 @@ namespace Infrastructure.Services
             return int.Parse(requestsCount);
         }
 
-        public async Task<bool> IsBannedAsync(string ip)
-        {
-            return await database.KeyExistsAsync(ip + ":banned");
+        public async Task<LimitRequestBannedData> IsBannedAsync(string ip)
+        { 
+            if(database.KeyExists(ip + ":banned"))
+            {
+                RedisValueWithExpiry data = await database.StringGetWithExpiryAsync(ip + ":banned");
+                LimitRequestBannedData returnData = new LimitRequestBannedData()
+                {
+                    IsBanned = true,
+                    ExpiryDate = data.Expiry
+                };
+                return returnData;
+            }
+            return new LimitRequestBannedData() { IsBanned = false };
+         
+
+            //return await database.KeyExistsAsync(ip + ":banned");
         }
 
         public async Task SetIpRequestsCountAsync(string ip, TimeSpan time)
@@ -68,7 +78,7 @@ namespace Infrastructure.Services
             }
         }
 
-        public async Task<bool> CheckForBanAndIncreaseRequestsCount(
+        public async Task<LimitRequestBannedData> CheckForBanAndIncreaseRequestsCount(
                 string ip,
                 int requestsPerTime,
                 TimeSpan time,
@@ -92,19 +102,21 @@ namespace Infrastructure.Services
             }
 
             await UpdateValidToTime(ip, time);
-            bool isBanned = await IsBannedAsync(ip.ToString());
+            LimitRequestBannedData isBannedData = await IsBannedAsync(ip);
+            bool isBanned = isBannedData.IsBanned;
+
             if (isBanned)
             {
-               return isBanned;
+               return isBannedData;
             }
             else
             {
                await SetIpRequestsCountAsync(ip, time);
-               if (await GetIpRequestCountAsync(ip.ToString()) >= requestsPerTime)
+               if (await GetIpRequestCountAsync(ip) >= requestsPerTime)
                {
                    await BanIpRequestsAsync(ip.ToString(), banTime);         
                }
-               return isBanned;
+               return isBannedData;
             }
 
            

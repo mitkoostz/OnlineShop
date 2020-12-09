@@ -11,7 +11,7 @@ using Api.Middleware;
 using Api.Extensions;
 using StackExchange.Redis;
 using Infrastructure.Identity;
-
+using Microsoft.AspNetCore.HttpOverrides;
 
 namespace Api
 {
@@ -72,6 +72,12 @@ namespace Api
             app.UseRouting();
             app.UseStaticFiles();
             app.UseCors("CorsPolicy");
+
+            //app.UseForwardedHeaders(new ForwardedHeadersOptions
+            //{
+            //    ForwardedHeaders = ForwardedHeaders.XForwardedFor |
+            //    ForwardedHeaders.XForwardedProto
+            //});
 
             app.UseAuthentication();
             app.UseAuthorization();
