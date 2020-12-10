@@ -21,7 +21,7 @@ namespace Api.Controllers
         }
 
         [HttpGet]
-        [LimitRequests(20, 60, 180)]
+        //[LimitRequests(20, 60, 180)]
         public async Task<ActionResult<CustomerBasket>> GetBasketId(string id)
         {
             var basket = await _basketRepository.GetBasketAsync(id);
@@ -29,7 +29,7 @@ namespace Api.Controllers
         }
 
         [HttpPost]
-        [LimitRequests(1, 5, 5)]
+        //[LimitRequests(1, 5, 5)]
         public async Task<ActionResult<CustomerBasket>> UpdateBasket(CustomerBasketDto basket)
          {
             var customerBasket = _mapper.Map<CustomerBasketDto,CustomerBasket>(basket);

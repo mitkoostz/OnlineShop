@@ -1,7 +1,8 @@
 ﻿using Api.Dtos;
+using Api.Dtos.ContactUs;
 using AutoMapper;
 using Core.Entities;
-using Core.Entities.Identity;
+using Core.Entities.ContactUs;
 using Core.Entities.OrderAggregate;
 
 namespace Api.Helpers
@@ -19,6 +20,7 @@ namespace Api.Helpers
             CreateMap<CustomerBasketDto,CustomerBasket>();
             CreateMap<BasketItemDto,BasketItem>();
             CreateMap<AddressDto, Core.Entities.OrderAggregate.Address>();
+            CreateMap<ContactUsMessageDto, ContactUsMessage>();
 
             CreateMap<Order,OrderToReturnDto>()
                   .ForMember( d => d.DeliveryMethod , o => o.MapFrom(s => s.DeliveryMethod.ShortName))

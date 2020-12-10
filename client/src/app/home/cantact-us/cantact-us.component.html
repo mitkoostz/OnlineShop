@@ -45,27 +45,72 @@
     <div class="contact-image ">
         <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact"/>
     </div>
-    <form method="post">
+    <form method="post" [formGroup]="messageForm" (ngSubmit)="onSubmit()">
         <h3>Or Drop Us a Message</h3>
        <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <input type="text" name="txtName" class="form-control" placeholder="Your Name *" value="" />
+                    <input formControlName ="name" type="text" name="txtName" class="form-control" placeholder="Name" />
+                    <div class="" *ngIf="messageForm.get('name').invalid &&
+                                        messageForm.get('name').errors &&
+                                        (messageForm.get('name').dirty || messageForm.get('name').touched)">
+                      <span class="text-danger" *ngIf="messageForm.get('name').hasError('required')">
+                        The Name field is required.
+                      </span>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="txtEmail" class="form-control" placeholder="Your Email *" value="" />
+                    <input formControlName ="email" type="text" name="txtEmail" class="form-control" placeholder="Your email"/>
+                    <div class="d-inline-block" *ngIf="messageForm.get('email').invalid &&
+                                        messageForm.get('email').errors &&
+                                        (messageForm.get('email').dirty || messageForm.get('email').touched)">
+                      <span  class="text-danger" *ngIf="messageForm.get('email').hasError('required')">
+                        The Email field is required.
+                      </span>
+                      <span class="text-danger" *ngIf="messageForm.get('email').hasError('pattern')">
+                        This is not valid Email address.
+                      </span>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="txtPhone" class="form-control" placeholder="Your Phone Number *" value="" />
+                  <input formControlName="phoneNumber" type="text" name="txtPhone" class="form-control"
+                    placeholder="Example: +86 800 555 1234" />
+                  <div *ngIf="messageForm.get('phoneNumber').invalid &&
+                                    messageForm.get('phoneNumber').errors &&
+                                    (messageForm.get('phoneNumber').dirty || messageForm.get('phoneNumber').touched)">
+                    <span class="text-danger" *ngIf="messageForm.get('phoneNumber').hasError('required')">
+                      The phone number field is required.
+                    </span>
+                    <span class="text-danger" *ngIf="messageForm.get('phoneNumber').hasError('pattern')">
+                      This is not valid phone number.
+                    </span>
+                  </div>
                 </div>
                 <div class="form-group">
-                    <input type="submit" name="btnSubmit" class="btnContact" value="Send Message" />
+                    <input [disabled]="messageForm.invalid"  type="submit" id="sumbitMessageBtn" name="btnSubmit" class="btnContact" value="Send Message" />
                 </div>
+
             </div>
             <div class="col-md-6">
-                <div class="form-group">
-                    <textarea name="txtMsg" class="form-control" placeholder="Your Message *" style="width: 100%; height: 150px;"></textarea>
-                </div>
+              <div class="form-group text-right">
+                <textarea (input)="CalculateMessageCharacters(messageForm.get('messageText').value.length)" formControlName="messageText" name="txtMsg" class="form-control"
+                  placeholder="Your Message, 30-600 characters." style="width: 100%; height: 150px;"></textarea>
+                  <span *ngIf="messageLength < 30" class="text-info ">{{messageLength}}/30</span>
+                  <span *ngIf="messageLength >= 30" class="text-info ">{{messageLength}}/600</span>
+              </div>
+              <div *ngIf="messageForm.get('messageText').invalid &&
+                            messageForm.get('messageText').errors &&
+                            (messageForm.get('messageText').dirty || messageForm.get('messageText').touched)">
+                <span class="text-danger" *ngIf="messageForm.get('messageText').hasError('required')">
+                  Message text is required!
+                </span>
+                <span class="text-danger" *ngIf="messageForm.get('messageText').hasError('minlength')">
+                  Message must be at least 30 characters.
+                </span>
+                <span class="text-danger" *ngIf="messageForm.get('messageText').hasError('maxlength')">
+                  Message must maximum 600 characters.
+                </span>
+              </div>
             </div>
         </div>
     </form>

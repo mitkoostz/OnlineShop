@@ -139,7 +139,7 @@
                     <label class="text-danger">You don't have default address.&nbsp;</label>
                     <label class="text-info"> Set your default address for your convenience</label>
                   </div>
-                  <button class="btn btn-success  mr-3" type="submit" [disabled]="!editStart && !addressForm.valid" [hidden]="!editStart" >
+                  <button class="btn btn-success  mr-3" type="submit" [disabled]="addressForm.invalid" [hidden]="!editStart" >
                     Save as default address
                   </button>
                   <button (click)="editStart = false; cancelAddressEdit(); addressForm.disable();" class="btn btn-info btn-sm mr-3" type="submit" [disabled]="!editStart" [hidden]="!editStart" >

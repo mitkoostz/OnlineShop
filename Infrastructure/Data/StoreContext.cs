@@ -1,14 +1,13 @@
 ﻿
 using Core.Entities;
 using Core.Entities.Admin;
+using Core.Entities.ContactUs;
 using Core.Entities.OrderAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 
 namespace Ifrastructure.Data
 {
@@ -24,6 +23,7 @@ namespace Ifrastructure.Data
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<DeliveryMethod> DeliveryMethods { get; set; }
         public DbSet<AdminActionHistory> AdminActionHistory { get; set; }
+        public DbSet<ContactUsMessage> ContactUsMessages { get; set; }
 
 
 
