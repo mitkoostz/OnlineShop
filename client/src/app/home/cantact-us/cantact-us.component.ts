@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -17,6 +17,8 @@ export class CantactUsComponent implements OnInit {
   contactUsMessage: IContactUsMessage[] = [];
   messageForm: FormGroup;
   messageLength: number = 0;
+  formSubmited: boolean = false;
+
   constructor(private http: HttpClient, private router: Router, private toastr: ToastrService) {}
 
   ngOnInit(): void {
@@ -48,6 +50,11 @@ export class CantactUsComponent implements OnInit {
 
   onSubmit()
   {
+    if(this.messageForm.invalid)
+    {
+      this.messageForm.markAllAsTouched();
+      return;
+    }
        this.sentMessage();
   }
 
@@ -55,7 +62,7 @@ export class CantactUsComponent implements OnInit {
       this.contactUsMessage = {...this.contactUsMessage,...this.messageForm.value};
     return this.http.post<IContactUsMessage>(this.baseUrl + "contactus/contactusmessage" , this.contactUsMessage).subscribe((response) =>
    {
-     this.router.navigateByUrl("/");
+     this.formSubmited = true;
    }, error =>
    {
      error.errors.forEach(er => {

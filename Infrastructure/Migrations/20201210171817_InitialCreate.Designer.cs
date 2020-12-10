@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    [Migration("20201125204747_InitialCreate3")]
-    partial class InitialCreate3
+    [Migration("20201210171817_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -47,6 +47,34 @@ namespace Infrastructure.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("AdminActionHistory");
+                });
+
+            modelBuilder.Entity("Core.Entities.ContactUs.ContactUsMessage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("MessageText")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(600);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ContactUsMessages");
                 });
 
             modelBuilder.Entity("Core.Entities.OrderAggregate.DeliveryMethod", b =>
@@ -193,6 +221,52 @@ namespace Infrastructure.Migrations
                     b.ToTable("ProductTypes");
                 });
 
+            modelBuilder.Entity("Core.Entities.Reviews.ProductReview", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("HasComment")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ReviewDislikes")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ReviewLikes")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("StarRate")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("UserEmail")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductReviews");
+                });
+
             modelBuilder.Entity("Core.Entities.Admin.AdminActionHistory", b =>
                 {
                     b.HasOne("Core.Entities.Product", "Product")
@@ -279,6 +353,15 @@ namespace Infrastructure.Migrations
                     b.HasOne("Core.Entities.ProductType", "ProductType")
                         .WithMany()
                         .HasForeignKey("ProductTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Core.Entities.Reviews.ProductReview", b =>
+                {
+                    b.HasOne("Core.Entities.Product", "Product")
+                        .WithMany("ProductReviews")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

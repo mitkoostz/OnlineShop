@@ -8,6 +8,22 @@ namespace Infrastructure.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "ContactUsMessages",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(nullable: false),
+                    Email = table.Column<string>(nullable: false),
+                    PhoneNumber = table.Column<string>(nullable: false),
+                    MessageText = table.Column<string>(maxLength: 600, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ContactUsMessages", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "DeliveryMethods",
                 columns: table => new
                 {
@@ -87,7 +103,7 @@ namespace Infrastructure.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
                     Description = table.Column<string>(maxLength: 180, nullable: false),
-                    Price = table.Column<double>(type: "decimal(18,2)", nullable: false),
+                    Price = table.Column<double>(type: "decimal(18,2)", maxLength: 5000, nullable: false),
                     PictureUrl = table.Column<string>(nullable: false),
                     ProductTypeId = table.Column<int>(nullable: false),
                     ProductGenderBaseId = table.Column<int>(nullable: false)
@@ -157,6 +173,34 @@ namespace Infrastructure.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "ProductReviews",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    UserId = table.Column<string>(nullable: false),
+                    UserEmail = table.Column<string>(nullable: false),
+                    ProductId = table.Column<int>(nullable: false),
+                    UserName = table.Column<string>(nullable: false),
+                    Date = table.Column<DateTime>(nullable: false),
+                    StarRate = table.Column<int>(nullable: false),
+                    HasComment = table.Column<bool>(nullable: false),
+                    Comment = table.Column<string>(nullable: true),
+                    ReviewLikes = table.Column<int>(nullable: false),
+                    ReviewDislikes = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductReviews", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProductReviews_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AdminActionHistory_ProductId",
                 table: "AdminActionHistory",
@@ -171,6 +215,11 @@ namespace Infrastructure.Migrations
                 name: "IX_Orders_DeliveryMethodId",
                 table: "Orders",
                 column: "DeliveryMethodId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductReviews_ProductId",
+                table: "ProductReviews",
+                column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_ProductGenderBaseId",
@@ -189,22 +238,28 @@ namespace Infrastructure.Migrations
                 name: "AdminActionHistory");
 
             migrationBuilder.DropTable(
+                name: "ContactUsMessages");
+
+            migrationBuilder.DropTable(
                 name: "OrderItems");
+
+            migrationBuilder.DropTable(
+                name: "ProductReviews");
+
+            migrationBuilder.DropTable(
+                name: "Orders");
 
             migrationBuilder.DropTable(
                 name: "Products");
 
             migrationBuilder.DropTable(
-                name: "Orders");
+                name: "DeliveryMethods");
 
             migrationBuilder.DropTable(
                 name: "ProductGenderBase");
 
             migrationBuilder.DropTable(
                 name: "ProductTypes");
-
-            migrationBuilder.DropTable(
-                name: "DeliveryMethods");
         }
     }
 }

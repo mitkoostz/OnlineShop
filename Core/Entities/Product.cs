@@ -1,4 +1,5 @@
 ﻿using Core.Entities.Admin;
+using Core.Entities.Reviews;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,6 +11,10 @@ namespace Core.Entities
 {
     public class Product : BaseEntity
     {
+        public Product()
+        {
+            this.AverageReviewRate = 0m;
+        }
        
         [Required]
         [MaxLength(100)]
@@ -31,5 +36,9 @@ namespace Core.Entities
         [Required]
         public int ProductGenderBaseId { get; set; }
         public List<AdminActionHistory> ProductAdminHistory { get; set; }
+
+        public decimal AverageReviewRate { get; set; }
+
+        public List<ProductReview> ProductReviews { get; set; }
     }
 }

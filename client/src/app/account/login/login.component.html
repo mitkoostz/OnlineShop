@@ -10,5 +10,6 @@
             <span class="text-danger">{{invalidLogin}}</span>
             <button [disabled]="loginForm.invalid" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
           </form>
+          You don't have an account? <a [routerLink]= "['/account/register']">Rgiester Now</a>
     </div>
 </div>

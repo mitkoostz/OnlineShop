@@ -6,6 +6,10 @@ body{
 }
 #sumbitMessageBtn{
   outline: none;
+
+  &:hover{
+    background-color: #0072ff;
+  }
 }
 .contact-form{
     background: #fff;

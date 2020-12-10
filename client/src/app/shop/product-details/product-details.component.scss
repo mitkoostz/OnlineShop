@@ -1,0 +1,24 @@
+#sizeSelect{
+  outline: none;
+}
+.totalstar{
+  font-size:1.5em;
+  color: rgb(240, 156, 0);
+}
+.userstar{
+  font-size:0.8em;
+  color: rgb(240, 156, 0);
+
+}
+
+.userreviewstar{
+  font-size:2em;
+  color: rgb(240, 156, 0);
+
+  &:hover{
+    font-size: 2.1em;
+    color:  rgb(240, 156, 0);
+    cursor: pointer;
+  }
+}
+

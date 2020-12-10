@@ -3,6 +3,7 @@ using Core.Entities;
 using Core.Entities.Admin;
 using Core.Entities.ContactUs;
 using Core.Entities.OrderAggregate;
+using Core.Entities.Reviews;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using System;
@@ -24,6 +25,7 @@ namespace Ifrastructure.Data
         public DbSet<DeliveryMethod> DeliveryMethods { get; set; }
         public DbSet<AdminActionHistory> AdminActionHistory { get; set; }
         public DbSet<ContactUsMessage> ContactUsMessages { get; set; }
+        public DbSet<ProductReview> ProductReviews { get; set; }
 
 
 

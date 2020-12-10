@@ -158,6 +158,9 @@ namespace Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<double>("AverageReviewRate")
+                        .HasColumnType("REAL");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("TEXT")
@@ -217,6 +220,52 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProductTypes");
+                });
+
+            modelBuilder.Entity("Core.Entities.Reviews.ProductReview", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("HasComment")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ReviewDislikes")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ReviewLikes")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("StarRate")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("UserEmail")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductReviews");
                 });
 
             modelBuilder.Entity("Core.Entities.Admin.AdminActionHistory", b =>
@@ -305,6 +354,15 @@ namespace Infrastructure.Migrations
                     b.HasOne("Core.Entities.ProductType", "ProductType")
                         .WithMany()
                         .HasForeignKey("ProductTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Core.Entities.Reviews.ProductReview", b =>
+                {
+                    b.HasOne("Core.Entities.Product", "Product")
+                        .WithMany("ProductReviews")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
