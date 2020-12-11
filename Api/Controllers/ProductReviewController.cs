@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Api.Dtos.ProductReviews;
 using Api.Errors;
 using Api.Extensions;
+using AutoMapper;
 using Core.Entities;
 using Core.Entities.Identity;
 using Core.Entities.Reviews;
@@ -19,12 +20,31 @@ namespace Api.Controllers
     {
         private readonly UserManager<AppUser> userManager;
         private readonly IUnitOfWork unitOfWork;
+        private readonly IMapper mapper;
+
         public ProductReviewController(
             UserManager<AppUser> userManager,
-            IUnitOfWork unitOfWork)
+            IUnitOfWork unitOfWork,
+            IMapper mapper)
         {
             this.unitOfWork = unitOfWork;
+            this.mapper = mapper;
             this.userManager = userManager;
+        }
+
+
+        [HttpGet]
+        public async Task<ActionResult<IReadOnlyList<ProductReviewReturnDto>>> GetProductReviews(
+          int productId,
+          int currentLoaded = 0,
+          int reviewsToTake = 3)
+        {
+           IReadOnlyList<ProductReview> productReviews = await unitOfWork.Repository<ProductReview>()
+           .ListAsync(new GetProductsReviewsSpecification(productId, currentLoaded,reviewsToTake));
+            var productReviewToReturn = mapper.Map<IReadOnlyList<ProductReview>,IReadOnlyList<ProductReviewReturnDto>>(productReviews);
+            int totalProductReviews = (await unitOfWork.Repository<ProductReview>().ListAsync(new ProductReviewFindByProductId(productId))).Count;
+             
+            return Ok(new ProductReviewsDataReturn(){Reviews = productReviewToReturn, TotalReviews = totalProductReviews});                               
         }
 
 
@@ -40,6 +60,7 @@ namespace Api.Controllers
             }
             IReadOnlyList<ProductReview> currentReviews = await unitOfWork.Repository<ProductReview>()
                  .ListAsync(new ProductReviewFindByProductId(product.Id));
+
             bool userAlreadyHasSubmuitReview = false;
             int sumOfAllReviewRating = 0;   
 
@@ -52,13 +73,10 @@ namespace Api.Controllers
                     userAlreadyHasSubmuitReview = true;
                 }
             }
-
             if(userAlreadyHasSubmuitReview)
             {
                 return BadRequest(new ApiResponse(400, "You have already submitted review!"));
             }
-
-
             ProductReview review = new ProductReview()
             {
                 UserId = user.Id,
@@ -76,7 +94,6 @@ namespace Api.Controllers
 
             unitOfWork.Repository<ProductReview>().Add(review);
             unitOfWork.Repository<Product>().Update(product);
-
 
             await unitOfWork.Complete();
             return Ok(new ApiResponse(200,"Thank you for submiting review!"));

@@ -55,7 +55,7 @@ namespace Api.Controllers
 
         }
 
-        [Cached(600)]
+        //[Cached(600)] reviews data is back in time then caching
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse),StatusCodes.Status404NotFound)]

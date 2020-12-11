@@ -6,7 +6,7 @@
   color: rgb(240, 156, 0);
 }
 .userstar{
-  font-size:0.8em;
+  font-size:1em;
   color: rgb(240, 156, 0);
 
 }
@@ -20,5 +20,8 @@
     color:  rgb(240, 156, 0);
     cursor: pointer;
   }
+}
+.btn:focus {
+  box-shadow: none;
 }
 

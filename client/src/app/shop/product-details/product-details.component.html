@@ -35,45 +35,44 @@
     <div class="col-md-12">
       <div class="">
         <h2 class="text-info mt-4">Product rating</h2>
-        <span class="fa fa-star totalstar"></span>
-        <span class="fa fa-star totalstar"></span>
-        <span class="fa fa-star totalstar"></span>
-        <span class="fa fa-star-o totalstar"></span>
-        <span class="fa fa-star-o totalstar"></span>
-        <span> (12 reviews)</span>
+        <span [className]="averageProductRating >= 1 ? 'fa fa-star totalstar' : 'fa fa-star-o totalstar'" class="fa fa-star totalstar"></span>
+        <span [className]="averageProductRating >= 2 ? 'fa fa-star totalstar' : 'fa fa-star-o totalstar'" class="fa fa-star totalstar"></span>
+        <span [className]="averageProductRating >= 3 ? 'fa fa-star totalstar' : 'fa fa-star-o totalstar'" class="fa fa-star totalstar"></span>
+        <span [className]="averageProductRating >= 4 ? 'fa fa-star totalstar' : 'fa fa-star-o totalstar'" class="fa fa-star-o totalstar"></span>
+        <span [className]="averageProductRating >= 5 ? 'fa fa-star totalstar' : 'fa fa-star-o totalstar'" class="fa fa-star-o totalstar"></span>
+        <span > ({{totalProductReviews}} reviews)</span>
       </div>
       <div class="col-md-12 mt-4">
         <div class="row">
-          <div class="col-md-12 mt-1 shadow">
+          <div *ngFor="let review of productReviews" class="col-md-12 mt-1 mb-2 shadow">
 
-            <h4 class="mb-1"><a class="text-black">Singh Osahan</a></h4>
-            <span  class="fa fa-star userstar"></span>
-            <span  class="fa fa-star userstar"></span>
-            <span  class="fa fa-star userstar"></span>
-            <span  class="fa fa-star-o userstar"></span>
-            <span  class="fa fa-star-o userstar"></span>
-            <p class="text-gray">Tue, 20 Mar 2020</p>
+            <h4 class="mb-1"><a class="text-black">{{review.userName}}</a></h4>
+            <span [className]="review.starRate >= 1 ? 'fa fa-star userstar' : 'fa fa-star-o userstar'" class="fa fa-star userstar"></span>
+            <span [className]="review.starRate >= 2 ? 'fa fa-star userstar' : 'fa fa-star-o userstar'" class="fa fa-star userstar"></span>
+            <span [className]="review.starRate >= 3 ? 'fa fa-star userstar' : 'fa fa-star-o userstar'" class="fa fa-star userstar"></span>
+            <span [className]="review.starRate >= 4 ? 'fa fa-star userstar' : 'fa fa-star-o userstar'" class="fa fa-star-o userstar"></span>
+            <span [className]="review.starRate >= 5 ? 'fa fa-star userstar' : 'fa fa-star-o userstar'" class="fa fa-star-o userstar"></span>
+            <p class="text-gray mb-0">{{review.date | date}}</p>
             <div class="">
-              <p class="mb-0">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical
-                Latin
-                literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at
-                Hampden-Sydney
-                College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum
-                passage, and
-                going through the cites of the word in classical literature, discovered the undoubtable source. Lorem
-                Ipsum comes
-                from sections.</p>
+              <p class="mb-0">{{review.comment}}</p>
             <div class="text-right">
               <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-              123
+              {{review.reviewLikes}}
               <i class="fa fa-thumbs-o-down ml-3  mb-2 " aria-hidden="true"></i>
-              53
+              {{review.reviewDislikes}}
             </div>
           </div>
           </div>
         </div>
 
-        <div class="bg-white rounded p-4 mb-5 rating-review-select-page">
+           <div class="text-right">
+           <label>{{productReviews.length}} of {{totalProductReviews}} reviews</label>
+            <button [hidden]="(totalProductReviews <= productReviews.length)" (click)="loadMoreReviews();"
+             class="btn btn-link btn-lg ml-1 mr-2 " id ="loadMoreBtn">Load More</button>
+           </div>
+
+
+        <div class="bg-white rounded p-2 mb-5 rating-review-select-page">
           <h4 class="mb-3 text-info">Leave Review</h4>
           <div *ngIf="!(currentUser$ | async)" class="alert alert-danger" role="alert">
             You must be logged to submit reviews! <a [routerLink]="['/account/login']">Login</a>
@@ -89,7 +88,7 @@
             <span [className]="userReviewRating >= 5 ? 'fa fa-star userreviewstar' : 'fa fa-star-o userreviewstar'" (click)="userReviewRating = 5;" ></span>
             <span [class.text-info]="userReviewRating === 3" [class.text-danger]="userReviewRating <= 2" [class.text-success]="userReviewRating >= 4" *ngIf="userReviewRating != 0" class="mb-2"> {{userReviewRating}}/5</span>
           </div>
-          <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+          <form [formGroup]="reviewForm" (ngSubmit)="onSubmitReview()">
             <div class="form-group w-50">
               <label class="text-info">Your Comment, not required.</label>
               <textarea (input)="CalculateCommentLength(reviewForm.get('comment').value.length);" formControlName="comment" class="form-control"></textarea>

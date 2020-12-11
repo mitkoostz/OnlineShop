@@ -1,9 +1,11 @@
 ﻿using Api.Dtos;
 using Api.Dtos.ContactUs;
+using Api.Dtos.ProductReviews;
 using AutoMapper;
 using Core.Entities;
 using Core.Entities.ContactUs;
 using Core.Entities.OrderAggregate;
+using Core.Entities.Reviews;
 
 namespace Api.Helpers
 {
@@ -21,6 +23,7 @@ namespace Api.Helpers
             CreateMap<BasketItemDto,BasketItem>();
             CreateMap<AddressDto, Core.Entities.OrderAggregate.Address>();
             CreateMap<ContactUsMessageDto, ContactUsMessage>();
+            CreateMap<ProductReview, ProductReviewReturnDto>();
 
             CreateMap<Order,OrderToReturnDto>()
                   .ForMember( d => d.DeliveryMethod , o => o.MapFrom(s => s.DeliveryMethod.ShortName))

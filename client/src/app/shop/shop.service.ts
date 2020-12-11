@@ -75,10 +75,11 @@ export class ShopService {
   }
 
   getProduct(id: number) {
-    const product = this.products.find(p => p.id === id);
-    if(product){
-      return of(product);
-    }
+    //caching is removed becouse of reviews not updating
+    // const product = this.products.find(p => p.id === id);
+    // if(product){
+    //   return of(product);
+    // }
     return this.http.get<IProduct>(this.baseUrl + 'products/' + id);
   }
     getBrands() {

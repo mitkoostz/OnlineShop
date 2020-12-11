@@ -10,11 +10,6 @@ namespace Api.Tests
 {
     public class LimitRequestServiceTests
     {
-        [Fact]
-        public async void Test()
-        {
-           
-            
-        }
+      
     }
 }

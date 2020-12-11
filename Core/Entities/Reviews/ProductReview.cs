@@ -1,6 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using Core.Entities.Identity;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.Entities.Reviews
 {
@@ -38,6 +38,9 @@ namespace Core.Entities.Reviews
         public int ReviewLikes { get; set; }
 
         public int ReviewDislikes { get; set; }
+
+        [NotMapped]
+        public int TotalProductReviews { get; set; }
 
     }
 }

@@ -14,5 +14,6 @@ namespace Api.Dtos
         public string PictureUrl { get; set; }
         public string ProductType { get; set; }
         public string ProductGenderBase { get; set; }
+        public decimal AverageReviewRate { get; set; }
     }
 }

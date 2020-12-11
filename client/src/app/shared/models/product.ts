@@ -6,4 +6,5 @@ export interface IProduct {
   pictureUrl: string;
   productType: string;
   productGenderBase: string;
+  averageReviewRate: number;
 }

@@ -11,6 +11,8 @@ import { IUser } from 'src/app/shared/models/user';
 import { AccountService } from 'src/app/account/account.service';
 import { ReviewsServiceService } from '../reviews-service.service';
 import { IReview } from 'src/app/shared/models/review';
+import { IProductReview } from 'src/app/shared/models/productReview';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-product-details',
@@ -21,11 +23,14 @@ export class ProductDetailsComponent implements OnInit {
   currentUser$: Observable<IUser>;
   reviewForm: FormGroup;
   product: IProduct;
+  productReviews: IProductReview[] = [];
   quantity = 1;
   userReviewRating: number = 0;
   mouseOveredUserReview: boolean = false;
   userReviewCommentLength: number = 0;
   review = {} as IReview;
+  averageProductRating: number = 0;
+  totalProductReviews: number = 0;
 
   constructor(private shopService: ShopService,
            private activateRoute: ActivatedRoute,
@@ -40,11 +45,12 @@ export class ProductDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadProduct();
+    this.loadProductReviews();
     this.currentUser$ = this.accountService.currentUser$;
     this.createReviewForm();
   }
 
-  onSubmit() {
+  onSubmitReview() {
     if (localStorage.getItem('token') === null) {
       this.router.navigateByUrl("/account/login");
       return;
@@ -62,12 +68,30 @@ export class ProductDetailsComponent implements OnInit {
     this.review.productId = this.product.id;
 
     this.reviewService.submitReview(this.review).subscribe(response => {
-          console.log(response);
+      this.loadProduct();
+      this.loadProductReviews();
     }, error => {
       console.log(error);
     });
 
   }
+  loadProductReviews() {
+    this.reviewService.getProductReviews(+this.activateRoute.snapshot.paramMap.get('id')).subscribe(response => {
+      this.productReviews = response.reviews;
+      this.totalProductReviews = response.totalReviews;
+    }, error => {
+      console.log(error);
+    });
+  }
+  loadMoreReviews(){
+    this.reviewService.getProductReviews(+this.activateRoute.snapshot.paramMap.get('id'), this.productReviews.length,3).subscribe(response => {
+      this.productReviews.push(...response.reviews);
+      this.totalProductReviews = response.totalReviews;
+    }, error => {
+      console.log(error);
+    });
+  }
+
   createReviewForm(){
     this.reviewForm = new FormGroup({
       rating: new FormControl(''),
@@ -94,10 +118,12 @@ export class ProductDetailsComponent implements OnInit {
   loadProduct() {
     this.shopService.getProduct(+this.activateRoute.snapshot.paramMap.get('id')).subscribe(product => {
       this.product = product;
+      this.averageProductRating = product.averageReviewRate;
       this.bcService.set('@productDetails', product.name);
     }, error => {
         console.log(error);
     });
+
   }
 
   CalculateCommentLength(event){
