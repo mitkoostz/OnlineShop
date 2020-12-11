@@ -47,6 +47,26 @@ namespace Api.Controllers
             return Ok(new ProductReviewsDataReturn(){Reviews = productReviewToReturn, TotalReviews = totalProductReviews});                               
         }
 
+        [Authorize]
+        [HttpGet("checkreviewexist")]
+        public async Task<ActionResult<ProductReviewReturnDto>> CheckIfUserSubmittedReview(int productId)
+        {
+            AppUser user = await userManager.FindByEmailFromClaimsPrinciple(HttpContext.User);
+            IReadOnlyList<ProductReview> productReviews = await unitOfWork.Repository<ProductReview>()
+                  .ListAsync(new ProductReviewFindByProductId(productId));
+            
+            foreach (var review in productReviews)
+            {
+                if (review.UserId == user.Id)
+                {
+                    //User already has submitted review
+                    return  Ok(mapper.Map<ProductReview,ProductReviewReturnDto>(review));
+                }
+            }
+            return null;
+        }
+
+
 
         [Authorize]
         [HttpPost]

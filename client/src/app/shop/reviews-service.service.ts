@@ -11,40 +11,36 @@ import { IReview } from '../shared/models/review';
 export class ReviewsServiceService {
 
   constructor(private http: HttpClient) { }
-   baseUrl = environment.apiUrl;
+  baseUrl = environment.apiUrl;
 
-  submitReview(review: IReview)
-  {
-    return  this.http.post<IReview[]>(this.baseUrl + "productReview", review ).pipe(
+  submitReview(review: IReview) {
+    return this.http.post<IReview[]>(this.baseUrl + "productReview", review).pipe(
       map(response => {
         return response;
       }));
   }
 
-  getProductReviews(productId:number, currentLoaded = 0, reviewsToTake = 3)
-  {
+  getProductReviews(productId: number, currentLoaded = 0, reviewsToTake = 3) {
     let params = new HttpParams();
     params = params.append('productId', productId.toString());
     params = params.append('currentLoaded', currentLoaded.toString());
     params = params.append('reviewsToTake', reviewsToTake.toString());
 
-
-    return  this.http.get<IProductReviewData>(this.baseUrl + "productReview", {params } ).pipe(
+    return this.http.get<IProductReviewData>(this.baseUrl + "productReview", { params }).pipe(
       map(response => {
         return response;
       }));
   }
 
-  // checkIfThereAreMoreReviews(productId:number, currentLoaded = 0)
-  // {
-  //   let params = new HttpParams();
-  //   params = params.append('productId', productId.toString());
-  //   params = params.append('currentLoaded', currentLoaded.toString());
+  checkIfUserAlreadyHasReview(productId: number) {
+    let params = new HttpParams();
+    params = params.append('productId', productId.toString());
 
-  //   return  this.http.get<boolean>(this.baseUrl + "productReview/checkformoreviews", {params } ).pipe(
-  //     map(response => {
-  //       return response;
-  //     }));
-  // }
+    return this.http.get<IProductReview>(this.baseUrl + "productReview/checkreviewexist", { params }).pipe(
+      map(response => {
+        return response;
+      }));
+  }
+
 
 }

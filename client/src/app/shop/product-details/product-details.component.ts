@@ -29,6 +29,8 @@ export class ProductDetailsComponent implements OnInit {
   mouseOveredUserReview: boolean = false;
   userReviewCommentLength: number = 0;
   review = {} as IReview;
+  userSubmitedReview = {} as IProductReview;
+  hasUserSubmitedReview = false;
   averageProductRating: number = 0;
   totalProductReviews: number = 0;
 
@@ -46,6 +48,7 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.loadProduct();
     this.loadProductReviews();
+    this.checkIfUserHasReview();
     this.currentUser$ = this.accountService.currentUser$;
     this.createReviewForm();
   }
@@ -70,6 +73,8 @@ export class ProductDetailsComponent implements OnInit {
     this.reviewService.submitReview(this.review).subscribe(response => {
       this.loadProduct();
       this.loadProductReviews();
+      this.checkIfUserHasReview();
+      this.toastr.success("Thank you for submitting review!")
     }, error => {
       console.log(error);
     });
@@ -87,6 +92,24 @@ export class ProductDetailsComponent implements OnInit {
     this.reviewService.getProductReviews(+this.activateRoute.snapshot.paramMap.get('id'), this.productReviews.length,3).subscribe(response => {
       this.productReviews.push(...response.reviews);
       this.totalProductReviews = response.totalReviews;
+    }, error => {
+      console.log(error);
+    });
+  }
+  checkIfUserHasReview()
+  {
+    if(localStorage.getItem('token') === null)
+    {
+          return;
+    }
+    this.reviewService.checkIfUserAlreadyHasReview(+this.activateRoute.snapshot.paramMap.get('id')).subscribe(response => {
+       if(response)
+       {
+          this.userSubmitedReview = response;
+          this.hasUserSubmitedReview = true;
+       }else{
+          this.hasUserSubmitedReview = false;
+       }
     }, error => {
       console.log(error);
     });

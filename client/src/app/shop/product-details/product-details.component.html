@@ -46,15 +46,16 @@
         <div class="row">
           <div *ngFor="let review of productReviews" class="col-md-12 mt-1 mb-2 shadow">
 
+            <p style="font-size: 13px;" class="text-gray mb-0">{{review.date | date}}</p>
             <h4 class="mb-1"><a class="text-black">{{review.userName}}</a></h4>
+            <p style="font-size: 16px;" class="mb-0">{{review.comment}}</p>
+
             <span [className]="review.starRate >= 1 ? 'fa fa-star userstar' : 'fa fa-star-o userstar'" class="fa fa-star userstar"></span>
             <span [className]="review.starRate >= 2 ? 'fa fa-star userstar' : 'fa fa-star-o userstar'" class="fa fa-star userstar"></span>
             <span [className]="review.starRate >= 3 ? 'fa fa-star userstar' : 'fa fa-star-o userstar'" class="fa fa-star userstar"></span>
             <span [className]="review.starRate >= 4 ? 'fa fa-star userstar' : 'fa fa-star-o userstar'" class="fa fa-star-o userstar"></span>
             <span [className]="review.starRate >= 5 ? 'fa fa-star userstar' : 'fa fa-star-o userstar'" class="fa fa-star-o userstar"></span>
-            <p class="text-gray mb-0">{{review.date | date}}</p>
             <div class="">
-              <p class="mb-0">{{review.comment}}</p>
             <div class="text-right">
               <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
               {{review.reviewLikes}}
@@ -72,7 +73,7 @@
            </div>
 
 
-        <div class="bg-white rounded p-2 mb-5 rating-review-select-page">
+        <div *ngIf="!hasUserSubmitedReview" class="bg-white rounded p-2 mb-5 rating-review-select-page">
           <h4 class="mb-3 text-info">Leave Review</h4>
           <div *ngIf="!(currentUser$ | async)" class="alert alert-danger" role="alert">
             You must be logged to submit reviews! <a [routerLink]="['/account/login']">Login</a>
@@ -99,8 +100,32 @@
                <button class="btn btn-info" type="submit">Submit Review </button>
             </div>
           </form>
-
           </div>
+
+          <div *ngIf="hasUserSubmitedReview" class="bg-white rounded p-2 mb-5 rating-review-select-page">
+            <h4 class="mb-3 text-success">Thank you for your review!</h4>
+
+            <div class="col-md-12 mt-1 mb-2">
+              <p class="text-gray mb-0">{{userSubmitedReview.date | date}}</p>
+
+              <h3 class="mb-1"><a class="text-black">{{userSubmitedReview.userName}}</a></h3>
+              <span [className]="userSubmitedReview.starRate >= 1 ? 'fa fa-star userstar' : 'fa fa-star-o userstar'"></span>
+              <span [className]="userSubmitedReview.starRate >= 2 ? 'fa fa-star userstar' : 'fa fa-star-o userstar'"></span>
+              <span [className]="userSubmitedReview.starRate >= 3 ? 'fa fa-star userstar' : 'fa fa-star-o userstar'"></span>
+              <span [className]="userSubmitedReview.starRate >= 4 ? 'fa fa-star userstar' : 'fa fa-star-o userstar'"></span>
+              <span [className]="userSubmitedReview.starRate >= 5 ? 'fa fa-star userstar' : 'fa fa-star-o userstar'"></span>
+              <div class="">
+                <p class="mb-0">{{userSubmitedReview.comment}}</p>
+              <div class="text-right">
+                <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                {{userSubmitedReview.reviewLikes}}
+                <i class="fa fa-thumbs-o-down ml-3  mb-2 " aria-hidden="true"></i>
+                {{userSubmitedReview.reviewDislikes}}
+              </div>
+            </div>
+            </div>
+
+            </div>
 
       </div>
 

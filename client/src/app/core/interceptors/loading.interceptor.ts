@@ -19,7 +19,9 @@ export class LoadingInterceptor implements HttpInterceptor{
 
         if(req.url.includes('emailexists')){
             return next.handle(req);
-
+        }
+        if(req.url.includes('productReview')){
+            return next.handle(req);
         }
         this.busyService.busy();
         
