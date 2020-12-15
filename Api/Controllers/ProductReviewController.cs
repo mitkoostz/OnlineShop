@@ -109,7 +109,7 @@ namespace Api.Controllers
                 Comment = productReview.Comment
             };
             //we calculate avarage product review by adding this review also
-            decimal productAvarageRating = (sumOfAllReviewRating + review.StarRate) / (currentReviews.Count + 1);
+            decimal productAvarageRating = (decimal)((decimal)sumOfAllReviewRating + (decimal)review.StarRate) / ((decimal)currentReviews.Count + 1);
             product.AverageReviewRate = productAvarageRating;
 
             unitOfWork.Repository<ProductReview>().Add(review);

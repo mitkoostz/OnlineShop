@@ -1,50 +1,48 @@
-<div class="container">
 
+<div *ngIf="orders.length === 0" class="container">
+  <h1>You don't have any orders...</h1>
+</div>
+
+<div *ngIf="orders.length > 0" class="container shadow">
     <h4><i class="fa fa-book pt-4" aria-hidden="true"></i> All your orders </h4>
     <div class="table-responsive pt-3">
         <table class="table">
-             <thead>
-              <tr>
-                  <th class="border-0 text-center bg-light " scope="col">
-                      <div class=" py-2 "><i class="fa  fa-list-ol" style="font-size: 22px;" aria-hidden="true"></i></div>
-                  </th>
-                  <th scope="col" class="border-0 text-center bg-light">
-                      <div class="py-2 ">Date <i class="fa fa-calendar-o" aria-hidden="true"></i></div>
-                  </th>
-                  <th scope="col" class="border-0 text-center bg-light">
-                      <div class="py-2 ">Total <i class="fa fa-money" aria-hidden="true"></i></div>
-                  </th>
-                  <th scope="col" class="border-0 text-center bg-light">
-                      <div class="py-2 ">Status <i class="fa fa-road" aria-hidden="true"></i></div>
-                  </th>
-              </tr>
-             </thead>
-             <tbody>
-                 <tr 
-                 *ngFor="let order of orders" class="colum"
-                 (click) ="goToViewOrder(order.id)"
-                 
-                 >
-                  
-                       <td class=""><strong> </strong>
-                       #{{order.id}}
-                       </td>
-                       <td class="align-middle text-center">
-                            {{order.orderDate | date:'short'}}
-                       </td>
-                       <td class="align-middle text-center">
-                           {{order.subTotal | currency}}
-                       </td>
+            <thead>
+                <tr>
+                    <th class="border-0 text-center bg-light " scope="col">
+                        <div class=" py-2 "><i class="fa  fa-list-ol" style="font-size: 22px;" aria-hidden="true"></i>
+                        </div>
+                    </th>
+                    <th scope="col" class="border-0 text-center bg-light">
+                        <div class="py-2 ">Date <i class="fa fa-calendar-o" aria-hidden="true"></i></div>
+                    </th>
+                    <th scope="col" class="border-0 text-center bg-light">
+                        <div class="py-2 ">Total <i class="fa fa-money" aria-hidden="true"></i></div>
+                    </th>
+                    <th scope="col" class="border-0 text-center bg-light">
+                        <div class="py-2 ">Payment Status <i class="fa fa-credit-card-alt" aria-hidden="true"></i></div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let order of orders" class="colum" (click)="goToViewOrder(order.id)">
 
-                       <td class="align-middle text-center">
-                           {{order.status}}
-                       </td>
-                 </tr>
-             </tbody>
+                    <td class=""><strong> </strong>
+                        #{{order.id}}
+                    </td>
+                    <td class="align-middle text-center">
+                        {{order.orderDate | date:'short'}}
+                    </td>
+                    <td class="align-middle text-center">
+                        {{order.subTotal | currency}}
+                    </td>
+
+                    <td class="align-middle text-center">
+                        {{order.status}}
+                    </td>
+                </tr>
+            </tbody>
         </table>
         <i class="text-decoration-none ">*Click colum to view details</i>
     </div>
-
-
-
 </div>

@@ -34,15 +34,19 @@
 
     <div class="col-md-12">
       <div class="">
-        <h2 class="text-info mt-4">Product rating</h2>
-        <span [className]="averageProductRating >= 1 ? 'fa fa-star totalstar' : 'fa fa-star-o totalstar'" class="fa fa-star totalstar"></span>
-        <span [className]="averageProductRating >= 2 ? 'fa fa-star totalstar' : 'fa fa-star-o totalstar'" class="fa fa-star totalstar"></span>
-        <span [className]="averageProductRating >= 3 ? 'fa fa-star totalstar' : 'fa fa-star-o totalstar'" class="fa fa-star totalstar"></span>
-        <span [className]="averageProductRating >= 4 ? 'fa fa-star totalstar' : 'fa fa-star-o totalstar'" class="fa fa-star-o totalstar"></span>
-        <span [className]="averageProductRating >= 5 ? 'fa fa-star totalstar' : 'fa fa-star-o totalstar'" class="fa fa-star-o totalstar"></span>
-        <span > ({{totalProductReviews}} reviews)</span>
+        <h2 class="text-info mt-4">Reviews <i *ngIf="loadingReviews" class="fa fa-spinner fa-spin"></i></h2>
+        <span [className]="averageProductRating.toFixed() >= 1 ? 'fa fa-star totalstar' : 'fa fa-star-o totalstar'" class="fa fa-star totalstar"></span>
+        <span [className]="averageProductRating.toFixed() >= 2 ? 'fa fa-star totalstar' : 'fa fa-star-o totalstar'" class="fa fa-star totalstar"></span>
+        <span [className]="averageProductRating.toFixed() >= 3 ? 'fa fa-star totalstar' : 'fa fa-star-o totalstar'" class="fa fa-star totalstar"></span>
+        <span [className]="averageProductRating.toFixed() >= 4 ? 'fa fa-star totalstar' : 'fa fa-star-o totalstar'" class="fa fa-star-o totalstar"></span>
+        <span [className]="averageProductRating.toFixed() >= 5 ? 'fa fa-star totalstar' : 'fa fa-star-o totalstar'" class="fa fa-star-o totalstar"></span>
+        <span *ngIf="productReviews.length > 0" class="ml-2" style="font-size:1.7em;">{{averageProductRating}}</span>
+        <span> ({{totalProductReviews}} reviews)</span>
+        <div *ngIf="productReviews.length === 0 && !loadingReviews" class="alert alert-info mt-2" role="alert">
+          Be the first who leaves review!
+        </div>
       </div>
-      <div class="col-md-12 mt-4">
+      <div class="col-md-12 mt-3">
         <div class="row">
           <div *ngFor="let review of productReviews" class="col-md-12 mt-1 mb-2 shadow">
 
@@ -69,7 +73,7 @@
            <div class="text-right">
            <label>{{productReviews.length}} of {{totalProductReviews}} reviews</label>
             <button [hidden]="(totalProductReviews <= productReviews.length)" (click)="loadMoreReviews();"
-             class="btn btn-link btn-lg ml-1 mr-2 " id ="loadMoreBtn">Load More</button>
+             class="btn btn-link btn-lg ml-1 mr-2 " id ="loadMoreBtn">Load More  <i *ngIf="loadingMoreReviews" class="fa fa-spinner fa-spin"></i></button>
            </div>
 
 
@@ -97,7 +101,7 @@
             </div>
 
             <div class="form-group">
-               <button class="btn btn-info" type="submit">Submit Review </button>
+               <button class="btn btn-info" type="submit">Submit Review <i *ngIf="loadingSubmitedReview" class="fa fa-spinner fa-spin"></i></button>
             </div>
           </form>
           </div>

@@ -1,10 +1,16 @@
 tr.colum{
     
     &:hover{
-        background-color: #e3fcea;
+        background-color: #26da59;
         cursor: pointer;
        
         
     }
-
 }
+th,
+td {
+	padding: 15px;
+	background-color: rgba(255,255,255,0.2);
+	color: rgb(5, 2, 2);
+}
+

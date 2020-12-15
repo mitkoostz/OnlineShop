@@ -33,6 +33,9 @@ export class ProductDetailsComponent implements OnInit {
   hasUserSubmitedReview = false;
   averageProductRating: number = 0;
   totalProductReviews: number = 0;
+  loadingReviews = false;
+  loadingMoreReviews = false;
+  loadingSubmitedReview = false;
 
   constructor(private shopService: ShopService,
            private activateRoute: ActivatedRoute,
@@ -66,6 +69,8 @@ export class ProductDetailsComponent implements OnInit {
       this.toastr.error("Max review comment characters are 600!");
       return;
     }
+    this.loadingSubmitedReview = true;
+
     this.review.comment = this.reviewForm.get("comment").value;
     this.review.starRating = this.userReviewRating;
     this.review.productId = this.product.id;
@@ -74,25 +79,33 @@ export class ProductDetailsComponent implements OnInit {
       this.loadProduct();
       this.loadProductReviews();
       this.checkIfUserHasReview();
+      this.loadingSubmitedReview = false;
       this.toastr.success("Thank you for submitting review!")
     }, error => {
+      this.loadingSubmitedReview = false;
       console.log(error);
     });
 
   }
   loadProductReviews() {
+    this.loadingReviews = true;
     this.reviewService.getProductReviews(+this.activateRoute.snapshot.paramMap.get('id')).subscribe(response => {
       this.productReviews = response.reviews;
       this.totalProductReviews = response.totalReviews;
+      this.loadingReviews = false;
     }, error => {
       console.log(error);
+      this.loadingReviews = false;
     });
   }
   loadMoreReviews(){
+    this.loadingMoreReviews = true;
     this.reviewService.getProductReviews(+this.activateRoute.snapshot.paramMap.get('id'), this.productReviews.length,3).subscribe(response => {
       this.productReviews.push(...response.reviews);
       this.totalProductReviews = response.totalReviews;
+      this.loadingMoreReviews = false;
     }, error => {
+      this.loadingMoreReviews = false;
       console.log(error);
     });
   }

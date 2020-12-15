@@ -21,7 +21,9 @@ export class LoadingInterceptor implements HttpInterceptor{
             return next.handle(req);
         }
         if(req.url.includes('productReview')){
-            return next.handle(req);
+            return next.handle(req).pipe(
+                delay(500)
+            );
         }
         this.busyService.busy();
         

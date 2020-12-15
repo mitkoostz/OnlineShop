@@ -1,0 +1,19 @@
+#backBtn{
+
+    &:hover{
+    font-size: 1.1em;
+    box-shadow: 5px 5px;
+    }
+}
+tr{  
+    &:hover{
+        background-color: #26da59;
+        cursor: pointer;      
+    }
+}
+tr{
+	padding: 15px;
+	background-color: rgba(255,255,255,0.2);
+	color: rgb(5, 2, 2);
+}
+

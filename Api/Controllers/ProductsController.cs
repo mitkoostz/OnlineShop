@@ -55,7 +55,7 @@ namespace Api.Controllers
 
         }
 
-        //[Cached(600)] reviews data is back in time then caching
+        //[Cached(600)] reviews data is back in time when caching, also if there is product status it wont be last state
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse),StatusCodes.Status404NotFound)]
