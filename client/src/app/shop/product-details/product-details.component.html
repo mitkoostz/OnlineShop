@@ -40,7 +40,7 @@
         <span [className]="averageProductRating.toFixed() >= 3 ? 'fa fa-star totalstar' : 'fa fa-star-o totalstar'" class="fa fa-star totalstar"></span>
         <span [className]="averageProductRating.toFixed() >= 4 ? 'fa fa-star totalstar' : 'fa fa-star-o totalstar'" class="fa fa-star-o totalstar"></span>
         <span [className]="averageProductRating.toFixed() >= 5 ? 'fa fa-star totalstar' : 'fa fa-star-o totalstar'" class="fa fa-star-o totalstar"></span>
-        <span *ngIf="productReviews.length > 0" class="ml-2" style="font-size:1.7em;">{{averageProductRating}}</span>
+        <span class="ml-2 mr-1" style="font-size:1.7em;">{{averageProductRating}}</span>
         <span> ({{totalProductReviews}} reviews)</span>
         <div *ngIf="productReviews.length === 0 && !loadingReviews" class="alert alert-info mt-2" role="alert">
           Be the first who leaves review!
@@ -69,12 +69,15 @@
           </div>
           </div>
         </div>
-
+        <div *ngIf="loadingMoreReviews" class="text-center">
+          <i class="fa fa-spinner fa-spin fa-2x"></i>
+        </div>
            <div class="text-right">
            <label>{{productReviews.length}} of {{totalProductReviews}} reviews</label>
             <button [hidden]="(totalProductReviews <= productReviews.length)" (click)="loadMoreReviews();"
-             class="btn btn-link btn-lg ml-1 mr-2 " id ="loadMoreBtn">Load More  <i *ngIf="loadingMoreReviews" class="fa fa-spinner fa-spin"></i></button>
+             class="btn btn-link btn-lg ml-1 mr-2 " id ="loadMoreBtn">Load More </button>
            </div>
+      
 
 
         <div *ngIf="!hasUserSubmitedReview" class="bg-white rounded p-2 mb-5 rating-review-select-page">

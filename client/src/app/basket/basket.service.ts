@@ -45,12 +45,19 @@ shipping = 0;
     return this.http.get(this.baseUrl + "basket?id=" + id)
          .pipe(
            map((basket: IBasket) =>{
+               if(basket.items.length === 0){
+                 localStorage.removeItem("basket_id");
+                   return this.basketSource.next(null);
+               }
                this.basketSource.next(basket);
                this.shipping = basket.shippingPrice;
 
                this.calculateTotals();
            })
          );
+  }
+  isNotNull<T>(value: T): value is NonNullable<T> {
+    return value != null;
   }
 
   setBasket(basket: IBasket){

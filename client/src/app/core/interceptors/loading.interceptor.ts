@@ -22,7 +22,7 @@ export class LoadingInterceptor implements HttpInterceptor{
         }
         if(req.url.includes('productReview')){
             return next.handle(req).pipe(
-                delay(500)
+                delay(600)
             );
         }
         this.busyService.busy();

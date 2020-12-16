@@ -49,6 +49,10 @@ export class ProductDetailsComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    if(isNaN(+this.activateRoute.snapshot.paramMap.get('id'))){
+        this.router.navigateByUrl("/notfound");
+        return;
+    }
     this.loadProduct();
     this.loadProductReviews();
     this.checkIfUserHasReview();
@@ -56,7 +60,7 @@ export class ProductDetailsComponent implements OnInit {
     this.createReviewForm();
   }
 
-  onSubmitReview() {
+  onSubmitReview() { 
     if (localStorage.getItem('token') === null) {
       this.router.navigateByUrl("/account/login");
       return;

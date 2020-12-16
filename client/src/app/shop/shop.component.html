@@ -52,7 +52,7 @@
         ></app-paging-header>
 
         <div class="form-inline" *ngIf="products">
-          <input (keyup.enter) ="onSearch();" class="form-control mr-2" #search style="width: 300px" placeholder="Seach" type="text" />
+          <input (keyup.enter)="onSearch();" class="form-control mr-2" #search style="width: 300px" placeholder="Seach" type="text" />
           <button (click)="onSearch()" class="btn btn-outline-primary  my-2">Search</button>
           <button (click)="onReset()"  class="btn btn-outline-success my-2 ml-2">Reset</button>
         </div>

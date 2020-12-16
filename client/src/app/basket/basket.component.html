@@ -1,5 +1,5 @@
 
-<div class="container mt-3 ">
+<div class="container mt-3">
     <div class="row" *ngIf="((basket$ | async ) === null)">
               
            <div class="offset-4"></div>
@@ -11,7 +11,7 @@
            
     </div>
 
-    <div *ngIf="(basket$ | async)">
+    <div class="" *ngIf="(basket$ | async)  ">
          <h3>
             <i class="fa fa-shopping-cart fa-1x mr-2 pb-3 text-success"></i>Shopping Cart
             <!-- <input class="mr-3" type="text" style="width: 150px; border-radius: 12px;">
@@ -19,14 +19,14 @@
          </h3>
          
         <div class="row">
-            <div class="col-8">
+            <div class="col-8 shadow">
                 <app-basket-summary
                 (decrement)="decrementItemQuanity($event)"
                 (increment)="incrementItemQuantity($event)"
                 (remove)="removeBasketItem($event)"               
              ></app-basket-summary>
             </div>
-            <div class="col-4">
+            <div class="col-4 pb-5 shadow-lg">
                 <app-order-totals></app-order-totals>
                 <a routerLink="/checkout" href="" class="btn btn-outline-primary py-2 btn-block">
                 Proceed to checkout <i class="fa fa-credit-card" aria-hidden="true"></i></a>
