@@ -34,12 +34,17 @@ namespace Api
             
             services.AddAutoMapper(typeof(MappingProfiles));
             services.AddControllers();
-            services.AddDbContext<StoreContext>(x => 
-            x.UseSqlite(_config.GetConnectionString("DefaultConnection")));
-            services.AddDbContext<AppIdentityDbContext>( x => {
+
+            services.AddDbContext<StoreContext>(options =>
+            options.UseSqlServer(_config.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<AppIdentityDbContext>(options =>
+            options.UseSqlServer(_config.GetConnectionString("IdentityConnection")));
+            // services.AddDbContext<StoreContext>(x => 
+            // x.UseSqlite(_config.GetConnectionString("DefaultConnection")));
+            // services.AddDbContext<AppIdentityDbContext>( x => {
                  
-                x.UseSqlite(_config.GetConnectionString("IdentityConnection"));
-            });
+            //     x.UseSqlite(_config.GetConnectionString("IdentityConnection"));
+            // });
 
             services.AddSingleton<IConnectionMultiplexer>(c => {
                 var configuration = ConfigurationOptions.Parse(_config

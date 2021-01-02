@@ -10,6 +10,7 @@ using System.Text.Json;
 using System.Linq;
 using System.Threading.Tasks;
 using Core.Entities.OrderAggregate;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data
 {
@@ -31,7 +32,6 @@ namespace Infrastructure.Data
                         context.ProductGenderBase.Add(item);
                     }
                     await context.SaveChangesAsync();
-
                 }
 
                 if (!context.ProductTypes.Any())

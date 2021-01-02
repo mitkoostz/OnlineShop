@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\MitkoSoft\\.NET CORE WEB API\\Api.Tests\\Api.Tests.csproj": {}
+    "d:\\MitkoSoft\\.NET CORE WEB API\\Api.Tests\\Api.Tests.csproj": {}
   },
   "projects": {
-    "D:\\MitkoSoft\\.NET CORE WEB API\\Api.Tests\\Api.Tests.csproj": {
+    "d:\\MitkoSoft\\.NET CORE WEB API\\Api.Tests\\Api.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\MitkoSoft\\.NET CORE WEB API\\Api.Tests\\Api.Tests.csproj",
+        "projectUniqueName": "d:\\MitkoSoft\\.NET CORE WEB API\\Api.Tests\\Api.Tests.csproj",
         "projectName": "Api.Tests",
-        "projectPath": "D:\\MitkoSoft\\.NET CORE WEB API\\Api.Tests\\Api.Tests.csproj",
+        "projectPath": "d:\\MitkoSoft\\.NET CORE WEB API\\Api.Tests\\Api.Tests.csproj",
         "packagesPath": "C:\\Users\\todor\\.nuget\\packages\\",
-        "outputPath": "D:\\MitkoSoft\\.NET CORE WEB API\\Api.Tests\\obj\\",
+        "outputPath": "d:\\MitkoSoft\\.NET CORE WEB API\\Api.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -33,14 +33,14 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\MitkoSoft\\.NET CORE WEB API\\Api\\Api.csproj": {
-                "projectPath": "D:\\MitkoSoft\\.NET CORE WEB API\\Api\\Api.csproj"
+              "d:\\MitkoSoft\\.NET CORE WEB API\\Api\\Api.csproj": {
+                "projectPath": "d:\\MitkoSoft\\.NET CORE WEB API\\Api\\Api.csproj"
               },
-              "D:\\MitkoSoft\\.NET CORE WEB API\\Core\\Core.csproj": {
-                "projectPath": "D:\\MitkoSoft\\.NET CORE WEB API\\Core\\Core.csproj"
+              "d:\\MitkoSoft\\.NET CORE WEB API\\Core\\Core.csproj": {
+                "projectPath": "d:\\MitkoSoft\\.NET CORE WEB API\\Core\\Core.csproj"
               },
-              "D:\\MitkoSoft\\.NET CORE WEB API\\Infrastructure\\Infrastructure.csproj": {
-                "projectPath": "D:\\MitkoSoft\\.NET CORE WEB API\\Infrastructure\\Infrastructure.csproj"
+              "d:\\MitkoSoft\\.NET CORE WEB API\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "d:\\MitkoSoft\\.NET CORE WEB API\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
@@ -92,26 +92,29 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.1.10, 3.1.10]"
+            }
+          ],
           "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\MitkoSoft\\.NET CORE WEB API\\Api\\Api.csproj": {
+    "d:\\MitkoSoft\\.NET CORE WEB API\\Api\\Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\MitkoSoft\\.NET CORE WEB API\\Api\\Api.csproj",
+        "projectUniqueName": "d:\\MitkoSoft\\.NET CORE WEB API\\Api\\Api.csproj",
         "projectName": "Api",
-        "projectPath": "D:\\MitkoSoft\\.NET CORE WEB API\\Api\\Api.csproj",
+        "projectPath": "d:\\MitkoSoft\\.NET CORE WEB API\\Api\\Api.csproj",
         "packagesPath": "C:\\Users\\todor\\.nuget\\packages\\",
-        "outputPath": "D:\\MitkoSoft\\.NET CORE WEB API\\Api\\obj\\",
+        "outputPath": "d:\\MitkoSoft\\.NET CORE WEB API\\Api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -133,8 +136,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\MitkoSoft\\.NET CORE WEB API\\Infrastructure\\Infrastructure.csproj": {
-                "projectPath": "D:\\MitkoSoft\\.NET CORE WEB API\\Infrastructure\\Infrastructure.csproj"
+              "d:\\MitkoSoft\\.NET CORE WEB API\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "d:\\MitkoSoft\\.NET CORE WEB API\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
@@ -190,6 +193,16 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.1.10, 3.1.10]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[3.1.10, 3.1.10]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -198,18 +211,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\MitkoSoft\\.NET CORE WEB API\\Core\\Core.csproj": {
+    "d:\\MitkoSoft\\.NET CORE WEB API\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\MitkoSoft\\.NET CORE WEB API\\Core\\Core.csproj",
+        "projectUniqueName": "d:\\MitkoSoft\\.NET CORE WEB API\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "D:\\MitkoSoft\\.NET CORE WEB API\\Core\\Core.csproj",
+        "projectPath": "d:\\MitkoSoft\\.NET CORE WEB API\\Core\\Core.csproj",
         "packagesPath": "C:\\Users\\todor\\.nuget\\packages\\",
-        "outputPath": "D:\\MitkoSoft\\.NET CORE WEB API\\Core\\obj\\",
+        "outputPath": "d:\\MitkoSoft\\.NET CORE WEB API\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -263,18 +276,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\MitkoSoft\\.NET CORE WEB API\\Infrastructure\\Infrastructure.csproj": {
+    "d:\\MitkoSoft\\.NET CORE WEB API\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\MitkoSoft\\.NET CORE WEB API\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "d:\\MitkoSoft\\.NET CORE WEB API\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "D:\\MitkoSoft\\.NET CORE WEB API\\Infrastructure\\Infrastructure.csproj",
+        "projectPath": "d:\\MitkoSoft\\.NET CORE WEB API\\Infrastructure\\Infrastructure.csproj",
         "packagesPath": "C:\\Users\\todor\\.nuget\\packages\\",
-        "outputPath": "D:\\MitkoSoft\\.NET CORE WEB API\\Infrastructure\\obj\\",
+        "outputPath": "d:\\MitkoSoft\\.NET CORE WEB API\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -296,8 +309,8 @@
           "netstandard2.1": {
             "targetAlias": "netstandard2.1",
             "projectReferences": {
-              "D:\\MitkoSoft\\.NET CORE WEB API\\Core\\Core.csproj": {
-                "projectPath": "D:\\MitkoSoft\\.NET CORE WEB API\\Core\\Core.csproj"
+              "d:\\MitkoSoft\\.NET CORE WEB API\\Core\\Core.csproj": {
+                "projectPath": "d:\\MitkoSoft\\.NET CORE WEB API\\Core\\Core.csproj"
               }
             }
           }
@@ -323,6 +336,10 @@
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[3.1.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.1, )"
             },
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
@@ -360,7 +377,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

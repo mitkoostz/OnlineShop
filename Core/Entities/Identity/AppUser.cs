@@ -10,6 +10,5 @@ namespace Core.Entities.Identity
         
         public Address Address { get; set; }
 
-        public List<ProductReview> Reviews { get; set; }
     }
 }

@@ -30,8 +30,9 @@ namespace Infrastructure.Identity
                       Name = "Admin"
                   };
                   await roleManager.CreateAsync(admin);
-                  await userManager.AddToRoleAsync(user,"Admin");
                   await userManager.CreateAsync(user, "Pa$$w0rd");
+
+                  await userManager.AddToRoleAsync(user,"Admin");
               }
         }
     }

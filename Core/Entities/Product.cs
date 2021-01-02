@@ -19,22 +19,27 @@ namespace Core.Entities
         [Required]
         [MaxLength(100)]
         public string Name { get; set; }
+        
         [Required]
         [MaxLength(600)]
         public string Description { get; set; }
+
         [Required]
         [MaxLength(5000)]
         public decimal Price { get; set; }
+
         [Required]
         public string PictureUrl { get; set; }
 
         public ProductType ProductType { get; set; }
+
         [Required]
         public int ProductTypeId { get; set; }
 
         public ProductGenderBase ProductGenderBase { get; set; }
         [Required]
         public int ProductGenderBaseId { get; set; }
+
         public List<AdminActionHistory> ProductAdminHistory { get; set; }
 
         public decimal AverageReviewRate { get; set; }

@@ -190,3 +190,14 @@ D:\MitkoSoft\.NET CORE WEB API\api\obj\Debug\netcoreapp3.1\Api.dll
 D:\MitkoSoft\.NET CORE WEB API\api\obj\Debug\netcoreapp3.1\Api.pdb
 D:\MitkoSoft\.NET CORE WEB API\api\obj\Debug\netcoreapp3.1\Api.genruntimeconfig.cache
 D:\MitkoSoft\.NET CORE WEB API\api\obj\Debug\netcoreapp3.1\scopedcss\bundle\Api.styles.css
+D:\MitkoSoft\.NET CORE WEB API\Api\bin\Debug\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\MitkoSoft\.NET CORE WEB API\Api\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\MitkoSoft\.NET CORE WEB API\Api\bin\Debug\netcoreapp3.1\Microsoft.Identity.Client.dll
+D:\MitkoSoft\.NET CORE WEB API\Api\bin\Debug\netcoreapp3.1\System.Runtime.Caching.dll
+D:\MitkoSoft\.NET CORE WEB API\Api\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
+D:\MitkoSoft\.NET CORE WEB API\Api\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
+D:\MitkoSoft\.NET CORE WEB API\Api\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
+D:\MitkoSoft\.NET CORE WEB API\Api\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
+D:\MitkoSoft\.NET CORE WEB API\Api\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
+D:\MitkoSoft\.NET CORE WEB API\Api\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
+D:\MitkoSoft\.NET CORE WEB API\Api\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
