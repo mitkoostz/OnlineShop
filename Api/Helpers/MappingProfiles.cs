@@ -1,10 +1,13 @@
 ﻿using Api.Dtos;
 using Api.Dtos.ContactUs;
+using Api.Dtos.ProductDetails;
 using Api.Dtos.ProductReviews;
 using AutoMapper;
 using Core.Entities;
 using Core.Entities.ContactUs;
 using Core.Entities.OrderAggregate;
+using Core.Entities.ProductSizeAndQuantity;
+using Core.Entities.ProductSizeAndQuantityNameSpace;
 using Core.Entities.Reviews;
 
 namespace Api.Helpers
@@ -17,6 +20,14 @@ namespace Api.Helpers
                 .ForMember(d => d.ProductGenderBase, o => o.MapFrom(s => s.ProductGenderBase.Name))
                 .ForMember(d => d.ProductType, o => o.MapFrom(s => s.ProductType.Name))
                 .ForMember(d => d.PictureUrl, o => o.MapFrom<ProductUrlResolver>());
+
+            CreateMap<Product, ProductDetailToReturnDto>()
+                .ForMember(d => d.ProductGenderBase, o => o.MapFrom(s => s.ProductGenderBase.Name))
+                .ForMember(d => d.ProductType, o => o.MapFrom(s => s.ProductType.Name))
+                .ForMember(d => d.PictureUrl, o => o.MapFrom<ProductDetailUrlResolver>());
+
+            CreateMap<ProductSizeAndQuantity,ProductSizeAndQuantityReturnDto>()
+                .ForMember(d => d.SizeShortName, o => o.MapFrom(s => s.Size.SizeShortName));
 
             CreateMap<Core.Entities.Identity.Address, AddressDto>().ReverseMap();
             CreateMap<CustomerBasketDto,CustomerBasket>();

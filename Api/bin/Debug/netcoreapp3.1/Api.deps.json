@@ -27,6 +27,7 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "7.0.0",
           "Infrastructure": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "3.1.8",
+          "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "3.1.8",
           "Microsoft.Data.Sqlite": "3.1.8",
           "Microsoft.EntityFrameworkCore.Design": "3.1.8",
           "StackExchange.Redis": "2.1.58",
@@ -476,6 +477,37 @@
         },
         "compile": {
           "lib/netcoreapp3.1/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll": {}
+        }
+      },
+      "Microsoft.AspNetCore.JsonPatch/3.1.8": {
+        "dependencies": {
+          "Microsoft.CSharp": "4.7.0",
+          "Newtonsoft.Json": "12.0.2"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.JsonPatch.dll": {
+            "assemblyVersion": "3.1.8.0",
+            "fileVersion": "3.100.820.42106"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.JsonPatch.dll": {}
+        }
+      },
+      "Microsoft.AspNetCore.Mvc.NewtonsoftJson/3.1.8": {
+        "dependencies": {
+          "Microsoft.AspNetCore.JsonPatch": "3.1.8",
+          "Newtonsoft.Json": "12.0.2",
+          "Newtonsoft.Json.Bson": "1.0.2"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll": {
+            "assemblyVersion": "3.1.8.0",
+            "fileVersion": "3.100.820.42106"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp3.1/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll": {}
         }
       },
       "Microsoft.AspNetCore.WebUtilities/2.2.0": {
@@ -951,7 +983,7 @@
       "Microsoft.IdentityModel.Protocols.OpenIdConnect/5.5.0": {
         "dependencies": {
           "Microsoft.IdentityModel.Protocols": "5.5.0",
-          "Newtonsoft.Json": "11.0.1",
+          "Newtonsoft.Json": "12.0.2",
           "System.IdentityModel.Tokens.Jwt": "6.7.0"
         },
         "runtime": {
@@ -1010,15 +1042,29 @@
           "Microsoft.NETCore.Platforms": "3.1.0"
         }
       },
-      "Newtonsoft.Json/11.0.1": {
+      "Newtonsoft.Json/12.0.2": {
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {
-            "assemblyVersion": "11.0.0.0",
-            "fileVersion": "11.0.1.21818"
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.2.23222"
           }
         },
         "compile": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        }
+      },
+      "Newtonsoft.Json.Bson/1.0.2": {
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.2"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.Bson.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.2.22727"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.Bson.dll": {}
         }
       },
       "Pipelines.Sockets.Unofficial/2.1.16": {
@@ -1210,7 +1256,7 @@
       "Stripe.net/39.15.0": {
         "dependencies": {
           "Microsoft.Bcl.AsyncInterfaces": "1.1.1",
-          "Newtonsoft.Json": "11.0.1",
+          "Newtonsoft.Json": "12.0.2",
           "System.Configuration.ConfigurationManager": "4.7.0"
         },
         "runtime": {
@@ -3662,6 +3708,20 @@
       "path": "microsoft.aspnetcore.identity.entityframeworkcore/3.1.8",
       "hashPath": "microsoft.aspnetcore.identity.entityframeworkcore.3.1.8.nupkg.sha512"
     },
+    "Microsoft.AspNetCore.JsonPatch/3.1.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-VyY44zszuKBJ/rsbcgIKu1NjRPr2CKdmQrs75yR+YaEiD8WEWnbqoxw5DO8iQBFCKb1z4Xs5Jzc5p0b41PNRmg==",
+      "path": "microsoft.aspnetcore.jsonpatch/3.1.8",
+      "hashPath": "microsoft.aspnetcore.jsonpatch.3.1.8.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Mvc.NewtonsoftJson/3.1.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-xlYBboQAji96pWvrH5sDqOJSOGnB4zEWXrJrqiRBEWxmAWgWziRG0jQcg7S9SDPYLfvsIukDjI20LSyjxBBDCA==",
+      "path": "microsoft.aspnetcore.mvc.newtonsoftjson/3.1.8",
+      "hashPath": "microsoft.aspnetcore.mvc.newtonsoftjson.3.1.8.nupkg.sha512"
+    },
     "Microsoft.AspNetCore.WebUtilities/2.2.0": {
       "type": "package",
       "serviceable": true,
@@ -3984,12 +4044,19 @@
       "path": "microsoft.win32.systemevents/4.7.0",
       "hashPath": "microsoft.win32.systemevents.4.7.0.nupkg.sha512"
     },
-    "Newtonsoft.Json/11.0.1": {
+    "Newtonsoft.Json/12.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-pNN4l+J6LlpIvHOeNdXlwxv39NPJ2B5klz+Rd2UQZIx30Squ5oND1Yy3wEAUoKn0GPUj6Yxt9lxlYWQqfZcvKg==",
-      "path": "newtonsoft.json/11.0.1",
-      "hashPath": "newtonsoft.json.11.0.1.nupkg.sha512"
+      "sha512": "sha512-rTK0s2EKlfHsQsH6Yx2smvcTCeyoDNgCW7FEYyV01drPlh2T243PR2DiDXqtC5N4GDm4Ma/lkxfW5a/4793vbA==",
+      "path": "newtonsoft.json/12.0.2",
+      "hashPath": "newtonsoft.json.12.0.2.nupkg.sha512"
+    },
+    "Newtonsoft.Json.Bson/1.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QYFyxhaABwmq3p/21VrZNYvCg3DaEoN/wUuw5nmfAf0X3HLjgupwhkEWdgfb9nvGAUIv3osmZoD3kKl4jxEmYQ==",
+      "path": "newtonsoft.json.bson/1.0.2",
+      "hashPath": "newtonsoft.json.bson.1.0.2.nupkg.sha512"
     },
     "Pipelines.Sockets.Unofficial/2.1.16": {
       "type": "package",

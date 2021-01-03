@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Core.Entities.ProductSizeAndQuantityNameSpace;
 using System;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
@@ -44,6 +45,7 @@ namespace Core.Specifications
         {
             AddInclude(x => x.ProductGenderBase);
             AddInclude(x => x.ProductType);
+            AddInclude($"{nameof(Product.ProductSizeAndQuantity)}.{nameof(ProductSizeAndQuantity.Size)}");
         }
     }
 }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "pvNw0ELNFKDXuPlyfVBpvSgqPlQ3++6HlnScBSqDAhIi4XS/3f20ivYEdEZ2RtW7yZhLhZiuZaPUt6981bI4NQ==",
+  "dgSpecHash": "S1/r8ZKLUtMMQE+f1ozHz4JnfWU2ydlAqj2wXrO6pkI2+2tLGWnsivBvfxgAqo1OAHNX4Y+xZ5jrpyG31UJ7Eg==",
   "success": true,
   "projectFilePath": "D:\\MitkoSoft\\.NET CORE WEB API\\api\\Api.csproj",
   "expectedPackageFiles": [
@@ -23,6 +23,8 @@
     "C:\\Users\\todor\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.2.0\\microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
     "C:\\Users\\todor\\.nuget\\packages\\microsoft.aspnetcore.identity\\2.2.0\\microsoft.aspnetcore.identity.2.2.0.nupkg.sha512",
     "C:\\Users\\todor\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\3.1.8\\microsoft.aspnetcore.identity.entityframeworkcore.3.1.8.nupkg.sha512",
+    "C:\\Users\\todor\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\3.1.8\\microsoft.aspnetcore.jsonpatch.3.1.8.nupkg.sha512",
+    "C:\\Users\\todor\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\3.1.8\\microsoft.aspnetcore.mvc.newtonsoftjson.3.1.8.nupkg.sha512",
     "C:\\Users\\todor\\.nuget\\packages\\microsoft.aspnetcore.webutilities\\2.2.0\\microsoft.aspnetcore.webutilities.2.2.0.nupkg.sha512",
     "C:\\Users\\todor\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\todor\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
@@ -69,7 +71,8 @@
     "C:\\Users\\todor\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\todor\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\todor\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
-    "C:\\Users\\todor\\.nuget\\packages\\newtonsoft.json\\11.0.1\\newtonsoft.json.11.0.1.nupkg.sha512",
+    "C:\\Users\\todor\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
+    "C:\\Users\\todor\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "C:\\Users\\todor\\.nuget\\packages\\pipelines.sockets.unofficial\\2.1.16\\pipelines.sockets.unofficial.2.1.16.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",

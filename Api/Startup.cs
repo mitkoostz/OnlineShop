@@ -12,6 +12,7 @@ using Api.Extensions;
 using StackExchange.Redis;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 
 namespace Api
 {
@@ -33,18 +34,14 @@ namespace Api
 
             
             services.AddAutoMapper(typeof(MappingProfiles));
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options =>
+                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
 
             services.AddDbContext<StoreContext>(options =>
             options.UseSqlServer(_config.GetConnectionString("DefaultConnection")));
             services.AddDbContext<AppIdentityDbContext>(options =>
             options.UseSqlServer(_config.GetConnectionString("IdentityConnection")));
-            // services.AddDbContext<StoreContext>(x => 
-            // x.UseSqlite(_config.GetConnectionString("DefaultConnection")));
-            // services.AddDbContext<AppIdentityDbContext>( x => {
-                 
-            //     x.UseSqlite(_config.GetConnectionString("IdentityConnection"));
-            // });
 
             services.AddSingleton<IConnectionMultiplexer>(c => {
                 var configuration = ConfigurationOptions.Parse(_config

@@ -7,6 +7,12 @@
 - MSSQL
 - Redis
 - Stripe Payments
+
+## **Patterns**:
+- Generic Repository Pattern
+- Specification Pattern
+- UnitOfWork Pattern
+
 ## **Features:**
 - Accounts, Roles
 - Basket

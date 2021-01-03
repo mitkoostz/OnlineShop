@@ -14,6 +14,7 @@ using AutoMapper;
 using Api.Errors;
 using Api.Helpers;
 using System.Collections.Specialized;
+using Api.Dtos.ProductDetails;
 
 namespace Api.Controllers
 {
@@ -55,12 +56,11 @@ namespace Api.Controllers
 
         }
 
-        //[Cached(600)] reviews data is back in time when caching, also if there is product status it wont be last state
+        //[Cached(600)] reviews data is back in time when caching, also if there is product avaible status it wont be last state
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse),StatusCodes.Status404NotFound)]
-
-        public async Task<ActionResult<ProductToReturnDto>> GetProduct(int id)
+        public async Task<ActionResult<ProductDetailToReturnDto>> GetProduct(int id)
         {
             var spec = new ProductsWithTypesAndBrandsSpecification(id);
 
@@ -69,7 +69,7 @@ namespace Api.Controllers
             {
                 return NotFound(new ApiResponse(404));
             }
-            return _mapper.Map<Product, ProductToReturnDto>(product);
+            return _mapper.Map<Product, ProductDetailToReturnDto>(product);
            
         }
 

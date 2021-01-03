@@ -22,7 +22,7 @@ namespace Infrastructure.Data
 
             try
             {
-                
+                context.Products.Include("");
                 // var data = context.Products.Include(p => p.ProductSizeAndQuantity)
                 // .ThenInclude(s => s.Size)
                 // .FirstOrDefault();
