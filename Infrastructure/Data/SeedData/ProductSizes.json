@@ -1,111 +1,227 @@
 [
     {
+        "ProductTypeId": 3,
         "SizeShortName": "XXXS"
     },
     {
+        "ProductTypeId": 3,
         "SizeShortName": "XXS"
     },
     {
+        "ProductTypeId": 3,
         "SizeShortName": "XS"
     },
     {
+        "ProductTypeId": 3,
         "SizeShortName": "S"
     },
     {
+        "ProductTypeId": 3,
         "SizeShortName": "M"
     },
     {
+        "ProductTypeId": 3,
         "SizeShortName": "L"
     },
     {
+        "ProductTypeId": 3,
         "SizeShortName": "XL"
     },
     {
+        "ProductTypeId": 3,
         "SizeShortName": "XXL"
     },
     {
+        "ProductTypeId": 3,
         "SizeShortName": "XXXL"
     },
     {
+        "ProductTypeId": 1,
         "SizeShortName": "36"
     },
     {
+        "ProductTypeId": 1,
         "SizeShortName": "36-37"
     },
     {
+        "ProductTypeId": 1,
         "SizeShortName": "37"
     },
     {
+        "ProductTypeId": 1,
         "SizeShortName": "37-38"
     },
     {
+        "ProductTypeId": 1,
         "SizeShortName": "38"
     },
     {
+        "ProductTypeId": 1,
         "SizeShortName": "38-39"
     },
     {
+        "ProductTypeId": 1,
         "SizeShortName": "39"
     },
     {
+        "ProductTypeId": 1,
         "SizeShortName": "40"
     },
     {
+        "ProductTypeId": 1,
         "SizeShortName": "40-41"
     },
     {
+        "ProductTypeId": 1,
         "SizeShortName": "41"
     },
     {
+        "ProductTypeId": 1,
         "SizeShortName": "41-42"
     },
     {
+        "ProductTypeId": 1,
         "SizeShortName": "42"
     },
     {
+        "ProductTypeId": 1,
         "SizeShortName": "42-43"
     },
     {
+        "ProductTypeId": 1,
         "SizeShortName": "43"
     },
     {
+        "ProductTypeId": 1,
         "SizeShortName": "43-44"
     },
     {
+        "ProductTypeId": 1,
         "SizeShortName": "44"
     },
     {
+        "ProductTypeId": 1,
         "SizeShortName": "44-45"
     },
     {
+        "ProductTypeId": 1,
         "SizeShortName": "45"
     },
     {
+        "ProductTypeId": 1,
         "SizeShortName": "45-46"
     },
     {
+        "ProductTypeId": 1,
         "SizeShortName": "46"
     },
     {
+        "ProductTypeId": 1,
         "SizeShortName": "46-47"
     },
     {
+        "ProductTypeId": 1,
         "SizeShortName": "47"
     },
     {
+        "ProductTypeId": 1,
         "SizeShortName": "47-48"
     },
     {
+        "ProductTypeId": 1,
         "SizeShortName": "48"
     },
     {
+        "ProductTypeId": 1,
         "SizeShortName": "48-49"
     },
     {
+        "ProductTypeId": 1,
         "SizeShortName": "49"
     },
     {
+        "ProductTypeId": 1,
         "SizeShortName": "49-50"
+    },
+    {
+        "ProductTypeId": 4,
+        "SizeShortName": "40"
+    },
+    {
+        "ProductTypeId": 4,
+        "SizeShortName": "42"
+    },
+    {
+        "ProductTypeId": 4,
+        "SizeShortName": "44"
+    },
+    {
+        "ProductTypeId": 4,
+        "SizeShortName": "46"
+    },
+    {
+        "ProductTypeId": 4,
+        "SizeShortName": "48"
+    },
+    {
+        "ProductTypeId": 4,
+        "SizeShortName": "50"
+    },
+    {
+        "ProductTypeId": 4,
+        "SizeShortName": "52"
+    },
+    {
+        "ProductTypeId": 4,
+        "SizeShortName": "54"
+    },
+    {
+        "ProductTypeId": 4,
+        "SizeShortName": "56"
+    },
+    {
+        "ProductTypeId": 4,
+        "SizeShortName": "58"
+    },
+    {
+        "ProductTypeId": 4,
+        "SizeShortName": "60"
+    },
+    {
+        "ProductTypeId": 2,
+        "SizeShortName": "54"
+    },
+    {
+        "ProductTypeId": 2,
+        "SizeShortName": "55"
+    },
+    {
+        "ProductTypeId": 2,
+        "SizeShortName": "56"
+    },
+    {
+        "ProductTypeId": 2,
+        "SizeShortName": "57"
+    },
+    {
+        "ProductTypeId": 2,
+        "SizeShortName": "58"
+    },
+    {
+        "ProductTypeId": 2,
+        "SizeShortName": "59"
+    },
+    {
+        "ProductTypeId": 2,
+        "SizeShortName": "60"
+    },
+    {
+        "ProductTypeId": 2,
+        "SizeShortName": "61"
+    },
+    {
+        "ProductTypeId": 2,
+        "SizeShortName": "62"
     }
 
 ]

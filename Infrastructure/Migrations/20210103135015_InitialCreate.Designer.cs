@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    [Migration("20210103121917_ProductQuantity")]
-    partial class ProductQuantity
+    [Migration("20210103135015_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -220,7 +220,7 @@ namespace Infrastructure.Migrations
                     b.ToTable("ProductGenderBase");
                 });
 
-            modelBuilder.Entity("Core.Entities.ProductSizeAndQuantity.ProductSizeAndQuantity", b =>
+            modelBuilder.Entity("Core.Entities.ProductSizeAndQuantityNameSpace.ProductSizeAndQuantity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -228,6 +228,9 @@ namespace Infrastructure.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.Property<int>("SizeId")
@@ -243,17 +246,22 @@ namespace Infrastructure.Migrations
                     b.ToTable("ProductSizeAndQuantity");
                 });
 
-            modelBuilder.Entity("Core.Entities.ProductSizeAndQuantity.Size", b =>
+            modelBuilder.Entity("Core.Entities.ProductSizeAndQuantityNameSpace.Size", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("ProductTypeId")
+                        .HasColumnType("int");
+
                     b.Property<string>("SizeShortName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProductTypeId");
 
                     b.ToTable("Sizes");
                 });
@@ -414,18 +422,27 @@ namespace Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Core.Entities.ProductSizeAndQuantity.ProductSizeAndQuantity", b =>
+            modelBuilder.Entity("Core.Entities.ProductSizeAndQuantityNameSpace.ProductSizeAndQuantity", b =>
                 {
                     b.HasOne("Core.Entities.Product", "Product")
-                        .WithMany()
+                        .WithMany("ProductSizeAndQuantity")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Core.Entities.ProductSizeAndQuantity.Size", "Size")
+                    b.HasOne("Core.Entities.ProductSizeAndQuantityNameSpace.Size", "Size")
                         .WithMany()
                         .HasForeignKey("SizeId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Core.Entities.ProductSizeAndQuantityNameSpace.Size", b =>
+                {
+                    b.HasOne("Core.Entities.ProductType", "ProductType")
+                        .WithMany("Sizes")
+                        .HasForeignKey("ProductTypeId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 

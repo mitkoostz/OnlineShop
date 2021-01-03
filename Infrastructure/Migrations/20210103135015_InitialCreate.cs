@@ -127,6 +127,26 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Sizes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SizeShortName = table.Column<string>(nullable: true),
+                    ProductTypeId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sizes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Sizes_ProductTypes_ProductTypeId",
+                        column: x => x.ProductTypeId,
+                        principalTable: "ProductTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "OrderItems",
                 columns: table => new
                 {
@@ -202,6 +222,33 @@ namespace Infrastructure.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "ProductSizeAndQuantity",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SizeId = table.Column<int>(nullable: false),
+                    ProductId = table.Column<int>(nullable: false),
+                    Quantity = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductSizeAndQuantity", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProductSizeAndQuantity_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProductSizeAndQuantity_Sizes_SizeId",
+                        column: x => x.SizeId,
+                        principalTable: "Sizes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AdminActionHistory_ProductId",
                 table: "AdminActionHistory",
@@ -231,6 +278,22 @@ namespace Infrastructure.Migrations
                 name: "IX_Products_ProductTypeId",
                 table: "Products",
                 column: "ProductTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductSizeAndQuantity_SizeId",
+                table: "ProductSizeAndQuantity",
+                column: "SizeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductSizeAndQuantity_ProductId_SizeId",
+                table: "ProductSizeAndQuantity",
+                columns: new[] { "ProductId", "SizeId" },
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Sizes_ProductTypeId",
+                table: "Sizes",
+                column: "ProductTypeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -248,10 +311,16 @@ namespace Infrastructure.Migrations
                 name: "ProductReviews");
 
             migrationBuilder.DropTable(
+                name: "ProductSizeAndQuantity");
+
+            migrationBuilder.DropTable(
                 name: "Orders");
 
             migrationBuilder.DropTable(
                 name: "Products");
+
+            migrationBuilder.DropTable(
+                name: "Sizes");
 
             migrationBuilder.DropTable(
                 name: "DeliveryMethods");

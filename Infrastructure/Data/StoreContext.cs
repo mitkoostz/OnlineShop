@@ -40,8 +40,16 @@ namespace Ifrastructure.Data
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly
                 .GetExecutingAssembly());
 
+            //Setting the QuantitySize connection Table
             modelBuilder.Entity<ProductSizeAndQuantity>()
              .HasIndex(p => new {p.ProductId , p.SizeId}).IsUnique();
+
+            //Configure the relation Size with ProductType Cycle OnDelete - Restrict
+            modelBuilder.Entity<Size>()
+                .HasOne<ProductType>(s => s.ProductType)
+                .WithMany(type => type.Sizes)
+                .HasForeignKey(u => u.ProductTypeId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             if(Database.ProviderName == "Microsoft.EntityFrameworkCore.Sqlite")
             { 

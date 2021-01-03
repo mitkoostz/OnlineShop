@@ -1,24 +1,16 @@
-# **Project for Software University** - *19.12.2020*
- **E-Commerce store with .NET CORE API 3.1 & Angular 9**
+# **E-Commerce store with .NET CORE API & Angular*
 
 ## **Used Technologies**:
-- ASP.NET Core 3.1 Web Api
+- ASP.NET Core 3.1.1 Web Api
+- Angular 10
 - Entity Framework Core 3.1
-- Angular 9
-- SqLite
+- MSSQL
 - Redis
 - Stripe Payments
 ## **Features:**
-- Accounts,Roles
-- Adding items to basket
-- Login required for Checkout
-- Viewing account data 
-- Default address
-- Checkout
-- Viewing orders
+- Accounts, Roles
+- Basket
+- Debit card payments
 - Admin Panel
-
-## **Making order** with *Stripe test data*
-![](/GithubResources/MakeOrder.gif "Make Order")
-## **Admin account** - Order & Product manage
-![](/GithubResources/Order&ProductManager.gif "Make Order")
+- Product Review system
+- Caching client & server side
