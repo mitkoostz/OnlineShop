@@ -3,6 +3,7 @@ using Core.Entities;
 using Core.Entities.Admin;
 using Core.Entities.ContactUs;
 using Core.Entities.OrderAggregate;
+using Core.Entities.ProductSizeAndQuantityNameSpace;
 using Core.Entities.Reviews;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
@@ -20,12 +21,15 @@ namespace Ifrastructure.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductGenderBase> ProductGenderBase { get; set; }
         public DbSet<ProductType> ProductTypes { get; set; }
+        public DbSet<ProductReview> ProductReviews { get; set; }
+        public DbSet<ProductSizeAndQuantity> ProductSizeAndQuantity { get; set; }
+        public DbSet<Size> Sizes { get; set; }
+
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<DeliveryMethod> DeliveryMethods { get; set; }
         public DbSet<AdminActionHistory> AdminActionHistory { get; set; }
         public DbSet<ContactUsMessage> ContactUsMessages { get; set; }
-        public DbSet<ProductReview> ProductReviews { get; set; }
 
 
 
@@ -35,6 +39,9 @@ namespace Ifrastructure.Data
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly
                 .GetExecutingAssembly());
+
+            modelBuilder.Entity<ProductSizeAndQuantity>()
+             .HasIndex(p => new {p.ProductId , p.SizeId}).IsUnique();
 
             if(Database.ProviderName == "Microsoft.EntityFrameworkCore.Sqlite")
             { 

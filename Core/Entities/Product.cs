@@ -1,4 +1,5 @@
 ﻿using Core.Entities.Admin;
+using Core.Entities.ProductSizeAndQuantityNameSpace;
 using Core.Entities.Reviews;
 using System;
 using System.Collections.Generic;
@@ -45,5 +46,9 @@ namespace Core.Entities
         public decimal AverageReviewRate { get; set; }
 
         public List<ProductReview> ProductReviews { get; set; }
+
+        public List<ProductSizeAndQuantity> ProductSizeAndQuantity { get; set; }
+        //public List<Size> Sizes { get; set; }
+
     }
 }

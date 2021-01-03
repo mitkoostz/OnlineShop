@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TupJfRT5c6Ab+f37ChlZf5tNW20WvQay58Vhi15XDDDICQRVN4wo4664mhCzNlVoTEa6/Y0dMctm1hJAtCqYOw==",
+  "dgSpecHash": "lELSyZFBW/3SjEr+AYTYSnWPcZcrm4crXLpy5CzGXWuXkoiFxOLQ6QVoERxncxE4tzps1B2jzKkhxZ8p995jNQ==",
   "success": true,
-  "projectFilePath": "d:\\MitkoSoft\\.NET CORE WEB API\\Api.Tests\\Api.Tests.csproj",
+  "projectFilePath": "D:\\MitkoSoft\\.NET CORE WEB API\\Api.Tests\\Api.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\todor\\.nuget\\packages\\automapper\\9.0.0\\automapper.9.0.0.nupkg.sha512",
     "C:\\Users\\todor\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\7.0.0\\automapper.extensions.microsoft.dependencyinjection.7.0.0.nupkg.sha512",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "d:\\MitkoSoft\\.NET CORE WEB API\\Api.Tests\\Api.Tests.csproj": {}
+    "D:\\MitkoSoft\\.NET CORE WEB API\\Api.Tests\\Api.Tests.csproj": {}
   },
   "projects": {
-    "d:\\MitkoSoft\\.NET CORE WEB API\\Api.Tests\\Api.Tests.csproj": {
+    "D:\\MitkoSoft\\.NET CORE WEB API\\Api.Tests\\Api.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\MitkoSoft\\.NET CORE WEB API\\Api.Tests\\Api.Tests.csproj",
+        "projectUniqueName": "D:\\MitkoSoft\\.NET CORE WEB API\\Api.Tests\\Api.Tests.csproj",
         "projectName": "Api.Tests",
-        "projectPath": "d:\\MitkoSoft\\.NET CORE WEB API\\Api.Tests\\Api.Tests.csproj",
+        "projectPath": "D:\\MitkoSoft\\.NET CORE WEB API\\Api.Tests\\Api.Tests.csproj",
         "packagesPath": "C:\\Users\\todor\\.nuget\\packages\\",
-        "outputPath": "d:\\MitkoSoft\\.NET CORE WEB API\\Api.Tests\\obj\\",
+        "outputPath": "D:\\MitkoSoft\\.NET CORE WEB API\\Api.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -33,14 +33,14 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "d:\\MitkoSoft\\.NET CORE WEB API\\Api\\Api.csproj": {
-                "projectPath": "d:\\MitkoSoft\\.NET CORE WEB API\\Api\\Api.csproj"
+              "D:\\MitkoSoft\\.NET CORE WEB API\\Api\\Api.csproj": {
+                "projectPath": "D:\\MitkoSoft\\.NET CORE WEB API\\Api\\Api.csproj"
               },
-              "d:\\MitkoSoft\\.NET CORE WEB API\\Core\\Core.csproj": {
-                "projectPath": "d:\\MitkoSoft\\.NET CORE WEB API\\Core\\Core.csproj"
+              "D:\\MitkoSoft\\.NET CORE WEB API\\Core\\Core.csproj": {
+                "projectPath": "D:\\MitkoSoft\\.NET CORE WEB API\\Core\\Core.csproj"
               },
-              "d:\\MitkoSoft\\.NET CORE WEB API\\Infrastructure\\Infrastructure.csproj": {
-                "projectPath": "d:\\MitkoSoft\\.NET CORE WEB API\\Infrastructure\\Infrastructure.csproj"
+              "D:\\MitkoSoft\\.NET CORE WEB API\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "D:\\MitkoSoft\\.NET CORE WEB API\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
@@ -107,14 +107,14 @@
         }
       }
     },
-    "d:\\MitkoSoft\\.NET CORE WEB API\\Api\\Api.csproj": {
+    "D:\\MitkoSoft\\.NET CORE WEB API\\Api\\Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\MitkoSoft\\.NET CORE WEB API\\Api\\Api.csproj",
+        "projectUniqueName": "D:\\MitkoSoft\\.NET CORE WEB API\\Api\\Api.csproj",
         "projectName": "Api",
-        "projectPath": "d:\\MitkoSoft\\.NET CORE WEB API\\Api\\Api.csproj",
+        "projectPath": "D:\\MitkoSoft\\.NET CORE WEB API\\Api\\Api.csproj",
         "packagesPath": "C:\\Users\\todor\\.nuget\\packages\\",
-        "outputPath": "d:\\MitkoSoft\\.NET CORE WEB API\\Api\\obj\\",
+        "outputPath": "D:\\MitkoSoft\\.NET CORE WEB API\\Api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -136,8 +136,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "d:\\MitkoSoft\\.NET CORE WEB API\\Infrastructure\\Infrastructure.csproj": {
-                "projectPath": "d:\\MitkoSoft\\.NET CORE WEB API\\Infrastructure\\Infrastructure.csproj"
+              "D:\\MitkoSoft\\.NET CORE WEB API\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "D:\\MitkoSoft\\.NET CORE WEB API\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
@@ -215,14 +215,14 @@
         }
       }
     },
-    "d:\\MitkoSoft\\.NET CORE WEB API\\Core\\Core.csproj": {
+    "D:\\MitkoSoft\\.NET CORE WEB API\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\MitkoSoft\\.NET CORE WEB API\\Core\\Core.csproj",
+        "projectUniqueName": "D:\\MitkoSoft\\.NET CORE WEB API\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "d:\\MitkoSoft\\.NET CORE WEB API\\Core\\Core.csproj",
+        "projectPath": "D:\\MitkoSoft\\.NET CORE WEB API\\Core\\Core.csproj",
         "packagesPath": "C:\\Users\\todor\\.nuget\\packages\\",
-        "outputPath": "d:\\MitkoSoft\\.NET CORE WEB API\\Core\\obj\\",
+        "outputPath": "D:\\MitkoSoft\\.NET CORE WEB API\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -280,14 +280,14 @@
         }
       }
     },
-    "d:\\MitkoSoft\\.NET CORE WEB API\\Infrastructure\\Infrastructure.csproj": {
+    "D:\\MitkoSoft\\.NET CORE WEB API\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\MitkoSoft\\.NET CORE WEB API\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "D:\\MitkoSoft\\.NET CORE WEB API\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "d:\\MitkoSoft\\.NET CORE WEB API\\Infrastructure\\Infrastructure.csproj",
+        "projectPath": "D:\\MitkoSoft\\.NET CORE WEB API\\Infrastructure\\Infrastructure.csproj",
         "packagesPath": "C:\\Users\\todor\\.nuget\\packages\\",
-        "outputPath": "d:\\MitkoSoft\\.NET CORE WEB API\\Infrastructure\\obj\\",
+        "outputPath": "D:\\MitkoSoft\\.NET CORE WEB API\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -309,8 +309,8 @@
           "netstandard2.1": {
             "targetAlias": "netstandard2.1",
             "projectReferences": {
-              "d:\\MitkoSoft\\.NET CORE WEB API\\Core\\Core.csproj": {
-                "projectPath": "d:\\MitkoSoft\\.NET CORE WEB API\\Core\\Core.csproj"
+              "D:\\MitkoSoft\\.NET CORE WEB API\\Core\\Core.csproj": {
+                "projectPath": "D:\\MitkoSoft\\.NET CORE WEB API\\Core\\Core.csproj"
               }
             }
           }

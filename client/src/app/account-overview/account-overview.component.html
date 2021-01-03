@@ -150,6 +150,7 @@
               </div>
               <!-- Orders section that shows on the RIGHT -->
               <div class="mb-3 orders"id="ordersCollapse" [collapse]="ordersCollapsed" >
+                <ng-container *ngIf="orders.length > 0">
                 <label class="text-info fa-2x mb-2">My Orders</label>
                 <table>
                   <thead>
@@ -172,10 +173,12 @@
                   </tbody>
                 </table>
                  <label class="text-info">*Click to View Order Details*</label>
+                </ng-container>
                  <ng-container *ngIf="orders.length === 0">
-                  <br><label class="text-info fa-2x">You don't have any orders :(</label>
+                  <br><label class="text-info fa-2x">You don't have orders yet</label>
                  </ng-container>
               </div>
+
               <!-- Account Settings section that shows on the RIGHT -->
               <div class="mb-3 settings"id="settingsCollapse" [collapse]="settingsCollapsed" >
                 Account Settings

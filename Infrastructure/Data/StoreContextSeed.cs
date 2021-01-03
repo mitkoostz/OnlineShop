@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Core.Entities.ProductSizeAndQuantityNameSpace;
 using Ifrastructure.Data;
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Logging;
@@ -21,7 +22,32 @@ namespace Infrastructure.Data
             
             try
             {
-             
+
+                //  context.Products.Include(p => p.ProductSizeAndQuantity).FirstOrDefault().ProductSizeAndQuantity.Add(new ProductSizeAndQuantity()
+                //  {
+                //     ProductId = 1,
+                //     SizeId = 1,
+                //     Quantity = 5
+                //  });
+                //  context.SaveChanges();
+                var data = context.Products.Include(p => p.ProductSizeAndQuantity)
+                .ThenInclude(s => s.Size)
+                .FirstOrDefault();
+                var logger = loggerFactory.CreateLogger("ProductQuantityAndSize");
+                logger.LogCritical(data.ProductSizeAndQuantity.FirstOrDefault().Size.SizeShortName.ToString());
+                
+                if (!context.Sizes.Any())
+                {
+                    var sizeData = 
+                        File.ReadAllText("../Infrastructure/Data/SeedData/ProductSizes.json");
+                    var sizes = JsonSerializer.Deserialize<List<Size>>(sizeData);
+                    foreach (var size in sizes)
+                    {
+                        context.Sizes.Add(size);
+                    }
+                    await context.SaveChangesAsync();
+                }
+         
                 if (!context.ProductGenderBase.Any())
                 {
                     var brandsData = 
