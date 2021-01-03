@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    [Migration("20210103135015_InitialCreate")]
+    [Migration("20210103154554_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -203,6 +203,135 @@ namespace Infrastructure.Migrations
                     b.HasIndex("ProductTypeId");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("Core.Entities.ProductDiscounts.DiscountCodeUsed", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("DiscountInPercent")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("DiscountInValue")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("DiscountTypeName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DiscountUsedCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductDiscountCodeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("TimeUsed")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("TotalDiscountValue")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("TotalUserPurchaseValue")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductDiscountCodeId");
+
+                    b.ToTable("DiscountCodeUsed");
+                });
+
+            modelBuilder.Entity("Core.Entities.ProductDiscounts.DiscountType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DiscountTypes");
+                });
+
+            modelBuilder.Entity("Core.Entities.ProductDiscounts.ProductDiscount", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("DiscountConstValue")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("DiscountPercent")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("DiscountStartingDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DiscountTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DiscountValidToDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DiscountTypeId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductDiscounts");
+                });
+
+            modelBuilder.Entity("Core.Entities.ProductDiscounts.ProductDiscountCode", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CodeName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(6)")
+                        .HasMaxLength(6);
+
+                    b.Property<decimal>("DiscountConstValue")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("DiscountPercent")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("DiscountStartingDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DiscountTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DiscountValidToDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DiscountTypeId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductDiscountCodes");
                 });
 
             modelBuilder.Entity("Core.Entities.ProductGenderBase", b =>
@@ -418,6 +547,45 @@ namespace Infrastructure.Migrations
                     b.HasOne("Core.Entities.ProductType", "ProductType")
                         .WithMany()
                         .HasForeignKey("ProductTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Core.Entities.ProductDiscounts.DiscountCodeUsed", b =>
+                {
+                    b.HasOne("Core.Entities.ProductDiscounts.ProductDiscountCode", "ProductDiscountCode")
+                        .WithMany()
+                        .HasForeignKey("ProductDiscountCodeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Core.Entities.ProductDiscounts.ProductDiscount", b =>
+                {
+                    b.HasOne("Core.Entities.ProductDiscounts.DiscountType", "DiscountType")
+                        .WithMany("ProductDiscounts")
+                        .HasForeignKey("DiscountTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entities.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Core.Entities.ProductDiscounts.ProductDiscountCode", b =>
+                {
+                    b.HasOne("Core.Entities.ProductDiscounts.DiscountType", "DiscountType")
+                        .WithMany()
+                        .HasForeignKey("DiscountTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entities.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

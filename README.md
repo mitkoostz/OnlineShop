@@ -1,4 +1,4 @@
-# **E-Commerce store with .NET CORE API & Angular*
+# *E-Commerce store with .NET CORE API & Angular*
 
 ## **Used Technologies**:
 - ASP.NET Core 3.1.1 Web Api

@@ -48,7 +48,6 @@ namespace Core.Entities
         public List<ProductReview> ProductReviews { get; set; }
 
         public List<ProductSizeAndQuantity> ProductSizeAndQuantity { get; set; }
-        //public List<Size> Sizes { get; set; }
-
+        
     }
 }

@@ -3,6 +3,7 @@ using Core.Entities;
 using Core.Entities.Admin;
 using Core.Entities.ContactUs;
 using Core.Entities.OrderAggregate;
+using Core.Entities.ProductDiscounts;
 using Core.Entities.ProductSizeAndQuantityNameSpace;
 using Core.Entities.Reviews;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +25,11 @@ namespace Ifrastructure.Data
         public DbSet<ProductReview> ProductReviews { get; set; }
         public DbSet<ProductSizeAndQuantity> ProductSizeAndQuantity { get; set; }
         public DbSet<Size> Sizes { get; set; }
+
+        public DbSet<DiscountType> DiscountTypes { get; set; }
+        public DbSet<ProductDiscount> ProductDiscounts { get; set; }
+        public DbSet<ProductDiscountCode> ProductDiscountCodes { get; set; }
+        public DbSet<DiscountCodeUsed> DiscountCodeUsed { get; set; }
 
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }

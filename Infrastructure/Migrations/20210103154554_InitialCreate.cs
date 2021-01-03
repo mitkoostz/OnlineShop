@@ -40,6 +40,19 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "DiscountTypes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DiscountTypes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ProductGenderBase",
                 columns: table => new
                 {
@@ -195,6 +208,67 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ProductDiscountCodes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CodeName = table.Column<string>(maxLength: 6, nullable: false),
+                    ProductId = table.Column<int>(nullable: false),
+                    DiscountTypeId = table.Column<int>(nullable: false),
+                    DiscountStartingDate = table.Column<DateTime>(nullable: false),
+                    DiscountValidToDate = table.Column<DateTime>(nullable: false),
+                    DiscountPercent = table.Column<decimal>(nullable: false),
+                    DiscountConstValue = table.Column<decimal>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductDiscountCodes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProductDiscountCodes_DiscountTypes_DiscountTypeId",
+                        column: x => x.DiscountTypeId,
+                        principalTable: "DiscountTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProductDiscountCodes_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProductDiscounts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductId = table.Column<int>(nullable: false),
+                    DiscountTypeId = table.Column<int>(nullable: false),
+                    DiscountStartingDate = table.Column<DateTime>(nullable: false),
+                    DiscountValidToDate = table.Column<DateTime>(nullable: false),
+                    DiscountPercent = table.Column<decimal>(nullable: false),
+                    DiscountConstValue = table.Column<decimal>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductDiscounts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProductDiscounts_DiscountTypes_DiscountTypeId",
+                        column: x => x.DiscountTypeId,
+                        principalTable: "DiscountTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProductDiscounts_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ProductReviews",
                 columns: table => new
                 {
@@ -249,10 +323,42 @@ namespace Infrastructure.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "DiscountCodeUsed",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductDiscountCodeId = table.Column<int>(nullable: false),
+                    UserId = table.Column<string>(nullable: true),
+                    DiscountTypeName = table.Column<string>(nullable: true),
+                    DiscountUsedCount = table.Column<int>(nullable: false),
+                    DiscountInPercent = table.Column<decimal>(nullable: false),
+                    DiscountInValue = table.Column<decimal>(nullable: false),
+                    TimeUsed = table.Column<DateTime>(nullable: false),
+                    TotalDiscountValue = table.Column<decimal>(nullable: false),
+                    TotalUserPurchaseValue = table.Column<decimal>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DiscountCodeUsed", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_DiscountCodeUsed_ProductDiscountCodes_ProductDiscountCodeId",
+                        column: x => x.ProductDiscountCodeId,
+                        principalTable: "ProductDiscountCodes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AdminActionHistory_ProductId",
                 table: "AdminActionHistory",
                 column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DiscountCodeUsed_ProductDiscountCodeId",
+                table: "DiscountCodeUsed",
+                column: "ProductDiscountCodeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderItems_OrderId",
@@ -263,6 +369,26 @@ namespace Infrastructure.Migrations
                 name: "IX_Orders_DeliveryMethodId",
                 table: "Orders",
                 column: "DeliveryMethodId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductDiscountCodes_DiscountTypeId",
+                table: "ProductDiscountCodes",
+                column: "DiscountTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductDiscountCodes_ProductId",
+                table: "ProductDiscountCodes",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductDiscounts_DiscountTypeId",
+                table: "ProductDiscounts",
+                column: "DiscountTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductDiscounts_ProductId",
+                table: "ProductDiscounts",
+                column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductReviews_ProductId",
@@ -305,7 +431,13 @@ namespace Infrastructure.Migrations
                 name: "ContactUsMessages");
 
             migrationBuilder.DropTable(
+                name: "DiscountCodeUsed");
+
+            migrationBuilder.DropTable(
                 name: "OrderItems");
+
+            migrationBuilder.DropTable(
+                name: "ProductDiscounts");
 
             migrationBuilder.DropTable(
                 name: "ProductReviews");
@@ -314,13 +446,19 @@ namespace Infrastructure.Migrations
                 name: "ProductSizeAndQuantity");
 
             migrationBuilder.DropTable(
+                name: "ProductDiscountCodes");
+
+            migrationBuilder.DropTable(
                 name: "Orders");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "Sizes");
 
             migrationBuilder.DropTable(
-                name: "Sizes");
+                name: "DiscountTypes");
+
+            migrationBuilder.DropTable(
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "DeliveryMethods");
