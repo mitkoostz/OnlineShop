@@ -57,7 +57,7 @@ namespace Api.Controllers
         }
 
         //[Cached(600)] reviews data is back in time when caching, also if there is product avaible status it wont be last state
-        [HttpGet("{id}")]
+        [HttpGet("{id}")] 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse),StatusCodes.Status404NotFound)]
         public async Task<ActionResult<ProductDetailToReturnDto>> GetProduct(int id)
@@ -79,8 +79,7 @@ namespace Api.Controllers
         {
             return Ok(await _productBrandRepo.ListAllAsync());
         }
-
-
+        
         [Cached(600)]
         [HttpGet("types")]
         public async Task<ActionResult<IReadOnlyList<ProductType>>> GetProductTypes()

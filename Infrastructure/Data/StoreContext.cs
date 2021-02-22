@@ -38,8 +38,6 @@ namespace Ifrastructure.Data
         public DbSet<ContactUsMessage> ContactUsMessages { get; set; }
 
 
-
-
         protected override void  OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
